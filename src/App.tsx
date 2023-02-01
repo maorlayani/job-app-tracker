@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { HomePage } from './pages/home-page'
+import './app.css'
+import styled from 'styled-components'
+import { Route, Routes } from 'react-router-dom'
+import { TrackerBoard } from './pages/tracker-board'
+import { AddApplication } from './components/add-application'
 
-function App() {
+const AppStyle = styled.div`
+  background-color: #f7ebff84;
+  padding: 0;
+  margin: 0;
+`
+
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <AppStyle className="App">
+      <Routes>
+        <Route path='' element={<HomePage />} />
+        <Route path='tracker' element={<TrackerBoard />} />
+        <Route path=':add' element={<AddApplication />} />
+      </Routes>
+    </AppStyle >
+  )
 }
 
-export default App;
+
