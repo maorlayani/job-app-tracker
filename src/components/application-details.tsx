@@ -70,6 +70,7 @@ export const ApplicationDetails: React.FC<ApplicationDetailsProps> = ({ applicat
     const onCloseDetails = () => {
         dispatch(toggleApplicationDetails())
     }
+
     return <StyledApplicationDetails isOpen={isDetailsOpen} onClick={onCloseDetails}>
         <StyledCompanyLogoAppDetails logoUrl={application.logoUrl}></StyledCompanyLogoAppDetails>
         <StyledPositionAppDetails>{application.position}</StyledPositionAppDetails>

@@ -3,6 +3,11 @@ import { SideNav } from "./side-nav"
 import { useFormRegister } from '../hooks/useFormRegister'
 import { InputContainer } from "./styles/input-container.styled"
 import { StyledAddApplicationForm } from "./styles/add-application-form"
+import { useNavigate } from "react-router-dom"
+import { addApplication } from "../store/reducers/tracker-slice"
+import { useAppDispatch } from "../hooks/redux-hooks"
+import { status } from '../interfaces/trakcer'
+import { StyledButton } from './styles/button.styled'
 
 const StyledAddApplication = styled.div`
     display: flex;
@@ -17,29 +22,49 @@ const InputsWarpper = styled.div`
     flex-wrap: wrap;
     margin-block-end: 25px;
 `
-
+const StyledAddButton = styled(StyledButton)`
+    background-color: #ae84d1;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    &:hover{
+        background-color: #ae84d1bc;
+    }
+    &:active{
+        background-color: #a673cf;
+    }
+`
 export const AddApplication = () => {
+
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
     const [register, setApplication, application] = useFormRegister({
         company: '',
+        companyDesc: '',
         position: '',
+        positionDesc: '',
         location: '',
-        experience: null,
-        SubmittedVia: '',
-        status: ''
+        experience: '',
+        submittedVia: '',
+        status: '',
     })
 
     const onAddApplication = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault()
-        console.log(application);
+        dispatch(addApplication(application))
         setApplication({
             company: '',
+            companyDesc: '',
             position: '',
+            positionDesc: '',
             location: '',
             experience: '',
-            SubmittedVia: '',
+            submittedVia: '',
             status: ''
         })
+        navigate('/')
     }
 
     return <StyledAddApplication>
@@ -52,7 +77,7 @@ export const AddApplication = () => {
                 </InputContainer>
                 <InputContainer>
                     <label htmlFor="companyDesc">Company Description</label>
-                    <textarea name="companyDesc" id="companyDesc"></textarea>
+                    <textarea {...register('companyDesc', 'textarea')}></textarea>
                 </InputContainer>
                 <InputContainer>
                     <label htmlFor="position">Position</label>
@@ -60,7 +85,7 @@ export const AddApplication = () => {
                 </InputContainer>
                 <InputContainer>
                     <label htmlFor="positionDesc">Position Description</label>
-                    <textarea name="positionDesc" id="positionDesc"></textarea>
+                    <textarea {...register('positionDesc', 'textarea')}></textarea>
                 </InputContainer>
 
                 <InputContainer>
@@ -72,25 +97,26 @@ export const AddApplication = () => {
                     <label htmlFor="experience">Experience required</label>
                     <input {...register('experience', 'number')} placeholder='Enter required years of experience' />
                 </InputContainer>
+
                 <InputContainer>
-                    <label htmlFor="SubmittedVia">Submitted via</label>
-                    <input {...register('SubmittedVia', 'text')} placeholder='Application submitted via' required />
+                    <label htmlFor="submittedVia">Submitted via</label>
+                    <input {...register('submittedVia', 'text')} placeholder='Application submitted via' required />
                 </InputContainer>
 
                 <InputContainer>
                     <label htmlFor="status">Status</label>
                     <select {...register('status', 'select')} required>
-                        <option value="submitted" hidden>Select Status</option>
-                        <option value="submitted">Submitted</option>
-                        <option value="assignment">Home Assignment</option>
-                        <option value="interview">Scheduled Interview</option>
-                        <option value="contract">Contract</option>
-                        <option value="rejection">Rejection</option>
+                        <option value="" hidden>Select Status</option>
+                        <option value={status.submitted}>Submitted</option>
+                        <option value={status.assignment}>Home Assignment</option>
+                        <option value={status.interview}>Scheduled Interview</option>
+                        <option value={status.contract}>Contract</option>
+                        <option value={status.rejection}>Rejection</option>
                     </select>
                 </InputContainer>
 
             </InputsWarpper>
-            <button>Add Application</button>
+            <StyledAddButton>Add Application</StyledAddButton>
         </StyledAddApplicationForm>
     </StyledAddApplication>
 }
