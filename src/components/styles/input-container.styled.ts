@@ -19,9 +19,12 @@ export const InputContainer = styled.div`
         border-radius: 3px;
         outline-color: #ae84d1;
         width: 250px;
+        height: 35px;
+        min-height: 35px;
+        box-sizing: border-box;
     }
     select{
-        min-width: 270px;
+        min-width: 250px;
     }
     textarea{
         font-family: Arial, Helvetica, sans-serif;
