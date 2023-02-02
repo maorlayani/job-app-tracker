@@ -17,3 +17,7 @@ function _getCompanyData() {
         return companyData
     } else return []
 }
+
+export function saveToLocalStorge(entityType: string, entities: any[]) {
+    localStorage.setItem(entityType, JSON.stringify(entities))
+}

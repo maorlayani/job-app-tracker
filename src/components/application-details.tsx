@@ -1,12 +1,13 @@
 import { application } from '../interfaces/trakcer'
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'
-import { toggleApplicationDetails } from '../store/reducers/tracker-slice'
+import { removeApplication, toggleApplicationDetails } from '../store/reducers/tracker-slice'
 import { RootState } from '../store/store'
 import { StyledCompanyLogo } from './styles/company-logo.styled'
 import { StyledPosition } from './styles/position.styled'
 import { StyledCompanyName } from './styles/company-name.styled'
 import { StyledHorizontalLine } from './styles/horizontal-line.styled'
+import { StyledButton } from './styles/button.styled'
 
 interface ApplicationDetailsProps {
     application: application
@@ -71,6 +72,12 @@ export const ApplicationDetails: React.FC<ApplicationDetailsProps> = ({ applicat
         dispatch(toggleApplicationDetails())
     }
 
+    const onRemoveApplication = (ev: React.MouseEvent<HTMLButtonElement>) => {
+        ev.stopPropagation()
+        dispatch(removeApplication(application.id))
+        dispatch(toggleApplicationDetails())
+    }
+
     return <StyledApplicationDetails isOpen={isDetailsOpen} onClick={onCloseDetails}>
         <StyledCompanyLogoAppDetails logoUrl={application.logoUrl}></StyledCompanyLogoAppDetails>
         <StyledPositionAppDetails>{application.position}</StyledPositionAppDetails>
@@ -86,5 +93,6 @@ export const ApplicationDetails: React.FC<ApplicationDetailsProps> = ({ applicat
             <li><StyledTag>Experience: </StyledTag><StyledTagContent>{application.experience}</StyledTagContent></li>
             <li><StyledTag>SubmittedVia: </StyledTag><StyledTagContent>{application.submittedVia}</StyledTagContent></li>
         </ul>
+        <StyledButton onClick={onRemoveApplication}>Delete</StyledButton>
     </StyledApplicationDetails>
 }

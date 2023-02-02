@@ -22,19 +22,6 @@ const InputsWarpper = styled.div`
     flex-wrap: wrap;
     margin-block-end: 25px;
 `
-const StyledAddButton = styled(StyledButton)`
-    background-color: #ae84d1;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: 1em;
-    &:hover{
-        background-color: #ae84d1bc;
-    }
-    &:active{
-        background-color: #a673cf;
-    }
-`
 export const AddApplication = () => {
 
     const navigate = useNavigate()
@@ -116,7 +103,7 @@ export const AddApplication = () => {
                 </InputContainer>
 
             </InputsWarpper>
-            <StyledAddButton>Add Application</StyledAddButton>
+            <StyledButton>Add Application</StyledButton>
         </StyledAddApplicationForm>
     </StyledAddApplication>
 }
