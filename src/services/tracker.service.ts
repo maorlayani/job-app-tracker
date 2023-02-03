@@ -42,6 +42,7 @@ mock.onPost('/application').reply(async function (config) {
         id: utilService.makeId(),
         submittedAt: Date.now()
     }
+
     let applications: application[] = await getApplications()
     applications.unshift(updatedApplication)
     saveToLocalStorge(STORAGE_KEY, applications)
@@ -61,6 +62,7 @@ mock.onDelete('/application').reply(async function (config: AxiosRequestConfig<a
     ]
 })
 
+// ------------------------------------------------------------------------------------------
 export const trackerService = {
     getApplications,
     addApplication,

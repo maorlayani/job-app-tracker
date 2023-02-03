@@ -3,9 +3,8 @@ import styled from 'styled-components'
 import { TrackerBoard } from './tracker-board'
 import axios from 'axios';
 import { saveComanyData } from '../services/localStorageService'
+import { MY_BRAND_API_KEY, MY_BRAND_BASE_URL } from '../praivte'
 
-const MY_BRAND_API_KEY = 'C34dtNh9CGSsCWT/ZoUHY38CI2zUHt6O2ZaJIvEQav8='
-const MY_BRAND_BASE_URL = `https://api.brandfetch.io/v2/brands/`
 
 const StyledH1 = styled.h1`
 color: red;
