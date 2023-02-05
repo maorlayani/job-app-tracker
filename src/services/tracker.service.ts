@@ -1,10 +1,10 @@
-import { draftApplication, application } from "../interfaces/trakcer";
+import { draftApplication, application, logo } from "../interfaces/trakcer";
 import axios, { AxiosRequestConfig } from 'axios'
 import { mock } from './mock.axios.service'
 import { data } from '../data/data'
 import { utilService } from "./util.service";
 import { saveComanyData, saveToLocalStorge } from './localStorageService'
-import { MY_BRAND_API_KEY, MY_BRAND_BASE_URL } from '../praivte'
+import { MY_BRAND_API_KEY, MY_BRAND_BASE_URL } from '../private'
 
 const STORAGE_KEY = 'application'
 
@@ -45,8 +45,9 @@ mock.onPost('/application').reply(async function (config) {
         id: utilService.makeId(),
         submittedAt: Date.now()
     }
-    // const companyUrl = updatedApplication.company.replace(/\s/g, '')
-    // await getCompanyData(`${companyUrl.toLowerCase()}.com`)
+    const companyUrl = updatedApplication.company.replace(/\s/g, '')
+    const iconUrl = await getCompanyData(`${companyUrl.toLowerCase()}.com`)
+    updatedApplication.logoUrl = iconUrl
     let applications: application[] = await getApplications()
     applications.unshift(updatedApplication)
     saveToLocalStorge(STORAGE_KEY, applications)
@@ -126,26 +127,22 @@ async function getApplicationById(applicationId: string) {
     }
 }
 
-
 async function getCompanyData(companyName: string) {
     try {
-        console.log(companyName);
-        console.log(`${MY_BRAND_BASE_URL}${companyName}`);
-
-        const companyData = await axios.get(
-            `${MY_BRAND_BASE_URL}${companyName}`, {
-            headers: {
-                'Authorization': `Bearer ${MY_BRAND_API_KEY}`
-            }
-        })
-        const logos: { type: string, theme: string, formats: {}[] }[] = companyData.data.logos
-        console.log(logos)
-        const formats: { type: string, theme: string, formats: {}[] } | undefined = logos.find(logo => logo.type === 'icon')
-        console.log(formats);
-
-        saveComanyData(companyData.data)
+        const apiData = await fetch(
+            `${MY_BRAND_BASE_URL}${companyName}`,
+            {
+                headers: {
+                    'Authorization': `Bearer ${MY_BRAND_API_KEY}`
+                }
+            })
+        const data = await apiData.json()
+        const logos: logo[] = data.logos
+        const iconLogo: logo | undefined =
+            logos.find(logo => logo.type === 'icon')
+        // console.log('formats', icon?.formats[0].src);
+        return iconLogo?.formats[0].src
     } catch (err) {
         console.log(err);
-
     }
 }

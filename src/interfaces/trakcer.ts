@@ -40,3 +40,10 @@ export interface draftApplication {
     experience?: number,
     submittedVia: string,
 }
+
+
+export interface logo {
+    type: string,
+    theme: string,
+    formats: { src: string }[]
+} 

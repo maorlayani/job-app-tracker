@@ -48,7 +48,7 @@ export const AddApplication = () => {
         if (params.id) {
             const applicationToUpdate = await trackerService.getApplicationById(params.id)
             setApplication({ ...applicationToUpdate })
-        } else return
+        } else clearForm()
     }
 
     const onAddApplication = (ev: React.FormEvent<HTMLFormElement>) => {
@@ -58,6 +58,11 @@ export const AddApplication = () => {
         } else {
             dispatch(addApplication(application))
         }
+        clearForm()
+        navigate('/')
+    }
+
+    const clearForm = () => {
         setApplication({
             company: '',
             companyDesc: '',
@@ -68,7 +73,6 @@ export const AddApplication = () => {
             submittedVia: '',
             status: ''
         })
-        navigate('/')
     }
 
     return <StyledAddApplication>
