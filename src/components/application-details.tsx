@@ -8,7 +8,8 @@ import { StyledPosition } from './styles/position.styled'
 import { StyledCompanyName } from './styles/company-name.styled'
 import { StyledHorizontalLine } from './styles/horizontal-line.styled'
 import { StyledButton } from './styles/button.styled'
-
+import { FiEdit2 } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
 interface ApplicationDetailsProps {
     application: application
 }
@@ -19,7 +20,7 @@ interface StyledApplicationDetailsProps {
 
 const StyledApplicationDetails = styled.div<StyledApplicationDetailsProps>`
     background-color: #fff;
-    width: 270px;
+    width: 400px;
     height: 500px;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
@@ -45,6 +46,10 @@ const StyledTagContent = styled.span`
     color: #5ba4a4;
   `
 
+const StyledUl = styled.ul`
+align-self: flex-start;
+`
+
 const StyledCompanyLogoAppDetails = styled(StyledCompanyLogo)`
     max-width: 85px;
     min-width: 85px;
@@ -64,9 +69,32 @@ const StyledCompanyNameAppDetails = styled(StyledCompanyName)`
     margin-block-end: .5em;
 `
 
+const ButtonsWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin-top: 2em;
+`
+const StyledRemoveButton = styled(StyledButton)`
+    border: 1px solid #ae84d1;
+    color: #ae84d1;
+    background-color: #fff;
+        &:hover{
+            color: #b592d1bb;
+            border: 1px solid #b592d1bb;
+            background-color: unset;
+        }
+        &:active{
+            border: 1px solid #ae84d1;
+            color: #ae84d1;
+            background-color: unset;
+        }
+`
+
 export const ApplicationDetails: React.FC<ApplicationDetailsProps> = ({ application }) => {
     const dispatch = useAppDispatch()
     const isDetailsOpen = useAppSelector((state: RootState) => state.tracker.isDetailsOpen)
+    const navigate = useNavigate()
 
     const onCloseDetails = () => {
         dispatch(toggleApplicationDetails())
@@ -78,21 +106,32 @@ export const ApplicationDetails: React.FC<ApplicationDetailsProps> = ({ applicat
         dispatch(toggleApplicationDetails())
     }
 
+    const onUpdateApplication = (ev: React.MouseEvent<HTMLButtonElement>) => {
+        ev.stopPropagation()
+        navigate(`/edit/${application.id}`)
+        onCloseDetails()
+    }
+
+    const getFormatedDate = (date: number) => {
+        const dateFormat = new Date(date)
+        return dateFormat.toLocaleString('he-IL', { dateStyle: 'short' })
+    }
+
     return <StyledApplicationDetails isOpen={isDetailsOpen} onClick={onCloseDetails}>
         <StyledCompanyLogoAppDetails logoUrl={application.logoUrl}></StyledCompanyLogoAppDetails>
         <StyledPositionAppDetails>{application.position}</StyledPositionAppDetails>
         <StyledCompanyNameAppDetails>{application.company}, {application.location}</StyledCompanyNameAppDetails>
         <StyledHorizontalLine></StyledHorizontalLine>
-        <ul>
-            {/* <li><StyledTag>Company: </StyledTag><StyledTagContent>{application.company}</StyledTagContent></li> */}
-            {/* <li><StyledTag>Position: </StyledTag><StyledTagContent>{application.position}</StyledTagContent></li> */}
-            <li><StyledTag>Submitted At: </StyledTag><StyledTagContent>{application.submittedAt}</StyledTagContent></li>
+        <StyledUl>
+            <li><StyledTag>Submitted At: </StyledTag><StyledTagContent>{getFormatedDate(application.submittedAt)}</StyledTagContent></li>
             <li><StyledTag>Status: </StyledTag><StyledTagContent>{application.status}</StyledTagContent></li>
-            {/* <li><StyledTag>Location: </StyledTag><StyledTagContent>{application.location}</StyledTagContent></li> */}
             <li><StyledTag>Technologies: </StyledTag><StyledTagContent>{application.technologies?.map((tech, idx) => <ol key={tech + idx}>{tech}</ol>)}</StyledTagContent></li>
             <li><StyledTag>Experience: </StyledTag><StyledTagContent>{application.experience}</StyledTagContent></li>
             <li><StyledTag>SubmittedVia: </StyledTag><StyledTagContent>{application.submittedVia}</StyledTagContent></li>
-        </ul>
-        <StyledButton onClick={onRemoveApplication}>Delete</StyledButton>
+        </StyledUl>
+        <ButtonsWrapper>
+            <StyledButton onClick={onUpdateApplication}>Update</StyledButton>
+            <StyledRemoveButton onClick={onRemoveApplication}>Delete</StyledRemoveButton>
+        </ButtonsWrapper>
     </StyledApplicationDetails>
 }

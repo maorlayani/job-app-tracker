@@ -26,6 +26,7 @@ export interface application {
 }
 
 export interface draftApplication {
+    id?: string,
     company: string,
     position: string,
     positionDesc?: string,

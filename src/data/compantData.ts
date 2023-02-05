@@ -161,7 +161,8 @@ export const companyData = [
                 ]
             }
         ]
-    }, {
+    },
+    {
         "name": "Elbit Systems",
         "domain": "elbitsystems.com",
         "claimed": false,

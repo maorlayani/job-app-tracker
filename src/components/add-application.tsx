@@ -3,11 +3,13 @@ import { SideNav } from "./side-nav"
 import { useFormRegister } from '../hooks/useFormRegister'
 import { InputContainer } from "./styles/input-container.styled"
 import { StyledAddApplicationForm } from "./styles/add-application-form"
-import { useNavigate } from "react-router-dom"
-import { addApplication } from "../store/reducers/tracker-slice"
+import { useNavigate, useParams } from "react-router-dom"
+import { addApplication, updateApplication } from "../store/reducers/tracker-slice"
 import { useAppDispatch } from "../hooks/redux-hooks"
 import { status } from '../interfaces/trakcer'
 import { StyledButton } from './styles/button.styled'
+import { useEffect } from "react"
+import { trackerService } from "../services/tracker.service"
 
 const StyledAddApplication = styled.div`
     display: flex;
@@ -26,7 +28,7 @@ export const AddApplication = () => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-
+    const params = useParams()
     const [register, setApplication, application] = useFormRegister({
         company: '',
         companyDesc: '',
@@ -38,9 +40,24 @@ export const AddApplication = () => {
         status: '',
     })
 
+    useEffect(() => {
+        loadApplication()
+    }, [params.id])
+
+    const loadApplication = async () => {
+        if (params.id) {
+            const applicationToUpdate = await trackerService.getApplicationById(params.id)
+            setApplication({ ...applicationToUpdate })
+        } else return
+    }
+
     const onAddApplication = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault()
-        dispatch(addApplication(application))
+        if (application.id) {
+            dispatch(updateApplication(application))
+        } else {
+            dispatch(addApplication(application))
+        }
         setApplication({
             company: '',
             companyDesc: '',
@@ -103,7 +120,7 @@ export const AddApplication = () => {
                 </InputContainer>
 
             </InputsWarpper>
-            <StyledButton>Add Application</StyledButton>
+            <StyledButton>{params.id ? 'Update' : 'Add'} Application</StyledButton>
         </StyledAddApplicationForm>
     </StyledAddApplication>
 }

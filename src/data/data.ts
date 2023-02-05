@@ -1,8 +1,9 @@
 import { application, status } from '../interfaces/trakcer'
+import { utilService } from '../services/util.service'
 
 export const data: application[] = [
     {
-        id: Math.random().toString(),
+        id: utilService.makeId(),
         company: 'Google',
         position: 'Frontend Developer',
         submittedAt: Date.now(),
@@ -14,7 +15,7 @@ export const data: application[] = [
         logoUrl: 'https://asset.brandfetch.io/id6O2oGzv-/idSuJ5ik7i.png'
     },
     {
-        id: Math.random().toString(),
+        id: utilService.makeId(),
         company: 'Apple',
         position: 'Fullstack Developer',
         submittedAt: Date.now(),
@@ -27,7 +28,7 @@ export const data: application[] = [
 
     },
     {
-        id: Math.random().toString(),
+        id: utilService.makeId(),
         company: 'Elbit',
         position: 'Embedd Developer',
         submittedAt: Date.now(),
@@ -40,7 +41,7 @@ export const data: application[] = [
 
     },
     {
-        id: Math.random().toString(),
+        id: utilService.makeId(),
         company: 'Monday',
         position: 'Backend Developer',
         submittedAt: Date.now(),
@@ -52,7 +53,7 @@ export const data: application[] = [
         logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672917933/job-application-tracker/idet9mV1nH_ruzwag.jpg'
     },
     {
-        id: Math.random().toString(),
+        id: utilService.makeId(),
         company: 'ironSource',
         position: 'Java Developer',
         submittedAt: Date.now(),
@@ -64,7 +65,7 @@ export const data: application[] = [
         logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672996577/job-application-tracker/ido_Zvv_uK_a0hdw1.jpg'
     },
     {
-        id: Math.random().toString(),
+        id: utilService.makeId(),
         company: 'Google',
         position: 'Frontend Developer',
         submittedAt: Date.now(),
@@ -76,7 +77,7 @@ export const data: application[] = [
         logoUrl: 'https://asset.brandfetch.io/id6O2oGzv-/idSuJ5ik7i.png'
     },
     {
-        id: Math.random().toString(),
+        id: utilService.makeId(),
         company: 'Apple',
         position: 'Fullstack Developer',
         submittedAt: Date.now(),
@@ -89,7 +90,7 @@ export const data: application[] = [
 
     },
     {
-        id: Math.random().toString(),
+        id: utilService.makeId(),
         company: 'Elbit',
         position: 'Embedd Developer',
         submittedAt: Date.now(),

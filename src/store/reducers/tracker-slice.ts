@@ -26,7 +26,15 @@ export const getApplication = createAsyncThunk(
 export const addApplication = createAsyncThunk(
     'tracker/addApplication',
     async (application: draftApplication) => {
-        const updatedApplication = await trackerService.addApplication(application)
+        const addedApplication = await trackerService.saveApplication(application)
+        return addedApplication
+    }
+)
+
+export const updateApplication = createAsyncThunk(
+    'tracker/updateApplication',
+    async (application: application) => {
+        const updatedApplication = await trackerService.saveApplication(application)
         return updatedApplication
     }
 )
@@ -65,6 +73,10 @@ export const trackerSlice = createSlice({
             })
             .addCase(addApplication.fulfilled, (state, action: PayloadAction<application>) => {
                 state.applications.unshift(action.payload)
+            })
+            .addCase(updateApplication.fulfilled, (state, action: PayloadAction<application>) => {
+                state.applications = state.applications.map(app =>
+                    app.id === action.payload.id ? action.payload : app)
             })
             .addCase(removeApplication.fulfilled, (state, action: PayloadAction<any>) => {
                 state.applications = state.applications.filter(app =>

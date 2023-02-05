@@ -27,6 +27,7 @@ export const HomePage = () => {
 
     const getLogo = async (companyName: string) => {
         try {
+            console.log(`${MY_BRAND_BASE_URL}${companyName}`);
 
             const apiData = await axios.get(
                 `${MY_BRAND_BASE_URL}${companyName}`, {
@@ -37,13 +38,13 @@ export const HomePage = () => {
             )
             console.log(apiData.data)
             saveComanyData(apiData.data)
-        } catch (err) {
+        } catch (err: any) {
             console.log(err);
 
         }
     }
     return <>
-        {/* <button onClick={() => getLogo('seemplicity.io')}>GET CALL</button> */}
+        {/* <button onClick={() => getLogo('google.com')}>GET CALL</button> */}
         <TrackerBoard />
     </>
 }

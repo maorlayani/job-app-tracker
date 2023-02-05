@@ -36,7 +36,7 @@ export const SideNav = () => {
         <Logo>JobAppTracker</Logo>
         <LinksWrapper>
             <StyledLink to={'/'}>Home</StyledLink>
-            <StyledLink to={'/add'}>Add Application</StyledLink>
+            <StyledLink to={'/edit'}>Add Application</StyledLink>
             <StyledLink to={'/'}>My Activity</StyledLink>
             <StyledLink to={'/'}>Reports</StyledLink>
             <StyledLink to={'/'}>Contact us</StyledLink>
