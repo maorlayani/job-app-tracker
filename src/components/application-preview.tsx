@@ -1,7 +1,7 @@
 import { application } from '../interfaces/trakcer'
 import styled from 'styled-components'
 import Globalfonts from '../assets/global-fonts'
-import React from 'react'
+import React, { useState } from 'react'
 import { toggleApplicationDetails, setCurrentApplicationDetails } from '../store/reducers/tracker-slice'
 import { HiLocationMarker } from 'react-icons/hi'
 import { AiFillInfoCircle } from 'react-icons/ai'
@@ -18,7 +18,7 @@ interface ApplicationPreviewProps {
 }
 
 interface StyledIconProps {
-    type: string
+    isMarked: boolean
 }
 
 const PreviewLI = styled.li`
@@ -68,37 +68,54 @@ const PreviewIconsWrapper = styled.div`
 `
 
 const StyledIcon = styled.div<StyledIconProps>`
-    background-color: ${props => props.type === 'action' ? '#b6b3b3' : '#fff'};
+    background-color:#fff;
     border-radius: 50%;
     height: 19px;
     width: 19px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${props => props.type === 'action' ? '#fff' : '#b6b3b3'};
-    font-size: ${props => props.type === 'action' ? '0.8em' : '1.4em'};
+    color: ${props => props.isMarked ? '#ae84d1' : '#b6b3b3'};
+    font-size: 1.4em;
+`
+
+const StyledActionIcon = styled.div`
+    background-color:#b6b3b3 ;
+    border-radius: 50%;
+    height: 19px;
+    width: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#fff;
+    font-size: 0.8em;
 `
 
 export const ApplicationPreview: React.FC<ApplicationPreviewProps> = ({ application }) => {
 
     const dispatch = useAppDispatch()
     const isDetailsOpen = useAppSelector((state: RootState) => state.tracker.isDetailsOpen)
-
+    const [isMarked, setIsMarked] = useState(false)
 
     const onSetAppliction: (application: application) => void = (application) => {
         dispatch(setCurrentApplicationDetails(application))
         if (!isDetailsOpen) dispatch(toggleApplicationDetails())
     }
 
+    const togglePinApplication = (ev: React.MouseEvent<HTMLDivElement>) => {
+        ev.stopPropagation()
+        setIsMarked(!isMarked)
+    }
+
     return <React.Fragment>
         <PreviewLI key={application.id} onClick={() => onSetAppliction(application)}>
             <PreviewIconsWrapper>
-                <StyledIcon type='marked'>
+                <StyledIcon isMarked={isMarked} onClick={togglePinApplication}>
                     <BsFillBookmarkDashFill />
                 </StyledIcon>
-                <StyledIcon type='action'>
+                <StyledActionIcon>
                     <BsThreeDotsVertical />
-                </StyledIcon>
+                </StyledActionIcon>
             </PreviewIconsWrapper>
             <PreviewContainer >
                 <Globalfonts />

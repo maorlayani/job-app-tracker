@@ -4,7 +4,7 @@ import { ApplicationPreview } from "./application-preview"
 import styled from "styled-components"
 
 const ApplicationListStyle = styled.section`
-    padding:  2.5em ;
+    padding:  .5em ;
     overflow-y: auto;
     margin: .5em 0;
     scroll-behavior: smooth;

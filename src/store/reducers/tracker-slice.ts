@@ -3,22 +3,29 @@ import { data } from '../../data/data'
 import { application, draftApplication } from '../../interfaces/trakcer'
 import { trackerService } from '../../services/tracker.service'
 
+
+type FilterBy = {
+    position?: string, location?: string
+}
 interface TrackerState {
     applications: application[],
     applicationDetails: application,
-    isDetailsOpen: boolean
+    isDetailsOpen: boolean,
+    filterBy: FilterBy
 }
 
 const initialState: TrackerState = {
     applications: [],
     applicationDetails: data[0],
-    isDetailsOpen: false
+    isDetailsOpen: false,
+    filterBy: { position: '', location: '' }
 }
 
 export const getApplication = createAsyncThunk(
     'tracker/getApplication',
-    async () => {
-        const applications = await trackerService.getApplications()
+    async (arg, { getState }) => {
+        const { tracker } = getState() as { tracker: TrackerState }
+        const applications = await trackerService.getApplications(tracker.filterBy)
         return applications
     }
 )
@@ -64,6 +71,9 @@ export const trackerSlice = createSlice({
         },
         toggleApplicationDetails: (state) => {
             state.isDetailsOpen = !state.isDetailsOpen
+        },
+        setFilterBy: (state, action: PayloadAction<FilterBy>) => {
+            state.filterBy = { ...state.filterBy, ...action.payload }
         }
     },
     extraReducers: (builder) => {
@@ -89,6 +99,7 @@ export const trackerSlice = createSlice({
 
 
 export const {
+    setFilterBy,
     toggleApplicationDetails,
     setCurrentApplicationDetails } = trackerSlice.actions
 

@@ -2,21 +2,26 @@ import { ApplicationList } from "../components/application-list"
 import { SideNav } from "../components/side-nav"
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'
-import { getApplication, removeApplication, } from '../store/reducers/tracker-slice'
+import { getApplication, removeApplication, setFilterBy } from '../store/reducers/tracker-slice'
 import { RootState } from '../store/store'
 import { ApplicationDetails } from "../components/application-details"
 import { useEffect } from "react"
+import { ApplicationFilter } from "../components/application-filter"
 
 
 const StyledTrackerBoard = styled.div`
     display: flex;
     height: 100vh;
 `
-
+const MainContentWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`
 export const TrackerBoard = () => {
     const dispatch = useAppDispatch()
     const applications = useAppSelector((state: RootState) => state.tracker.applications)
     const applicationDetails = useAppSelector((state: RootState) => state.tracker.applicationDetails)
+    const filterBy = useAppSelector((state: RootState) => state.tracker.filterBy)
 
     useEffect(() => {
         if (applications.length) return
@@ -31,13 +36,17 @@ export const TrackerBoard = () => {
         }
     }
 
-    // const onRemoveApplication: (id: string) => void = (id) => {
-    //     dispatch(removeApplication(id))
-    // }
+    const onSetFilterBy = (ev: React.ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setFilterBy({ [ev.target.name.toLowerCase()]: ev.target.value }))
+        loadApplications()
+    }
 
     return <StyledTrackerBoard>
         <SideNav />
-        <ApplicationList />
+        <MainContentWrapper>
+            <ApplicationFilter onSetFilterBy={onSetFilterBy} />
+            <ApplicationList />
+        </MainContentWrapper>
         <ApplicationDetails application={applicationDetails} />
     </StyledTrackerBoard >
 }

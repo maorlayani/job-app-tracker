@@ -3,13 +3,13 @@ import axios, { AxiosRequestConfig } from 'axios'
 import { mock } from './mock.axios.service'
 import { data } from '../data/data'
 import { utilService } from "./util.service";
-import { saveComanyData, saveToLocalStorge } from './localStorageService'
+import { saveToLocalStorge } from './localStorageService'
 import { MY_BRAND_API_KEY, MY_BRAND_BASE_URL } from '../private'
 
 const STORAGE_KEY = 'application'
 
 
-mock.onGet('/application').reply(function () {
+mock.onGet('/application').reply(function (config) {
     const applicationsFromStorage: string | null = localStorage.getItem(STORAGE_KEY)
     let applications: application[] = []
     if (applicationsFromStorage === null) applications = data
@@ -17,14 +17,29 @@ mock.onGet('/application').reply(function () {
         applications = JSON.parse(applicationsFromStorage)
         if (!applications.length) applications = data
     }
+    const { location, position, status } = config.params.filterBy
     saveToLocalStorge(STORAGE_KEY, applications)
+    let filteredApplication
+    if (location) {
+        filteredApplication = applications.filter(app => app.location === location)
+    }
+    if (position) {
+        filteredApplication = applications.filter(app => app.position === position)
+    }
+    if (location && position) {
+        filteredApplication = applications.filter(app => app.position === position && app.location === location)
+    }
+    if (!location && !position) {
+        filteredApplication = applications
+    }
+
     return [
         200,
-        { applications }
+        { filteredApplication }
     ]
 })
 
-mock.onGet(/\application\/\d+/).reply(async function (config: AxiosRequestConfig<any>) {
+mock.onGet(/\/application\/\d+/).reply(async function (config: AxiosRequestConfig<any>) {
     let id: string
     if (config.url !== undefined) {
         id = config.url.replace(/\D/g, '')
@@ -87,10 +102,10 @@ export const trackerService = {
     getApplicationById
 }
 
-async function getApplications() {
+async function getApplications(filterBy: {} = {}) {
     try {
-        const { data } = await axios.get('/application')
-        return data.applications
+        const { data } = await axios.get('/application', { params: { filterBy } })
+        return data.filteredApplication
     } catch (err: any) {
         console.error('Cannot get applications', err)
     }
@@ -143,6 +158,6 @@ async function getCompanyData(companyName: string) {
         // console.log('formats', icon?.formats[0].src);
         return iconLogo?.formats[0].src
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }

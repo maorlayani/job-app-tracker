@@ -4,7 +4,7 @@ import { useFormRegister } from '../hooks/useFormRegister'
 import { InputContainer } from "./styles/input-container.styled"
 import { StyledAddApplicationForm } from "./styles/add-application-form"
 import { useNavigate, useParams } from "react-router-dom"
-import { addApplication, updateApplication } from "../store/reducers/tracker-slice"
+import { addApplication, toggleApplicationDetails, updateApplication } from "../store/reducers/tracker-slice"
 import { useAppDispatch } from "../hooks/redux-hooks"
 import { status } from '../interfaces/trakcer'
 import { StyledButton } from './styles/button.styled'
@@ -58,6 +58,7 @@ export const AddApplication = () => {
         } else {
             dispatch(addApplication(application))
         }
+        dispatch(toggleApplicationDetails())
         clearForm()
         navigate('/')
     }
