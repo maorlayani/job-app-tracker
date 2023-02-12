@@ -46,4 +46,10 @@ export interface logo {
     type: string,
     theme: string,
     formats: { src: string }[]
-} 
+}
+
+export interface FilterBy {
+    position?: string[],
+    location: string[],
+    status?: string
+}

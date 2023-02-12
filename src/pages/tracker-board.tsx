@@ -19,13 +19,14 @@ const MainContentWrapper = styled.div`
 `
 export const TrackerBoard = () => {
     const dispatch = useAppDispatch()
-    const applications = useAppSelector((state: RootState) => state.tracker.applications)
+    // const applications = useAppSelector((state: RootState) => state.tracker.applications)
     const applicationDetails = useAppSelector((state: RootState) => state.tracker.applicationDetails)
+    const filterBy = useAppSelector((state: RootState) => state.tracker.filterBy)
 
     useEffect(() => {
-        if (applications.length) return
+        // if (applications.length) return
         loadApplications()
-    }, [])
+    }, [filterBy.location])
 
     const loadApplications = async () => {
         try {
@@ -36,14 +37,15 @@ export const TrackerBoard = () => {
     }
 
     const onSetFilterBy = (ev: React.ChangeEvent<HTMLSelectElement>) => {
-        dispatch(setFilterBy({ [ev.target.name.toLowerCase()]: ev.target.value }))
+        // dispatch(setFilterBy({ [ev.target.name.toLowerCase()]: ev.target.value }))
         loadApplications()
     }
 
     return <StyledTrackerBoard>
         <SideNav />
         <MainContentWrapper>
-            <ApplicationFilter onSetFilterBy={onSetFilterBy} />
+            <ApplicationFilter />
+            {/* <ApplicationFilter onSetFilterBy={onSetFilterBy} /> */}
             <ApplicationList />
         </MainContentWrapper>
         <ApplicationDetails application={applicationDetails} />

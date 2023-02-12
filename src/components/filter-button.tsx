@@ -52,6 +52,6 @@ export const FilterButton: React.FC<FilterButtonProps> = ({ text, opt }) => {
                 </svg>
             </span>
         </StyledFilterButton>
-        {isModalOpen && <FilterModal onToggleFilterModal={onToggleFilterModal} opt={opt} />}
+        {isModalOpen && <FilterModal onToggleFilterModal={onToggleFilterModal} opt={opt} type={text} />}
     </FilterButtonWrapper>
 }

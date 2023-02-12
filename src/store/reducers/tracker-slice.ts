@@ -1,12 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { data } from '../../data/data'
-import { application, draftApplication } from '../../interfaces/trakcer'
+import { application, draftApplication, FilterBy } from '../../interfaces/trakcer'
 import { trackerService } from '../../services/tracker.service'
 
 
-type FilterBy = {
-    position?: string, location?: string, status?: string
-}
+
 interface TrackerState {
     applications: application[],
     applicationDetails: application,
@@ -18,7 +16,7 @@ const initialState: TrackerState = {
     applications: [],
     applicationDetails: data[0],
     isDetailsOpen: false,
-    filterBy: { position: '', location: '', status: '' }
+    filterBy: { position: [], location: [], status: '' }
 }
 
 export const getApplication = createAsyncThunk(
@@ -53,6 +51,17 @@ export const removeApplication = createAsyncThunk(
         return applicationId
     }
 )
+
+// export const setFilterBy = createAsyncThunk(
+//     'tracker/setFilterBy',
+//     async (filterBy: FilterBy) => {
+//         console.log('getapp', filterBy);
+
+//         // await getApplication()
+//         // await trackerService.getApplications(filterBy)
+//         return filterBy
+//     }
+// )
 
 export const trackerSlice = createSlice({
     name: 'tracker',
@@ -92,6 +101,11 @@ export const trackerSlice = createSlice({
                 state.applications = state.applications.filter(app =>
                     app.id !== action.payload)
             })
+        // .addCase(setFilterBy.fulfilled, (state, action: PayloadAction<any>) => {
+        //     state.filterBy = { ...state.filterBy, ...action.payload }
+        //     console.log('state.filterBy', action.payload);
+
+        // })
     }
 })
 

@@ -1,4 +1,4 @@
-import { draftApplication, application, logo } from "../interfaces/trakcer";
+import { draftApplication, application, logo, FilterBy } from "../interfaces/trakcer";
 import axios, { AxiosRequestConfig } from 'axios'
 import { mock } from './mock.axios.service'
 import { data } from '../data/data'
@@ -17,27 +17,31 @@ mock.onGet('/application').reply(function (config) {
         applications = JSON.parse(applicationsFromStorage)
         if (!applications.length) applications = data
     }
-    const { location, position, status } = config.params.filterBy
+    const filterBy: FilterBy = config.params.filterBy
+    // const { location, position, status } = config.params.filterBy
     saveToLocalStorge(STORAGE_KEY, applications)
     let filteredApplication
-    console.log(config.params.filterBy)
+    console.log('from back', config.params.filterBy)
 
-    if (location) {
-        filteredApplication = applications.filter(app => app.location === location)
-    }
-    if (position) {
-        filteredApplication = applications.filter(app => app.position === position)
-    }
-    if (status) {
-        filteredApplication = applications.filter(app => app.status === status)
-    }
-    if (location && position && status) {
-        filteredApplication = applications.filter(app =>
-            app.position === position && app.location === location && app.status === status)
-    }
-    if (!location && !position && !status) {
+    if (filterBy.location !== undefined && filterBy.location.length > 0) {
+        filteredApplication =
+            applications.filter(app => filterBy.location.find(loc => loc === app.location))
+    } else {
         filteredApplication = applications
     }
+    // if (position) {
+    //     filteredApplication = applications.filter(app => app.position === position)
+    // }
+    // if (status) {
+    //     filteredApplication = applications.filter(app => app.status === status)
+    // }
+    // if (location && position && status) {
+    //     filteredApplication = applications.filter(app =>
+    //         app.position === position && app.location === location && app.status === status)
+    // }
+    // if (!location && !position && !status) {
+    //     filteredApplication = applications
+    // }
 
     return [
         200,
@@ -108,7 +112,7 @@ export const trackerService = {
     getApplicationById
 }
 
-async function getApplications(filterBy: {} = {}) {
+async function getApplications(filterBy: FilterBy = { location: [] }) {
     try {
         const { data } = await axios.get('/application', { params: { filterBy } })
         return data.filteredApplication

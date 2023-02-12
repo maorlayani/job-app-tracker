@@ -8,8 +8,7 @@ import { useEffect, useState } from "react"
 import { FilterButton } from "./filter-button"
 
 interface ApplicationFilterProps {
-
-    onSetFilterBy: (ev: React.ChangeEvent<HTMLSelectElement>) => void
+    // onSetFilterBy: (ev: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
 const StyledCustomSelectFilter = styled.div`
@@ -22,7 +21,7 @@ interface Options {
     location: string[],
     position: string[]
 }
-export const ApplicationFilter: React.FC<ApplicationFilterProps> = ({ onSetFilterBy }) => {
+export const ApplicationFilter: React.FC<ApplicationFilterProps> = () => {
 
     const [options, setOptions] = useState<Options>({ location: [], position: [] })
 
@@ -32,7 +31,7 @@ export const ApplicationFilter: React.FC<ApplicationFilterProps> = ({ onSetFilte
 
     const getOptions = async () => {
         try {
-            const applications: application[] = await trackerService.getApplications({})
+            const applications: application[] = await trackerService.getApplications({ location: [] })
             const locationOpt = removeDuplicates(applications, 'location')
             const positionOpt = removeDuplicates(applications, 'position')
             setOptions({ location: locationOpt, position: positionOpt })
@@ -57,6 +56,6 @@ export const ApplicationFilter: React.FC<ApplicationFilterProps> = ({ onSetFilte
         <FilterButton text='Position' opt={options.position} />
         {/* <CustomSelectFilter options={options.location} label='Location' onSetFilterBy={onSetFilterBy} /> */}
         {/* <CustomSelectFilter options={options.position} label='Position' onSetFilterBy={onSetFilterBy} /> */}
-        <CustomSelectFilter options={getAllAppStatus()} label='Status' onSetFilterBy={onSetFilterBy} />
+        {/* <CustomSelectFilter options={getAllAppStatus()} label='Status' onSetFilterBy={onSetFilterBy} /> */}
     </StyledCustomSelectFilter>
 } 
