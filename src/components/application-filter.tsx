@@ -5,6 +5,7 @@ import { CustomSelectFilter } from "./custom-select-filter"
 import { application, status } from '../interfaces/trakcer'
 import { trackerService } from "../services/tracker.service"
 import { useEffect, useState } from "react"
+import { FilterButton } from "./filter-button"
 
 interface ApplicationFilterProps {
 
@@ -52,8 +53,10 @@ export const ApplicationFilter: React.FC<ApplicationFilterProps> = ({ onSetFilte
 
 
     return <StyledCustomSelectFilter>
-        <CustomSelectFilter options={options.location} label='Location' onSetFilterBy={onSetFilterBy} />
-        <CustomSelectFilter options={options.position} label='Position' onSetFilterBy={onSetFilterBy} />
+        <FilterButton text='Location' opt={options.location} />
+        <FilterButton text='Position' opt={options.position} />
+        {/* <CustomSelectFilter options={options.location} label='Location' onSetFilterBy={onSetFilterBy} /> */}
+        {/* <CustomSelectFilter options={options.position} label='Position' onSetFilterBy={onSetFilterBy} /> */}
         <CustomSelectFilter options={getAllAppStatus()} label='Status' onSetFilterBy={onSetFilterBy} />
     </StyledCustomSelectFilter>
 } 

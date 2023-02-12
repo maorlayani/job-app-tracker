@@ -5,7 +5,7 @@ import { trackerService } from '../../services/tracker.service'
 
 
 type FilterBy = {
-    position?: string, location?: string
+    position?: string, location?: string, status?: string
 }
 interface TrackerState {
     applications: application[],
@@ -18,7 +18,7 @@ const initialState: TrackerState = {
     applications: [],
     applicationDetails: data[0],
     isDetailsOpen: false,
-    filterBy: { position: '', location: '' }
+    filterBy: { position: '', location: '', status: '' }
 }
 
 export const getApplication = createAsyncThunk(

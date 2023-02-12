@@ -20,16 +20,22 @@ mock.onGet('/application').reply(function (config) {
     const { location, position, status } = config.params.filterBy
     saveToLocalStorge(STORAGE_KEY, applications)
     let filteredApplication
+    console.log(config.params.filterBy)
+
     if (location) {
         filteredApplication = applications.filter(app => app.location === location)
     }
     if (position) {
         filteredApplication = applications.filter(app => app.position === position)
     }
-    if (location && position) {
-        filteredApplication = applications.filter(app => app.position === position && app.location === location)
+    if (status) {
+        filteredApplication = applications.filter(app => app.status === status)
     }
-    if (!location && !position) {
+    if (location && position && status) {
+        filteredApplication = applications.filter(app =>
+            app.position === position && app.location === location && app.status === status)
+    }
+    if (!location && !position && !status) {
         filteredApplication = applications
     }
 
