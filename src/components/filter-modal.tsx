@@ -30,7 +30,7 @@ const ImgContainer = styled.div`
         cursor: pointer;
     }
 `
-const FilterButton = styled(StyledButton)`
+const StyledFilterModalButton = styled(StyledButton)`
     font-size: .9em;
     margin: 10px;
 `
@@ -42,46 +42,43 @@ const FilterButtonContainer = styled.div`
 `
 interface FilterModalProps {
     onToggleFilterModal: () => void,
+    setIsFilterChecked: (isFilterChecked: boolean) => void,
     opt: string[],
     type: string
 }
 
-export const FilterModal: React.FC<FilterModalProps> = ({ onToggleFilterModal, opt, type }) => {
+export const FilterModal: React.FC<FilterModalProps> = ({ onToggleFilterModal, setIsFilterChecked, opt, type }) => {
     const applications = useAppSelector((state: RootState) => state.tracker.applications)
     const filterBy = useAppSelector((state: RootState) => state.tracker.filterBy)
 
     const [filterByState, setFilterByState] = useState<FilterBy>({ ...filterBy })
-    const [numberOfResults, setNumberOfResults] = useState<number>(applications.length)
+    const [numberOfResults, setNumberOfResults] = useState<number | string>('')
     const dispatch = useAppDispatch()
 
-    console.log('numberOfResults', numberOfResults);
-
     const checkboxHandler = (type: string, label: string) => {
-        if (type === 'location') {
-            let locations: string[]
-            if (filterByState.location.includes(label)) {
-                locations = filterByState.location.filter(loc => loc !== label)
+        if (type === 'location' || type === 'position' || type === 'status') {
+            let results: string[]
+            if (filterByState[type].includes(label)) {
+                results = filterByState[type].filter(typ => typ !== label)
             } else {
-                locations = [...filterByState.location, label]
+                results = [...filterByState[type], label]
             }
-            setFilterByState(prevFilterByState => ({ ...prevFilterByState, location: locations }))
-            filterApplication(type, locations)
+            setFilterByState(prevFilterByState => ({ ...prevFilterByState, [type]: results }))
+            filterApplication(type, results)
         }
     }
     // Todo: Move func to service 
-    const filterApplication = async (type: string, filter: string[]) => {
+    const filterApplication = async (type: string, results: string[]) => {
         try {
             let filteredApplication: application[] = []
             const applicationFromServer: application[] = await trackerService.getApplications()
-            if (type === 'location') {
-                if (filter.length > 0) {
+            if (type === 'location' || type === 'position' || type === 'status') {
+                if (results.length > 0) {
                     filteredApplication =
-                        applicationFromServer.filter(app => filter.find(loc => loc === app.location))
-                    console.log('filteredApplication', filteredApplication);
+                        applicationFromServer.filter(app => results.find(loc => loc === app[type]))
                 } else {
                     filteredApplication = applicationFromServer
                 }
-
                 setNumberOfResults(filteredApplication.length)
             }
         } catch (err) {
@@ -91,12 +88,24 @@ export const FilterModal: React.FC<FilterModalProps> = ({ onToggleFilterModal, o
 
     const onSetFilterBy = () => {
         dispatch(setFilterBy(filterByState))
+        setFilterButtonTheme()
+        onToggleFilterModal()
     }
 
     const onCloseFilterModal = () => {
         onToggleFilterModal()
-        dispatch(setFilterBy({ ...filterByState, [type]: [] }))
+        dispatch(setFilterBy({ ...filterByState, [type.toLowerCase()]: [] }))
+        setIsFilterChecked(false)
         filterApplication(type, [])
+    }
+
+    const setFilterButtonTheme = () => {
+        const keyType: string = type.toLowerCase()
+        if (keyType === 'location' || keyType === 'position' || keyType === 'status') {
+            if (filterByState[keyType].length) {
+                setIsFilterChecked(true)
+            } else setIsFilterChecked(false)
+        }
     }
 
     return <StyledFilterModal>
@@ -107,8 +116,8 @@ export const FilterModal: React.FC<FilterModalProps> = ({ onToggleFilterModal, o
             <FilterCheckbox label={option} checkboxHandler={checkboxHandler} type={type.toLowerCase()}></FilterCheckbox>
         </div>)}
         <FilterButtonContainer>
-            <FilterButton onClick={onCloseFilterModal}>Cancel</FilterButton>
-            <FilterButton onClick={onSetFilterBy}>Show {numberOfResults} Results</FilterButton>
+            <StyledFilterModalButton onClick={onCloseFilterModal}>Cancel</StyledFilterModalButton>
+            <StyledFilterModalButton onClick={onSetFilterBy}>Show {numberOfResults} Results</StyledFilterModalButton>
         </FilterButtonContainer>
     </StyledFilterModal >
 }

@@ -3,24 +3,24 @@ import styled from "styled-components"
 import { FilterModal } from "./filter-modal"
 
 
-interface FilterButtonProps {
-    text: string,
-    opt: string[]
-}
+
 const FilterButtonWrapper = styled.div`
     display: flex;
     flex-direction: column;
 `
+interface StyledFilterButtonProps {
+    isFilterChecked: boolean
+}
 
-const StyledFilterButton = styled.button`
+const StyledFilterButton = styled.button<StyledFilterButtonProps>`
     border-radius: 1.59rem;
     font-size: 1em;
     padding: 4px 12px;
     height: 32px;
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 0 1px${props => props.isFilterChecked ? '#ffffff' : '#0000004c'} ;
     border: none;
-    color: rgba(0,0,0,0.6);
-    background-color: #ffffff;
+    color: ${props => props.isFilterChecked ? '#ffffff' : '#00000099'} ;
+    background-color:${props => props.isFilterChecked ? '#ae84d1' : '#ffffff'};
     font-weight: 600;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     display: inline-flex;
@@ -35,16 +35,21 @@ const StyledFilterButton = styled.button`
     cursor: pointer;
 }
 `
+interface FilterButtonProps {
+    text: string,
+    opt: string[]
+}
 
 export const FilterButton: React.FC<FilterButtonProps> = ({ text, opt }) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isFilterChecked, setIsFilterChecked] = useState(false)
 
     const onToggleFilterModal = () => {
         setIsModalOpen(!isModalOpen)
     }
 
     return <FilterButtonWrapper>
-        <StyledFilterButton onClick={onToggleFilterModal}>
+        <StyledFilterButton isFilterChecked={isFilterChecked} onClick={onToggleFilterModal}>
             <span>{text}</span>
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" width="16" height="16" focusable="false">
@@ -52,6 +57,10 @@ export const FilterButton: React.FC<FilterButtonProps> = ({ text, opt }) => {
                 </svg>
             </span>
         </StyledFilterButton>
-        {isModalOpen && <FilterModal onToggleFilterModal={onToggleFilterModal} opt={opt} type={text} />}
+        {isModalOpen && <FilterModal
+            onToggleFilterModal={onToggleFilterModal}
+            setIsFilterChecked={setIsFilterChecked}
+            opt={opt}
+            type={text} />}
     </FilterButtonWrapper>
 }

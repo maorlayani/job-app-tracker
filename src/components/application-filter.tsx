@@ -31,7 +31,8 @@ export const ApplicationFilter: React.FC<ApplicationFilterProps> = () => {
 
     const getOptions = async () => {
         try {
-            const applications: application[] = await trackerService.getApplications({ location: [] })
+            const applications: application[] =
+                await trackerService.getApplications({ location: [], position: [], status: [] })
             const locationOpt = removeDuplicates(applications, 'location')
             const positionOpt = removeDuplicates(applications, 'position')
             setOptions({ location: locationOpt, position: positionOpt })
@@ -41,9 +42,9 @@ export const ApplicationFilter: React.FC<ApplicationFilterProps> = () => {
     }
 
     const removeDuplicates = (array: application[], key: 'location' | 'position') => {
-        let locationOpt = array.map(app => app[key])
-        locationOpt = locationOpt.filter((val, idx, arr) => arr.indexOf(val) === idx)
-        return locationOpt
+        let typeOpt = array.map(app => app[key])
+        typeOpt = typeOpt.filter((val, idx, arr) => arr.indexOf(val) === idx)
+        return typeOpt
     }
 
     const getAllAppStatus = () => {
@@ -54,6 +55,7 @@ export const ApplicationFilter: React.FC<ApplicationFilterProps> = () => {
     return <StyledCustomSelectFilter>
         <FilterButton text='Location' opt={options.location} />
         <FilterButton text='Position' opt={options.position} />
+        <FilterButton text='Status' opt={getAllAppStatus()} />
         {/* <CustomSelectFilter options={options.location} label='Location' onSetFilterBy={onSetFilterBy} /> */}
         {/* <CustomSelectFilter options={options.position} label='Position' onSetFilterBy={onSetFilterBy} /> */}
         {/* <CustomSelectFilter options={getAllAppStatus()} label='Status' onSetFilterBy={onSetFilterBy} /> */}

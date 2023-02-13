@@ -17,31 +17,30 @@ mock.onGet('/application').reply(function (config) {
         applications = JSON.parse(applicationsFromStorage)
         if (!applications.length) applications = data
     }
-    const filterBy: FilterBy = config.params.filterBy
-    // const { location, position, status } = config.params.filterBy
     saveToLocalStorge(STORAGE_KEY, applications)
-    let filteredApplication
-    console.log('from back', config.params.filterBy)
+
+    const filterBy: FilterBy = config.params.filterBy
+    let filteredApplication: application[] = []
+    let filteredApplicationByLocation: application[] = []
+    let filteredApplicationByPosition: application[] = []
+    // console.log('from back', config.params.filterBy)
 
     if (filterBy.location !== undefined && filterBy.location.length > 0) {
-        filteredApplication =
+        filteredApplicationByLocation =
             applications.filter(app => filterBy.location.find(loc => loc === app.location))
-    } else {
-        filteredApplication = applications
     }
-    // if (position) {
-    //     filteredApplication = applications.filter(app => app.position === position)
-    // }
-    // if (status) {
-    //     filteredApplication = applications.filter(app => app.status === status)
-    // }
-    // if (location && position && status) {
-    //     filteredApplication = applications.filter(app =>
-    //         app.position === position && app.location === location && app.status === status)
-    // }
-    // if (!location && !position && !status) {
-    //     filteredApplication = applications
-    // }
+    if (filterBy.position !== undefined && filterBy.position.length > 0) {
+        filteredApplicationByPosition =
+            applications.filter(app => filterBy.position.find(pos => pos === app.position))
+    }
+    if (!filteredApplicationByLocation.length && !filteredApplicationByPosition.length) {
+        filteredApplication = applications
+    } else {
+        filteredApplication = [...filteredApplicationByLocation, ...filteredApplicationByPosition]
+    }
+
+    filteredApplication =
+        filteredApplication.filter((app, idx, apps) => apps.indexOf(app) === idx)
 
     return [
         200,
@@ -112,7 +111,7 @@ export const trackerService = {
     getApplicationById
 }
 
-async function getApplications(filterBy: FilterBy = { location: [] }) {
+async function getApplications(filterBy: FilterBy = { location: [], position: [], status: [] }) {
     try {
         const { data } = await axios.get('/application', { params: { filterBy } })
         return data.filteredApplication

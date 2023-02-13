@@ -49,7 +49,7 @@ export interface logo {
 }
 
 export interface FilterBy {
-    position?: string[],
+    position: string[],
     location: string[],
-    status?: string
+    status: string[]
 }

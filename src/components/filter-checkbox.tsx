@@ -19,9 +19,8 @@ const StyledCheckbox = styled.div<StyledFilterCheckboxProps>`
         cursor: pointer;
         background-color: #ebecf0;
             box-shadow: inset 0 0 0 2px #dfe1e6;
-    }
+    }`
 
-`
 interface StyledFilterCheckboxProps {
     isChecked: boolean
 }
@@ -33,10 +32,9 @@ interface FilterCheckboxProps {
 }
 export const FilterCheckbox: React.FC<FilterCheckboxProps> = ({ label, type, checkboxHandler }) => {
     const [isChecked, setIsChecked] = useState(false)
-    // const [types, setTypes] = useState([])
     const filterBy = useAppSelector((state: RootState) => state.tracker.filterBy)
     useEffect(() => {
-        if (type === 'location') {
+        if (type === 'location' || type === 'position' || type === 'status') {
             if (filterBy[type].includes(label) && !isChecked) {
                 setIsChecked(!isChecked)
             }
@@ -46,10 +44,6 @@ export const FilterCheckbox: React.FC<FilterCheckboxProps> = ({ label, type, che
     const toggleCheckbox = () => {
         setIsChecked(!isChecked)
         checkboxHandler(type, label)
-        // if (types.includes())
-        // if (type === 'location') {
-        // dispatch(setFilterBy({ [type]: [label,] }))
-        // }
     }
 
     return <>

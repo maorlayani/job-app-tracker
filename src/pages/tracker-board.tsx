@@ -19,14 +19,13 @@ const MainContentWrapper = styled.div`
 `
 export const TrackerBoard = () => {
     const dispatch = useAppDispatch()
-    // const applications = useAppSelector((state: RootState) => state.tracker.applications)
     const applicationDetails = useAppSelector((state: RootState) => state.tracker.applicationDetails)
     const filterBy = useAppSelector((state: RootState) => state.tracker.filterBy)
 
     useEffect(() => {
         // if (applications.length) return
         loadApplications()
-    }, [filterBy.location])
+    }, [filterBy.location, filterBy.position])
 
     const loadApplications = async () => {
         try {
