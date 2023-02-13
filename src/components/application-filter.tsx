@@ -7,21 +7,18 @@ import { trackerService } from "../services/tracker.service"
 import { useEffect, useState } from "react"
 import { FilterButton } from "./filter-button"
 
-interface ApplicationFilterProps {
-    // onSetFilterBy: (ev: React.ChangeEvent<HTMLSelectElement>) => void
-}
-
 const StyledCustomSelectFilter = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 3em 0 1em;
+    padding: 3em 0 1em 3em;
+    gap: 1em;
 `
 interface Options {
     location: string[],
     position: string[]
 }
-export const ApplicationFilter: React.FC<ApplicationFilterProps> = () => {
+export const ApplicationFilter = () => {
 
     const [options, setOptions] = useState<Options>({ location: [], position: [] })
 
@@ -51,13 +48,9 @@ export const ApplicationFilter: React.FC<ApplicationFilterProps> = () => {
         return [status.submitted, status.assignment, status.interview, status.contract, status.rejection]
     }
 
-
     return <StyledCustomSelectFilter>
         <FilterButton text='Location' opt={options.location} />
         <FilterButton text='Position' opt={options.position} />
         <FilterButton text='Status' opt={getAllAppStatus()} />
-        {/* <CustomSelectFilter options={options.location} label='Location' onSetFilterBy={onSetFilterBy} /> */}
-        {/* <CustomSelectFilter options={options.position} label='Position' onSetFilterBy={onSetFilterBy} /> */}
-        {/* <CustomSelectFilter options={getAllAppStatus()} label='Status' onSetFilterBy={onSetFilterBy} /> */}
     </StyledCustomSelectFilter>
 } 
