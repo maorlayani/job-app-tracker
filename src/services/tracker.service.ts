@@ -20,11 +20,6 @@ mock.onGet('/application').reply(function (config) {
     saveToLocalStorge(STORAGE_KEY, applications)
 
     const filterBy: FilterBy = config.params.filterBy
-    let filteredApplication: application[] = []
-    let filteredApplicationByLocation: application[] = []
-    let filteredApplicationByPosition: application[] = []
-    let filteredApplicationByStatus: application[] = []
-    // console.log('from back', config.params.filterBy)
 
     if (filterBy.location.length > 0) {
         applications =
@@ -38,24 +33,14 @@ mock.onGet('/application').reply(function (config) {
         applications =
             applications.filter(app => filterBy.status.find(pos => pos === app.status))
     }
-    // if (!filteredApplicationByLocation.length
-    //     && !filteredApplicationByPosition.length
-    //     && !filteredApplicationByStatus.length) {
-    //     filteredApplication = applications
-    // if (!filterBy.location.length
-    //     && !filterBy.position.length
-    //     && !filterBy.status.length) {
-
-    // } else {
-    //     filteredApplication = [
-    //         ...filteredApplicationByLocation,
-    //         ...filteredApplicationByPosition,
-    //         ...filteredApplicationByStatus
-    //     ]
-    // }
-
-    // applications =
-    //     applications.filter((app, idx, apps) => apps.indexOf(app) === idx)
+    if (filterBy.serachInput) {
+        applications =
+            applications.filter(app =>
+            (app.company.toLowerCase().includes(filterBy.serachInput) ||
+                app.position.toLowerCase().includes(filterBy.serachInput) ||
+                app.location.toLowerCase().includes(filterBy.serachInput)
+            ))
+    }
 
     return [
         200,
@@ -126,7 +111,12 @@ export const trackerService = {
     getApplicationById
 }
 
-async function getApplications(filterBy: FilterBy = { location: [], position: [], status: [] }) {
+async function getApplications(filterBy: FilterBy = {
+    location: [],
+    position: [],
+    status: [],
+    serachInput: ''
+}) {
     try {
         const { data } = await axios.get('/application', { params: { filterBy } })
         return data.applications

@@ -51,5 +51,6 @@ export interface logo {
 export interface FilterBy {
     position: string[],
     location: string[],
-    status: string[]
+    status: string[],
+    serachInput: string
 }

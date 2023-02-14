@@ -16,7 +16,7 @@ const initialState: TrackerState = {
     applications: [],
     applicationDetails: data[0],
     isDetailsOpen: false,
-    filterBy: { position: [], location: [], status: [] }
+    filterBy: { position: [], location: [], status: [], serachInput: '' }
 }
 
 export const getApplication = createAsyncThunk(

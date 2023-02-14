@@ -25,7 +25,7 @@ export const TrackerBoard = () => {
     useEffect(() => {
         // if (applications.length) return
         loadApplications()
-    }, [filterBy.location, filterBy.position, filterBy.status])
+    }, [filterBy.location, filterBy.position, filterBy.status, filterBy.serachInput])
 
     const loadApplications = async () => {
         try {

@@ -13,7 +13,7 @@ const StyledFilterModal = styled.div`
     width: 300px;  
     background-color: #fff;
     position: absolute;
-    top: 85px;
+    top: 130px;
     border-radius: .8em;
     box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.08) ,0px 4px 4px rgba(0,0,0,0.3);
     display: flex;
@@ -104,7 +104,6 @@ export const FilterModal: React.FC<FilterModalProps> = ({ onToggleFilterModal, s
         const keyType: string = type.toLowerCase()
         if (keyType === 'location' || keyType === 'position' || keyType === 'status') {
             if (filterByState[keyType].length) {
-                console.log(filterByState);
                 setIsFilterChecked(true)
             } else setIsFilterChecked(false)
         }

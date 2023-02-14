@@ -13,7 +13,7 @@ interface StyledFilterButtonProps {
 }
 
 const StyledFilterButton = styled.button<StyledFilterButtonProps>`
-    border-radius: 1.59rem;
+    border-radius: 1.6rem;
     font-size: 1em;
     padding: 4px 12px;
     height: 32px;
