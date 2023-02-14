@@ -11,6 +11,7 @@ import { StyledButton } from "./styles/button.styled"
 
 const StyledFilterModal = styled.div`
     width: 300px;  
+    max-height: 400px;
     background-color: #fff;
     position: absolute;
     top: 130px;
@@ -20,6 +21,34 @@ const StyledFilterModal = styled.div`
     flex-direction: column;
     font-size: .9em;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ 
+`
+
+const OptionsContainer = styled.div`
+    overflow-x: auto;
+    margin-block-end: .1em;
+    
+   /* width */
+   ::-webkit-scrollbar {
+    width:8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 12px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #888888d6;
+    border-radius: 12px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #555555cf;
+    }
 `
 
 const ImgContainer = styled.div`
@@ -41,7 +70,7 @@ const FilterButtonContainer = styled.div`
     border-top: 1px solid lightgray;
 `
 interface FilterModalProps {
-    onToggleFilterModal: () => void,
+    onToggleFilterModal: (isModalOpen: boolean, type: string) => void,
     setIsFilterChecked: (isFilterChecked: boolean) => void,
     opt: string[],
     type: string
@@ -90,11 +119,11 @@ export const FilterModal: React.FC<FilterModalProps> = ({ onToggleFilterModal, s
     const onSetFilterBy = () => {
         dispatch(setFilterBy(filterByState))
         setFilterButtonTheme()
-        onToggleFilterModal()
+        onToggleFilterModal(false, 'type')
     }
 
     const onCloseFilterModal = () => {
-        onToggleFilterModal()
+        onToggleFilterModal(false, '')
         dispatch(setFilterBy({ ...filterByState, [type.toLowerCase()]: [] }))
         setIsFilterChecked(false)
         filterApplication(type, [])
@@ -111,11 +140,14 @@ export const FilterModal: React.FC<FilterModalProps> = ({ onToggleFilterModal, s
 
     return <StyledFilterModal>
         <ImgContainer>
-            <img src={closeIcon} alt="close icon" onClick={onToggleFilterModal} />
+            <img src={closeIcon} alt="close icon" onClick={() => onToggleFilterModal(false, '')} />
         </ImgContainer>
-        {opt.map(option => <div key={option} style={{ display: 'flex', gap: '7px', padding: '7px' }}>
-            <FilterCheckbox label={option} checkboxHandler={checkboxHandler} type={type.toLowerCase()}></FilterCheckbox>
-        </div>)}
+        <OptionsContainer>
+
+            {opt.map(option => <div key={option} style={{ display: 'flex', gap: '7px', padding: '7px' }}>
+                <FilterCheckbox label={option} checkboxHandler={checkboxHandler} type={type.toLowerCase()}></FilterCheckbox>
+            </div>)}
+        </OptionsContainer>
         <FilterButtonContainer>
             <StyledFilterModalButton onClick={onCloseFilterModal}>Cancel</StyledFilterModalButton>
             <StyledFilterModalButton onClick={onSetFilterBy}>Show {numberOfResults} Results</StyledFilterModalButton>

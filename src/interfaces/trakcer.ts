@@ -54,3 +54,8 @@ export interface FilterBy {
     status: string[],
     serachInput: string
 }
+
+export interface FilterModal {
+    isModalOpen: boolean,
+    type: string
+}

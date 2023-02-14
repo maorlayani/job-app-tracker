@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
+import { useAppDispatch, useAppSelector } from "../hooks/redux-hooks"
+import { toggleFilterModal } from "../store/reducers/tracker-slice"
+import { RootState } from "../store/store"
 import { FilterModal } from "./filter-modal"
 
 
@@ -43,20 +46,25 @@ interface FilterButtonProps {
 }
 
 export const FilterButton: React.FC<FilterButtonProps> = ({ text, opt, isChecked, setIsChecked }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    // const [isModalOpen, setIsModalOpen] = useState(false)
     const [isFilterChecked, setIsFilterChecked] = useState(false)
+    const dispatch = useAppDispatch()
+    const filterModal = useAppSelector((state: RootState) => state.tracker.filterModal)
 
     useEffect(() => {
         if (isChecked) setIsFilterChecked(false)
     })
 
-    const onToggleFilterModal = () => {
-        setIsModalOpen(!isModalOpen)
+    const onToggleFilterModal = (isModalOpen: boolean, type: string) => {
+        if (filterModal.type !== type) {
+            dispatch(toggleFilterModal({ isModalOpen: true, type }))
+        }
+        else dispatch(toggleFilterModal({ isModalOpen, type }))
         setIsChecked(false)
     }
 
     return <FilterButtonWrapper>
-        <StyledFilterButton isFilterChecked={isFilterChecked} onClick={onToggleFilterModal}>
+        <StyledFilterButton isFilterChecked={isFilterChecked} onClick={() => onToggleFilterModal(!filterModal.isModalOpen, text.toLowerCase())}>
             <span>{text}</span>
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" width="16" height="16" focusable="false">
@@ -64,10 +72,12 @@ export const FilterButton: React.FC<FilterButtonProps> = ({ text, opt, isChecked
                 </svg>
             </span>
         </StyledFilterButton>
-        {isModalOpen && <FilterModal
-            onToggleFilterModal={onToggleFilterModal}
-            setIsFilterChecked={setIsFilterChecked}
-            opt={opt}
-            type={text} />}
+        {/* {isModalOpen && <FilterModal */}
+        {filterModal.isModalOpen && filterModal.type === text.toLowerCase() &&
+            <FilterModal
+                onToggleFilterModal={onToggleFilterModal}
+                setIsFilterChecked={setIsFilterChecked}
+                opt={opt}
+                type={text} />}
     </FilterButtonWrapper>
 }

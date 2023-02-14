@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from "../hooks/redux-hooks"
 import { RootState } from "../store/store"
-import { CustomSelectFilter } from "./custom-select-filter"
 import { application, status } from '../interfaces/trakcer'
 import { trackerService } from "../services/tracker.service"
 import { useEffect, useState } from "react"
@@ -12,19 +11,16 @@ import { setFilterBy } from "../store/reducers/tracker-slice"
 const StyledCustomSelectFilter = styled.div`
     display: flex;
     flex-direction: column;
-    /* justify-content: flex-start; */
     align-items: flex-start;
     padding: 3em 0 1em 3em;
     gap: 1em;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #00000099;
-
 `
 const StyledResetButton = styled(StyledButton)`
     background-color: transparent;
     color: inherit;
     font-weight: 600;
-    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     font-family: inherit;
     padding: .4em;
     border-radius: 6px;
@@ -56,6 +52,7 @@ const StyledInput = styled.input`
     font-family: inherit;
     color: inherit;
 `
+
 interface Options {
     location: string[],
     position: string[]

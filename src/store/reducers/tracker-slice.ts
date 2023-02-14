@@ -1,22 +1,27 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { data } from '../../data/data'
-import { application, draftApplication, FilterBy } from '../../interfaces/trakcer'
+import { application, draftApplication, FilterBy, FilterModal } from '../../interfaces/trakcer'
 import { trackerService } from '../../services/tracker.service'
-
-
 
 interface TrackerState {
     applications: application[],
     applicationDetails: application,
     isDetailsOpen: boolean,
-    filterBy: FilterBy
+    filterBy: FilterBy,
+    filterModal: FilterModal
 }
 
 const initialState: TrackerState = {
     applications: [],
     applicationDetails: data[0],
     isDetailsOpen: false,
-    filterBy: { position: [], location: [], status: [], serachInput: '' }
+    filterBy: {
+        position: [],
+        location: [],
+        status: [],
+        serachInput: ''
+    },
+    filterModal: { isModalOpen: false, type: '' }
 }
 
 export const getApplication = createAsyncThunk(
@@ -67,14 +72,6 @@ export const trackerSlice = createSlice({
     name: 'tracker',
     initialState,
     reducers: {
-        // addApplication: (state, action: PayloadAction<application>) => {
-        //     // state.applications.unshift(action.payload)
-        //     trackerService.addApplication(action.payload)
-        // },
-        // removeApplication: (state, action) => {
-        //     state.applications =
-        //         state.applications.filter(app => app.id !== action.payload)
-        // },
         setCurrentApplicationDetails: (state, action) => {
             state.applicationDetails = action.payload
         },
@@ -83,6 +80,9 @@ export const trackerSlice = createSlice({
         },
         setFilterBy: (state, action: PayloadAction<FilterBy>) => {
             state.filterBy = { ...state.filterBy, ...action.payload }
+        },
+        toggleFilterModal: (state, action: PayloadAction<FilterModal>) => {
+            state.filterModal = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -101,11 +101,6 @@ export const trackerSlice = createSlice({
                 state.applications = state.applications.filter(app =>
                     app.id !== action.payload)
             })
-        // .addCase(setFilterBy.fulfilled, (state, action: PayloadAction<any>) => {
-        //     state.filterBy = { ...state.filterBy, ...action.payload }
-        //     console.log('state.filterBy', action.payload);
-
-        // })
     }
 })
 
@@ -114,6 +109,7 @@ export const trackerSlice = createSlice({
 
 export const {
     setFilterBy,
+    toggleFilterModal,
     toggleApplicationDetails,
     setCurrentApplicationDetails } = trackerSlice.actions
 
