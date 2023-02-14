@@ -26,8 +26,8 @@ const PreviewLI = styled.li`
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    width: 640px;
-    height: 140px;
+    width: 500px;
+    height: 120px;
     margin-block-end: 10px;
     border-radius: 12px;
     font-family: 'league-spartan-medium';
