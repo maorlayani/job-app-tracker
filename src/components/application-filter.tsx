@@ -1,11 +1,13 @@
 import styled from "styled-components"
-import { useAppSelector } from "../hooks/redux-hooks"
+import { useAppDispatch, useAppSelector } from "../hooks/redux-hooks"
 import { RootState } from "../store/store"
 import { CustomSelectFilter } from "./custom-select-filter"
 import { application, status } from '../interfaces/trakcer'
 import { trackerService } from "../services/tracker.service"
 import { useEffect, useState } from "react"
 import { FilterButton } from "./filter-button"
+import { StyledButton } from "./styles/button.styled"
+import { setFilterBy } from "../store/reducers/tracker-slice"
 
 const StyledCustomSelectFilter = styled.div`
     display: flex;
@@ -14,13 +16,31 @@ const StyledCustomSelectFilter = styled.div`
     padding: 3em 0 1em 3em;
     gap: 1em;
 `
+const StyledResetButton = styled(StyledButton)`
+    background-color: transparent;
+    color: #00000099;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: .4em;
+    border-radius: 6px;
+    &:hover{
+        background-color: #00000014;
+    }
+    &:active{
+        background-color: #0000001e;
+        color: #000000e5
+    }
+`
 interface Options {
     location: string[],
     position: string[]
 }
+
 export const ApplicationFilter = () => {
 
     const [options, setOptions] = useState<Options>({ location: [], position: [] })
+    const [isChecked, setIsChecked] = useState(false)
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         getOptions()
@@ -48,9 +68,15 @@ export const ApplicationFilter = () => {
         return [status.submitted, status.assignment, status.interview, status.contract, status.rejection]
     }
 
+    const onResetFilter = () => {
+        setIsChecked(true)
+        dispatch(setFilterBy({ location: [], position: [], status: [] }))
+    }
+
     return <StyledCustomSelectFilter>
-        <FilterButton text='Location' opt={options.location} />
-        <FilterButton text='Position' opt={options.position} />
-        <FilterButton text='Status' opt={getAllAppStatus()} />
+        <FilterButton text='Location' opt={options.location} isChecked={isChecked} setIsChecked={setIsChecked} />
+        <FilterButton text='Position' opt={options.position} isChecked={isChecked} setIsChecked={setIsChecked} />
+        <FilterButton text='Status' opt={getAllAppStatus()} isChecked={isChecked} setIsChecked={setIsChecked} />
+        <StyledResetButton onClick={onResetFilter}>Reset</StyledResetButton>
     </StyledCustomSelectFilter>
 } 

@@ -53,7 +53,6 @@ mock.onGet('/application').reply(function (config) {
     //         ...filteredApplicationByStatus
     //     ]
     // }
-    console.log('applications', applications);
 
     // applications =
     //     applications.filter((app, idx, apps) => apps.indexOf(app) === idx)

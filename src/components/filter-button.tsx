@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { FilterModal } from "./filter-modal"
 
@@ -37,15 +37,22 @@ const StyledFilterButton = styled.button<StyledFilterButtonProps>`
 `
 interface FilterButtonProps {
     text: string,
-    opt: string[]
+    opt: string[],
+    setIsChecked: (isChecked: boolean) => void,
+    isChecked: boolean
 }
 
-export const FilterButton: React.FC<FilterButtonProps> = ({ text, opt }) => {
+export const FilterButton: React.FC<FilterButtonProps> = ({ text, opt, isChecked, setIsChecked }) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isFilterChecked, setIsFilterChecked] = useState(false)
 
+    useEffect(() => {
+        if (isChecked) setIsFilterChecked(false)
+    })
+
     const onToggleFilterModal = () => {
         setIsModalOpen(!isModalOpen)
+        setIsChecked(false)
     }
 
     return <FilterButtonWrapper>

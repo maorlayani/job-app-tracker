@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import closeIcon from '../assets/svg/close-icon.svg'
 import { useAppDispatch, useAppSelector } from "../hooks/redux-hooks"
@@ -55,6 +55,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({ onToggleFilterModal, s
     const [numberOfResults, setNumberOfResults] = useState<number | string>('')
     const dispatch = useAppDispatch()
 
+
     const checkboxHandler = (type: string, label: string) => {
         if (type === 'location' || type === 'position' || type === 'status') {
             let results: string[]
@@ -103,6 +104,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({ onToggleFilterModal, s
         const keyType: string = type.toLowerCase()
         if (keyType === 'location' || keyType === 'position' || keyType === 'status') {
             if (filterByState[keyType].length) {
+                console.log(filterByState);
                 setIsFilterChecked(true)
             } else setIsFilterChecked(false)
         }
