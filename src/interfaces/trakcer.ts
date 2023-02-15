@@ -22,7 +22,8 @@ export interface application {
     technologies?: string[]
     experience?: number,
     submittedVia: string,
-    logoUrl?: string
+    logoUrl?: string,
+    isPinned?: boolean
 }
 
 export interface draftApplication {

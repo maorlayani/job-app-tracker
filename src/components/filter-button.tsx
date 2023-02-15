@@ -29,15 +29,27 @@ const StyledFilterButton = styled.button<StyledFilterButtonProps>`
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    transition-property: background-color,box-shadow, color;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: 167ms;
 
    span:last-child {
         margin-inline-start: 4px;
 }
+    &:hover{
+        cursor: pointer;
+        box-shadow: inset 0 0 0 ${props => !props.isFilterChecked ? ' 2px #0000004c' : '1px'} ;
+        background-color:${props => !props.isFilterChecked ? 'rgba(0,0,0,0.08)' : ''};
+        color: ${props => !props.isFilterChecked ? '#00000099)' : ''} ;
 
-&:hover{
-    cursor: pointer;
-}
+    }
+    &:active{
+        box-shadow: inset 0 0 0 ${props => !props.isFilterChecked ? '2px #00000099' : '1px'} ;
+        color: ${props => !props.isFilterChecked ? 'rgba(0,0,0,0.9)' : ''} ;
+        background-color:${props => props.isFilterChecked ? '#a36ccf' : ''};
+    }
 `
+
 interface FilterButtonProps {
     text: string,
     opt: string[],
@@ -46,7 +58,6 @@ interface FilterButtonProps {
 }
 
 export const FilterButton: React.FC<FilterButtonProps> = ({ text, opt, isChecked, setIsChecked }) => {
-    // const [isModalOpen, setIsModalOpen] = useState(false)
     const [isFilterChecked, setIsFilterChecked] = useState(false)
     const dispatch = useAppDispatch()
     const filterModal = useAppSelector((state: RootState) => state.tracker.filterModal)
@@ -72,7 +83,6 @@ export const FilterButton: React.FC<FilterButtonProps> = ({ text, opt, isChecked
                 </svg>
             </span>
         </StyledFilterButton>
-        {/* {isModalOpen && <FilterModal */}
         {filterModal.isModalOpen && filterModal.type === text.toLowerCase() &&
             <FilterModal
                 onToggleFilterModal={onToggleFilterModal}

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import img from '../assets/svg/selected-background.svg'
-import { useAppDispatch, useAppSelector } from "../hooks/redux-hooks"
-import { setFilterBy } from "../store/reducers/tracker-slice"
+import { useAppSelector } from "../hooks/redux-hooks"
 import { RootState } from "../store/store"
 
 const StyledCheckbox = styled.div<StyledFilterCheckboxProps>`
@@ -19,8 +18,11 @@ const StyledCheckbox = styled.div<StyledFilterCheckboxProps>`
         cursor: pointer;
         background-color: #ebecf0;
             box-shadow: inset 0 0 0 2px #dfe1e6;
-    }`
-
+    }
+`
+const StyledCheckboxLabel = styled.span`
+    cursor: default;
+`
 interface StyledFilterCheckboxProps {
     isChecked: boolean
 }
@@ -48,6 +50,6 @@ export const FilterCheckbox: React.FC<FilterCheckboxProps> = ({ label, type, che
 
     return <>
         <StyledCheckbox isChecked={isChecked} onClick={toggleCheckbox}></StyledCheckbox>
-        <span onClick={toggleCheckbox}>{label}</span>
+        <StyledCheckboxLabel onClick={toggleCheckbox}>{label}</StyledCheckboxLabel>
     </>
 }

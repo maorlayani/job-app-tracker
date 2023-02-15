@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styled from "styled-components"
 import closeIcon from '../assets/svg/close-icon.svg'
 import { useAppDispatch, useAppSelector } from "../hooks/redux-hooks"
@@ -8,6 +8,7 @@ import { setFilterBy } from "../store/reducers/tracker-slice"
 import { RootState } from "../store/store"
 import { FilterCheckbox } from "./filter-checkbox"
 import { StyledButton } from "./styles/button.styled"
+import { ImgCloseIconContainer } from "./styles/img-close-icon-container"
 
 const StyledFilterModal = styled.div`
     width: 300px;  
@@ -51,14 +52,6 @@ const OptionsContainer = styled.div`
     }
 `
 
-const ImgContainer = styled.div`
-    display: flex;
-    align-self: flex-end;
-    padding: .8em .8em 0 0;
-    &:hover{
-        cursor: pointer;
-    }
-`
 const StyledFilterModalButton = styled(StyledButton)`
     font-size: .9em;
     margin: 10px;
@@ -139,9 +132,9 @@ export const FilterModal: React.FC<FilterModalProps> = ({ onToggleFilterModal, s
     }
 
     return <StyledFilterModal>
-        <ImgContainer>
+        <ImgCloseIconContainer>
             <img src={closeIcon} alt="close icon" onClick={() => onToggleFilterModal(false, '')} />
-        </ImgContainer>
+        </ImgCloseIconContainer>
         <OptionsContainer>
 
             {opt.map(option => <div key={option} style={{ display: 'flex', gap: '7px', padding: '7px' }}>

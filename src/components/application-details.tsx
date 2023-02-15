@@ -10,6 +10,9 @@ import { StyledHorizontalLine } from './styles/horizontal-line.styled'
 import { StyledButton } from './styles/button.styled'
 import { FiEdit2 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
+import { ImgCloseIconContainer } from './styles/img-close-icon-container'
+import closeIcon from '../assets/svg/close-icon.svg'
+
 interface ApplicationDetailsProps {
     application: application
 }
@@ -20,20 +23,20 @@ interface StyledApplicationDetailsProps {
 
 const StyledApplicationDetails = styled.div<StyledApplicationDetailsProps>`
     background-color: #fff;
-    width: 400px;
-    height: 500px;
+    width: 600px;
+    min-height: 500px;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
     font-family: 'league-spartan-medium';
     position: absolute;
     top: 20px;
-    right: ${props => props.isOpen ? '0' : '-400px'};
+    right: ${props => props.isOpen ? '0' : '-600px'};
     box-shadow: 0 0px 0px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
     transition: right 1s;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.5em;
+    padding: 0 .0 1.5em 1.5em;
     box-sizing: border-box;
     `
 
@@ -90,7 +93,12 @@ const StyledRemoveButton = styled(StyledButton)`
             background-color: unset;
         }
 `
-
+const StyledCloseIcon = styled(ImgCloseIconContainer)`
+    img{
+        width: 25px;
+        height: 25px;
+    }
+`
 export const ApplicationDetails: React.FC<ApplicationDetailsProps> = ({ application }) => {
     const dispatch = useAppDispatch()
     const isDetailsOpen = useAppSelector((state: RootState) => state.tracker.isDetailsOpen)
@@ -116,8 +124,10 @@ export const ApplicationDetails: React.FC<ApplicationDetailsProps> = ({ applicat
         const dateFormat = new Date(date)
         return dateFormat.toLocaleString('he-IL', { dateStyle: 'short' })
     }
-
-    return <StyledApplicationDetails isOpen={isDetailsOpen} onClick={onCloseDetails}>
+    return <StyledApplicationDetails isOpen={isDetailsOpen} >
+        <StyledCloseIcon>
+            <img src={closeIcon} alt="close icon" onClick={onCloseDetails} />
+        </StyledCloseIcon>
         <StyledCompanyLogoAppDetails logoUrl={application.logoUrl}></StyledCompanyLogoAppDetails>
         <StyledPositionAppDetails>{application.position}</StyledPositionAppDetails>
         <StyledCompanyNameAppDetails>{application.company}, {application.location}</StyledCompanyNameAppDetails>
