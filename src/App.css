@@ -5,3 +5,8 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
 }
+
+ul {
+    margin: 0;
+    padding: 0;
+}

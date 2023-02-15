@@ -166,9 +166,9 @@ async function getCompanyData(companyName: string) {
                 }
             })
         const data = await apiData.json()
+
         const logos: logo[] = data.logos
-        const iconLogo: logo | undefined =
-            logos.find(logo => logo.type === 'icon')
+        const iconLogo: logo | undefined = logos.find(logo => logo.type === 'icon')
         // console.log('formats', icon?.formats[0].src);
         return iconLogo?.formats[0].src
     } catch (err) {

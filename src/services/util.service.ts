@@ -1,6 +1,7 @@
-export const utilService = {
-    makeId
-}
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
 
 function makeId(length: number = 4): string {
     let txt: string = ''
@@ -9,4 +10,19 @@ function makeId(length: number = 4): string {
         txt += possible.charAt(Math.floor(Math.random() * possible.length))
     }
     return txt
+}
+
+const getTimeFromNow = (date: number) => {
+    return dayjs(date).fromNow()
+}
+
+const checkIsPlural = (num: number, noun: string) => {
+    if (num <= 1) return `${num} ${noun}`
+    return `${num} ${noun}s`
+}
+
+export const utilService = {
+    makeId,
+    getTimeFromNow,
+    checkIsPlural
 }

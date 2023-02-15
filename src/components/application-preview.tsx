@@ -12,6 +12,7 @@ import { RootState } from '../store/store'
 import { StyledCompanyLogo } from './styles/company-logo.styled'
 import { StyledPosition } from './styles/position.styled'
 import { StyledCompanyName } from './styles/company-name.styled'
+import { utilService } from '../services/util.service'
 
 interface ApplicationPreviewProps {
     application: application
@@ -26,7 +27,7 @@ const PreviewLI = styled.li`
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    width: 500px;
+    width: 600px;
     height: 120px;
     margin-block-end: 10px;
     border-radius: 12px;
@@ -127,11 +128,10 @@ export const ApplicationPreview: React.FC<ApplicationPreviewProps> = ({ applicat
                         <HiLocationMarker />
                         <StyledTag>{application.location}</StyledTag>
                         <BiCodeAlt />
-                        <StyledTag>{application.experience} {application.experience !== undefined && application.experience > 1 ? 'years' : 'year'} experience</StyledTag>
+                        {application.experience !== undefined && <StyledTag>{utilService.checkIsPlural(application.experience, 'year')} experience</StyledTag>}
                         <AiFillInfoCircle />
                         <StyledTag>{application.status}</StyledTag>
                     </RowContainer>
-                    {/* <div>{application.technologies?.map((tech, idx) => <span key={idx}>{tech} </span>)}</div> */}
                 </PreviewContentContainer>
             </PreviewContainer>
         </PreviewLI >

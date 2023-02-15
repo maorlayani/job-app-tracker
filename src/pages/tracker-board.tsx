@@ -16,6 +16,7 @@ const StyledTrackerBoard = styled.div`
 const MainContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    margin-inline-start: 250px;
 `
 export const TrackerBoard = () => {
     const dispatch = useAppDispatch()
