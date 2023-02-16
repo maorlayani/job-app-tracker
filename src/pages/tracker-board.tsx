@@ -36,16 +36,10 @@ export const TrackerBoard = () => {
         }
     }
 
-    const onSetFilterBy = (ev: React.ChangeEvent<HTMLSelectElement>) => {
-        // dispatch(setFilterBy({ [ev.target.name.toLowerCase()]: ev.target.value }))
-        loadApplications()
-    }
-
     return <StyledTrackerBoard>
         <SideNav />
         <MainContentWrapper>
             <ApplicationFilter />
-            {/* <ApplicationFilter onSetFilterBy={onSetFilterBy} /> */}
             <ApplicationList />
         </MainContentWrapper>
         <ApplicationDetails application={applicationDetails} />

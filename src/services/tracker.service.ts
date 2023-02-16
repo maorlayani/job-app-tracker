@@ -67,7 +67,8 @@ mock.onPost('/application').reply(async function (config) {
     let updatedApplication: application = {
         ...application,
         id: utilService.makeId(),
-        submittedAt: Date.now()
+        submittedAt: Date.now(),
+        isPinned: false
     }
     const companyUrl = updatedApplication.company.replace(/\s/g, '')
     const iconUrl = await getCompanyData(`${companyUrl.toLowerCase()}.com`)

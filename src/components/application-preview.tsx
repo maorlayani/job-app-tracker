@@ -2,7 +2,7 @@ import { application } from '../interfaces/trakcer'
 import styled from 'styled-components'
 import Globalfonts from '../assets/global-fonts'
 import React, { useState } from 'react'
-import { toggleApplicationDetails, setCurrentApplicationDetails } from '../store/reducers/tracker-slice'
+import { toggleApplicationDetails, setCurrentApplicationDetails, updateApplication } from '../store/reducers/tracker-slice'
 import { HiLocationMarker } from 'react-icons/hi'
 import { AiFillInfoCircle } from 'react-icons/ai'
 import { BiCodeAlt } from 'react-icons/bi'
@@ -96,7 +96,6 @@ export const ApplicationPreview: React.FC<ApplicationPreviewProps> = ({ applicat
 
     const dispatch = useAppDispatch()
     const isDetailsOpen = useAppSelector((state: RootState) => state.tracker.isDetailsOpen)
-    const [isMarked, setIsMarked] = useState(false)
 
     const onSetAppliction: (application: application) => void = (application) => {
         dispatch(setCurrentApplicationDetails(application))
@@ -105,13 +104,15 @@ export const ApplicationPreview: React.FC<ApplicationPreviewProps> = ({ applicat
 
     const togglePinApplication = (ev: React.MouseEvent<HTMLDivElement>) => {
         ev.stopPropagation()
-        setIsMarked(!isMarked)
+        const applicationToUpdate: application = { ...application }
+        applicationToUpdate.isPinned = !application.isPinned
+        dispatch(updateApplication(applicationToUpdate))
     }
 
     return <React.Fragment>
         <PreviewLI key={application.id} onClick={() => onSetAppliction(application)}>
             <PreviewIconsWrapper>
-                <StyledIcon isMarked={isMarked} onClick={togglePinApplication}>
+                <StyledIcon isMarked={application.isPinned} onClick={togglePinApplication}>
                     <BsFillBookmarkDashFill />
                 </StyledIcon>
                 <StyledActionIcon>

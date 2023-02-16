@@ -23,7 +23,7 @@ export interface application {
     experience?: number,
     submittedVia: string,
     logoUrl?: string,
-    isPinned?: boolean
+    isPinned: boolean // TODO: Update mock data and change the key to mandatory
 }
 
 export interface draftApplication {

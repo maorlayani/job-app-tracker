@@ -37,9 +37,19 @@ export const ApplicationList = () => {
 
     const applications = useAppSelector((state: RootState) => state.tracker.applications)
 
+    const filteredApplicationByIsPinned = (isPinned: boolean) => {
+        if (isPinned) return applications.filter(app => app.isPinned)
+        return applications.filter(app => !app.isPinned)
+    }
+
     return <ApplicationListStyle>
         <ul>
-            {applications.map(app => {
+            {filteredApplicationByIsPinned(true).map(app => {
+                return <ApplicationPreview key={app.id} application={app} />
+            })}
+        </ul>
+        <ul>
+            {filteredApplicationByIsPinned(false).map(app => {
                 return <ApplicationPreview key={app.id} application={app} />
             })}
         </ul>

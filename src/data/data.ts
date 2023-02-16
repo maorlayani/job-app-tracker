@@ -12,7 +12,8 @@ export const data: application[] = [
         technologies: ['Javascript', 'HTML', 'CSS'],
         experience: 5,
         submittedVia: 'Facebook',
-        logoUrl: 'https://asset.brandfetch.io/id6O2oGzv-/idSuJ5ik7i.png'
+        logoUrl: 'https://asset.brandfetch.io/id6O2oGzv-/idSuJ5ik7i.png',
+        isPinned: false
     },
     {
         id: utilService.makeId(),
@@ -24,8 +25,8 @@ export const data: application[] = [
         technologies: ['React', 'Vue', 'Sass', 'Node.js'],
         experience: 2,
         submittedVia: 'Linkedin',
-        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672995446/job-application-tracker/idjRWo5z_2_a9ufp3.jpg'
-
+        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672995446/job-application-tracker/idjRWo5z_2_a9ufp3.jpg',
+        isPinned: false
     },
     {
         id: utilService.makeId(),
@@ -37,8 +38,8 @@ export const data: application[] = [
         technologies: ['C++', 'AWS'],
         experience: 1,
         submittedVia: 'Friend',
-        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672996691/job-application-tracker/idXH8VPLrT_hlt8ta.jpg'
-
+        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672996691/job-application-tracker/idXH8VPLrT_hlt8ta.jpg',
+        isPinned: false
     },
     {
         id: utilService.makeId(),
@@ -50,7 +51,8 @@ export const data: application[] = [
         technologies: ['Node.js', 'Express', 'Docker'],
         experience: 5,
         submittedVia: 'Linkedin',
-        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672917933/job-application-tracker/idet9mV1nH_ruzwag.jpg'
+        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672917933/job-application-tracker/idet9mV1nH_ruzwag.jpg',
+        isPinned: false
     },
     {
         id: utilService.makeId(),
@@ -62,7 +64,8 @@ export const data: application[] = [
         technologies: ['Java', 'OOP'],
         experience: 1,
         submittedVia: 'Company website',
-        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672996577/job-application-tracker/ido_Zvv_uK_a0hdw1.jpg'
+        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672996577/job-application-tracker/ido_Zvv_uK_a0hdw1.jpg',
+        isPinned: false
     },
     {
         id: utilService.makeId(),
@@ -74,7 +77,8 @@ export const data: application[] = [
         technologies: ['Javascript', 'HTML', 'CSS'],
         experience: 5,
         submittedVia: 'Facebook',
-        logoUrl: 'https://asset.brandfetch.io/id6O2oGzv-/idSuJ5ik7i.png'
+        logoUrl: 'https://asset.brandfetch.io/id6O2oGzv-/idSuJ5ik7i.png',
+        isPinned: false
     },
     {
         id: utilService.makeId(),
@@ -86,7 +90,8 @@ export const data: application[] = [
         technologies: ['React', 'Vue', 'Sass', 'Node.js'],
         experience: 2,
         submittedVia: 'Linkedin',
-        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672995446/job-application-tracker/idjRWo5z_2_a9ufp3.jpg'
+        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672995446/job-application-tracker/idjRWo5z_2_a9ufp3.jpg',
+        isPinned: false
 
     },
     {
@@ -99,7 +104,7 @@ export const data: application[] = [
         technologies: ['C++', 'AWS'],
         experience: 1,
         submittedVia: 'Friend',
-        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672996691/job-application-tracker/idXH8VPLrT_hlt8ta.jpg'
-
+        logoUrl: 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1672996691/job-application-tracker/idXH8VPLrT_hlt8ta.jpg',
+        isPinned: false
     }
 ]
