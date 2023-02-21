@@ -9,6 +9,7 @@ import { FilterButton } from "../filter-button/filter-button"
 import { setFilterBy } from "../../../store/reducers/tracker-slice"
 import { Options } from "./styled-application-filter"
 import { FlexContainer, StyledCustomSelectFilter, StyledInput, StyledResetButton, StyledSearchButton } from "./interfaces-application-filter"
+import { UploadExcelFile } from "../../upload-excel-file"
 
 export const ApplicationFilter = () => {
 
@@ -71,5 +72,6 @@ export const ApplicationFilter = () => {
             <FilterButton text='Sort by' opt={['Date: Newest to Oldest', 'Date: Oldest to Newest']} isChecked={isChecked} setIsChecked={setIsChecked} />
             <StyledResetButton onClick={onResetFilter}>Reset</StyledResetButton>
         </FlexContainer>
+        <UploadExcelFile />
     </StyledCustomSelectFilter>
 } 

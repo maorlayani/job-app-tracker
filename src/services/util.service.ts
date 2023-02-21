@@ -12,8 +12,10 @@ function makeId(length: number = 4): string {
     return txt
 }
 
-const getTimeFromNow = (date: number) => {
-    return dayjs(date).fromNow()
+const getTimeFromNow = (date: number | string) => {
+    if (typeof date === 'number') {
+        return dayjs(date).fromNow()
+    }
 }
 
 const checkIsPlural = (num: number, noun: string) => {

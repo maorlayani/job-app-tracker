@@ -6,7 +6,7 @@ export interface Application {
     position: string,
     positionDesc?: string,
     postedAt?: string,
-    submittedAt: number,
+    submittedAt: number | string,
     status: Status,
     location: string,
     contact?: string,
@@ -33,6 +33,7 @@ export interface DraftApplication {
     technologies?: string[]
     experience?: number,
     submittedVia: string,
+    submittedAt?: number | string
 }
 
 export interface Logo {
