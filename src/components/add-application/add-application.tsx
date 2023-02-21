@@ -1,29 +1,16 @@
-import styled from "styled-components"
-import { SideNav } from "./side-nav"
-import { useFormRegister } from '../hooks/useFormRegister'
-import { InputContainer } from "./styles/input-container.styled"
-import { StyledAddApplicationForm } from "./styles/add-application-form"
+import { SideNav } from "../side-nav/side-nav"
+import { useFormRegister } from '../../hooks/useFormRegister'
+import { InputContainer } from "../styles/input-container.styled"
+import { StyledAddApplicationForm } from "../styles/add-application-form"
 import { useNavigate, useParams } from "react-router-dom"
-import { addApplication, toggleApplicationDetails, updateApplication } from "../store/reducers/tracker-slice"
-import { useAppDispatch } from "../hooks/redux-hooks"
-import { status } from '../interfaces/trakcer'
-import { StyledButton } from './styles/button.styled'
+import { addApplication, toggleApplicationDetails, updateApplication } from "../../store/reducers/tracker-slice"
+import { useAppDispatch } from "../../hooks/redux-hooks"
+import { Status } from '../../modules/enums'
+import { StyledButton } from '../styles/button.styled'
 import { useEffect } from "react"
-import { trackerService } from "../services/tracker.service"
+import { trackerService } from "../../services/tracker.service"
+import { InputsWarpper, StyledAddApplication } from './styled-add-application'
 
-const StyledAddApplication = styled.div`
-    display: flex;
-    height: 100vh;
-`
-
-const InputsWarpper = styled.div`
-   max-width: 850px;
-    display: flex;
-    justify-content:space-around;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-block-end: 25px;
-`
 export const AddApplication = () => {
 
     const navigate = useNavigate()
@@ -116,11 +103,11 @@ export const AddApplication = () => {
                     <label htmlFor="status">Status</label>
                     <select {...register('status', 'select')} required>
                         <option value="" hidden>Select Status</option>
-                        <option value={status.submitted}>Submitted</option>
-                        <option value={status.assignment}>Home Assignment</option>
-                        <option value={status.interview}>Scheduled Interview</option>
-                        <option value={status.contract}>Contract</option>
-                        <option value={status.rejection}>Rejection</option>
+                        <option value={Status.submitted}>Submitted</option>
+                        <option value={Status.assignment}>Home Assignment</option>
+                        <option value={Status.interview}>Scheduled Interview</option>
+                        <option value={Status.contract}>Contract</option>
+                        <option value={Status.rejection}>Rejection</option>
                     </select>
                 </InputContainer>
 

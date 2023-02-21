@@ -1,4 +1,4 @@
-import { draftApplication, application, logo, FilterBy } from "../interfaces/trakcer";
+import { DraftApplication, Application, Logo, FilterBy } from "../modules/interfaces";
 import axios, { AxiosRequestConfig } from 'axios'
 import { mock } from './mock.axios.service'
 import { data } from '../data/data'
@@ -11,7 +11,7 @@ const STORAGE_KEY = 'application'
 
 mock.onGet('/application').reply(function (config) {
     const applicationsFromStorage: string | null = localStorage.getItem(STORAGE_KEY)
-    let applications: application[] = []
+    let applications: Application[] = []
     if (applicationsFromStorage === null) applications = data
     if (applicationsFromStorage !== null) {
         applications = JSON.parse(applicationsFromStorage)
@@ -53,7 +53,7 @@ mock.onGet(/\/application\/\d+/).reply(async function (config: AxiosRequestConfi
     if (config.url !== undefined) {
         id = config.url.replace(/\D/g, '')
     }
-    let applications: application[] = await getApplications()
+    let applications: Application[] = await getApplications()
     const application = applications.find(app => app.id === id)
     return [
         200,
@@ -64,7 +64,7 @@ mock.onGet(/\/application\/\d+/).reply(async function (config: AxiosRequestConfi
 mock.onPost('/application').reply(async function (config) {
     const { data } = JSON.parse(config.data)
     const { application } = data
-    let updatedApplication: application = {
+    let updatedApplication: Application = {
         ...application,
         id: utilService.makeId(),
         submittedAt: Date.now(),
@@ -73,7 +73,7 @@ mock.onPost('/application').reply(async function (config) {
     const companyUrl = updatedApplication.company.replace(/\s/g, '')
     const iconUrl = await getCompanyData(`${companyUrl.toLowerCase()}.com`)
     updatedApplication.logoUrl = iconUrl
-    let applications: application[] = await getApplications()
+    let applications: Application[] = await getApplications()
     applications.unshift(updatedApplication)
     saveToLocalStorge(STORAGE_KEY, applications)
     return [
@@ -85,7 +85,7 @@ mock.onPost('/application').reply(async function (config) {
 mock.onPut('/application').reply(async function (config) {
     const { data } = JSON.parse(config.data)
     const { application } = data
-    let applications: application[] = await getApplications()
+    let applications: Application[] = await getApplications()
     applications = applications.map(app => app.id === application.id ? application : app)
     saveToLocalStorge(STORAGE_KEY, applications)
     return [
@@ -96,7 +96,7 @@ mock.onPut('/application').reply(async function (config) {
 
 mock.onDelete('/application').reply(async function (config: AxiosRequestConfig<any>) {
     const applicationId: string = config.data
-    let applications: application[] = await getApplications()
+    let applications: Application[] = await getApplications()
     applications = applications.filter(app => app.id !== applicationId)
     saveToLocalStorge(STORAGE_KEY, applications)
     return [
@@ -126,7 +126,7 @@ async function getApplications(filterBy: FilterBy = {
     }
 }
 
-async function saveApplication(application: application | draftApplication): Promise<any> {
+async function saveApplication(application: Application | DraftApplication): Promise<any> {
     try {
         if (application.id) {
             const { data } = await axios.put('/application', { data: { application } })
@@ -168,8 +168,8 @@ async function getCompanyData(companyName: string) {
             })
         const data = await apiData.json()
 
-        const logos: logo[] = data.logos
-        const iconLogo: logo | undefined = logos.find(logo => logo.type === 'icon')
+        const logos: Logo[] = data.logos
+        const iconLogo: Logo | undefined = logos.find(logo => logo.type === 'icon')
         // console.log('formats', icon?.formats[0].src);
         return iconLogo?.formats[0].src
     } catch (err) {

@@ -1,13 +1,14 @@
-import { application, status } from '../interfaces/trakcer'
+import { Application } from '../modules/interfaces'
+import { Status } from '../modules/enums'
 import { utilService } from '../services/util.service'
 
-export const data: application[] = [
+export const data: Application[] = [
     {
         id: utilService.makeId(),
         company: 'Google',
         position: 'Frontend Developer',
         submittedAt: Date.now(),
-        status: status.submitted,
+        status: Status.submitted,
         location: 'Tel-Aviv',
         technologies: ['Javascript', 'HTML', 'CSS'],
         experience: 5,
@@ -20,7 +21,7 @@ export const data: application[] = [
         company: 'Apple',
         position: 'Fullstack Developer',
         submittedAt: Date.now(),
-        status: status.interview,
+        status: Status.interview,
         location: 'Herzliya',
         technologies: ['React', 'Vue', 'Sass', 'Node.js'],
         experience: 2,
@@ -33,7 +34,7 @@ export const data: application[] = [
         company: 'Elbit',
         position: 'Embedd Developer',
         submittedAt: Date.now(),
-        status: status.contract,
+        status: Status.contract,
         location: 'Haifa',
         technologies: ['C++', 'AWS'],
         experience: 1,
@@ -46,7 +47,7 @@ export const data: application[] = [
         company: 'Monday',
         position: 'Backend Developer',
         submittedAt: Date.now(),
-        status: status.rejection,
+        status: Status.rejection,
         location: 'Tel-Aviv',
         technologies: ['Node.js', 'Express', 'Docker'],
         experience: 5,
@@ -59,7 +60,7 @@ export const data: application[] = [
         company: 'ironSource',
         position: 'Java Developer',
         submittedAt: Date.now(),
-        status: status.interview,
+        status: Status.interview,
         location: 'Tel-Aviv',
         technologies: ['Java', 'OOP'],
         experience: 1,
@@ -72,7 +73,7 @@ export const data: application[] = [
         company: 'Google',
         position: 'Frontend Developer',
         submittedAt: Date.now(),
-        status: status.submitted,
+        status: Status.submitted,
         location: 'Tel-Aviv',
         technologies: ['Javascript', 'HTML', 'CSS'],
         experience: 5,
@@ -85,7 +86,7 @@ export const data: application[] = [
         company: 'Apple',
         position: 'Fullstack Developer',
         submittedAt: Date.now(),
-        status: status.interview,
+        status: Status.interview,
         location: 'Herzliya',
         technologies: ['React', 'Vue', 'Sass', 'Node.js'],
         experience: 2,
@@ -99,7 +100,7 @@ export const data: application[] = [
         company: 'Elbit',
         position: 'Embedd Developer',
         submittedAt: Date.now(),
-        status: status.contract,
+        status: Status.contract,
         location: 'Haifa',
         technologies: ['C++', 'AWS'],
         experience: 1,

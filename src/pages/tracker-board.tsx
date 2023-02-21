@@ -1,12 +1,12 @@
-import { ApplicationList } from "../components/application-list"
-import { SideNav } from "../components/side-nav"
+import { ApplicationList } from "../components/application-list/application-list"
+import { SideNav } from "../components/side-nav/side-nav"
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'
 import { getApplication, removeApplication, setFilterBy } from '../store/reducers/tracker-slice'
 import { RootState } from '../store/store'
-import { ApplicationDetails } from "../components/application-details"
+import { ApplicationDetails } from "../components/application-details/application-details"
 import { useEffect } from "react"
-import { ApplicationFilter } from "../components/application-filter"
+import { ApplicationFilter } from "../components/filter/application-filter/application-filter"
 
 
 const StyledTrackerBoard = styled.div`

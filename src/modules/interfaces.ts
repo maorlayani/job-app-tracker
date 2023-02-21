@@ -1,20 +1,13 @@
+import { Status } from "./enums"
 
-export enum status {
-    submitted = 'Submitted',
-    assignment = 'Home Assignment',
-    interview = 'Scheduled Interview',
-    contract = 'Contract',
-    rejection = 'Rejection'
-}
-
-export interface application {
+export interface Application {
     id: string,
     company: string,
     position: string,
     positionDesc?: string,
     postedAt?: string,
     submittedAt: number,
-    status: status,
+    status: Status,
     location: string,
     contact?: string,
     postedDate?: Date,
@@ -23,16 +16,16 @@ export interface application {
     experience?: number,
     submittedVia: string,
     logoUrl?: string,
-    isPinned: boolean // TODO: Update mock data and change the key to mandatory
+    isPinned: boolean
 }
 
-export interface draftApplication {
+export interface DraftApplication {
     id?: string,
     company: string,
     position: string,
     positionDesc?: string,
     postedAt?: string,
-    status: status,
+    status: Status,
     location: string,
     contact?: string,
     postedDate?: Date,
@@ -42,8 +35,7 @@ export interface draftApplication {
     submittedVia: string,
 }
 
-
-export interface logo {
+export interface Logo {
     type: string,
     theme: string,
     formats: { src: string }[]

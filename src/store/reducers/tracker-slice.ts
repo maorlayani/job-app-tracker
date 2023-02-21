@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { data } from '../../data/data'
-import { application, draftApplication, FilterBy, FilterModal } from '../../interfaces/trakcer'
+import { Application, DraftApplication, FilterBy, FilterModal } from '../../modules/interfaces'
 import { trackerService } from '../../services/tracker.service'
 
 interface TrackerState {
-    applications: application[],
-    applicationDetails: application,
+    applications: Application[],
+    applicationDetails: Application,
     isDetailsOpen: boolean,
     filterBy: FilterBy,
     filterModal: FilterModal
@@ -35,7 +35,7 @@ export const getApplication = createAsyncThunk(
 
 export const addApplication = createAsyncThunk(
     'tracker/addApplication',
-    async (application: draftApplication) => {
+    async (application: DraftApplication) => {
         const addedApplication = await trackerService.saveApplication(application)
         return addedApplication
     }
@@ -43,7 +43,7 @@ export const addApplication = createAsyncThunk(
 
 export const updateApplication = createAsyncThunk(
     'tracker/updateApplication',
-    async (application: application) => {
+    async (application: Application) => {
         const updatedApplication = await trackerService.saveApplication(application)
         return updatedApplication
     }
@@ -90,10 +90,10 @@ export const trackerSlice = createSlice({
             .addCase(getApplication.fulfilled, (state, action) => {
                 state.applications = [...action.payload]
             })
-            .addCase(addApplication.fulfilled, (state, action: PayloadAction<application>) => {
+            .addCase(addApplication.fulfilled, (state, action: PayloadAction<Application>) => {
                 state.applications.unshift(action.payload)
             })
-            .addCase(updateApplication.fulfilled, (state, action: PayloadAction<application>) => {
+            .addCase(updateApplication.fulfilled, (state, action: PayloadAction<Application>) => {
                 state.applications = state.applications.map(app =>
                     app.id === action.payload.id ? action.payload : app)
             })
@@ -103,9 +103,6 @@ export const trackerSlice = createSlice({
             })
     }
 })
-
-
-
 
 export const {
     setFilterBy,

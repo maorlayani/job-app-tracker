@@ -3,7 +3,7 @@ import './app.css'
 import styled from 'styled-components'
 import { Route, Routes } from 'react-router-dom'
 import { TrackerBoard } from './pages/tracker-board'
-import { AddApplication } from './components/add-application'
+import { AddApplication } from './components/add-application/add-application'
 
 const AppStyle = styled.div`
   background-color: #f7ebff84;
