@@ -33,7 +33,7 @@ export const FlexContainer = styled.div`
 `
 
 export const StyledSearchButton = styled(StyledButton)`
-    border-radius: 1.6rem;
+    border-radius: 1.6em;
     padding: 7px 13px;
     font-size: 1em;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

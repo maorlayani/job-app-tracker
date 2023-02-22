@@ -64,6 +64,7 @@ export const ApplicationFilter = () => {
         <FlexContainer>
             <StyledInput type="text" value={searchInput} onChange={changeHandler} />
             <StyledSearchButton onClick={onSetSearch}>Search</StyledSearchButton>
+            <UploadExcelFile />
         </FlexContainer>
         <FlexContainer>
             <FilterButton text='Location' opt={options.location} isChecked={isChecked} setIsChecked={setIsChecked} />
@@ -72,6 +73,5 @@ export const ApplicationFilter = () => {
             <FilterButton text='Sort by' opt={['Date: Newest to Oldest', 'Date: Oldest to Newest']} isChecked={isChecked} setIsChecked={setIsChecked} />
             <StyledResetButton onClick={onResetFilter}>Reset</StyledResetButton>
         </FlexContainer>
-        <UploadExcelFile />
     </StyledCustomSelectFilter>
 } 

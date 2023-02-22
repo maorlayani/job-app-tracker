@@ -72,7 +72,7 @@ mock.onPost('/application').reply(async function (config) {
     }
     const companyUrl = updatedApplication.company.replace(/\s/g, '')
     const iconUrl = await getCompanyData(`${companyUrl.toLowerCase()}.com`)
-    updatedApplication.logoUrl = iconUrl
+    updatedApplication.logoUrl = iconUrl ? iconUrl : 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1677083107/job-application-tracker/na-icon_ngcgpa.png'
     let applications: Application[] = await getApplications()
     applications.unshift(updatedApplication)
     saveToLocalStorge(STORAGE_KEY, applications)
