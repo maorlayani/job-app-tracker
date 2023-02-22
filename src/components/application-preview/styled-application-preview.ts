@@ -6,7 +6,7 @@ export const PreviewLI = styled.li`
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    width: 600px;
+    width: 500px;
     height: 120px;
     margin-block-end: 10px;
     border-radius: 12px;

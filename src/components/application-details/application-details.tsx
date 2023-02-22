@@ -32,9 +32,9 @@ export const ApplicationDetails: React.FC<ApplicationDetailsProps> = ({ applicat
     }
 
     return <StyledApplicationDetails isOpen={isDetailsOpen} >
-        <StyledCloseIcon>
+        {/* <StyledCloseIcon>
             <img src={closeIcon} alt="close icon" onClick={onCloseDetails} />
-        </StyledCloseIcon>
+        </StyledCloseIcon> */}
         <StyledCompanyLogoAppDetails logoUrl={application.logoUrl}></StyledCompanyLogoAppDetails>
         <StyledPositionAppDetails>{application.position}</StyledPositionAppDetails>
         <StyledCompanyNameAppDetails>

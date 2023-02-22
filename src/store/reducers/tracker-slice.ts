@@ -8,7 +8,8 @@ interface TrackerState {
     applicationDetails: Application,
     isDetailsOpen: boolean,
     filterBy: FilterBy,
-    filterModal: FilterModal
+    filterModal: FilterModal,
+    isLoading: boolean
 }
 
 const initialState: TrackerState = {
@@ -21,7 +22,8 @@ const initialState: TrackerState = {
         status: [],
         serachInput: ''
     },
-    filterModal: { isModalOpen: false, type: '' }
+    filterModal: { isModalOpen: false, type: '' },
+    isLoading: false
 }
 
 export const getApplication = createAsyncThunk(
@@ -90,8 +92,12 @@ export const trackerSlice = createSlice({
             .addCase(getApplication.fulfilled, (state, action) => {
                 state.applications = [...action.payload]
             })
+            .addCase(addApplication.pending, (state) => {
+                state.isLoading = true
+            })
             .addCase(addApplication.fulfilled, (state, action: PayloadAction<Application>) => {
                 state.applications.unshift(action.payload)
+                state.isLoading = false
             })
             .addCase(updateApplication.fulfilled, (state, action: PayloadAction<Application>) => {
                 state.applications = state.applications.map(app =>

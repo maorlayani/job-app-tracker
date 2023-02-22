@@ -33,24 +33,18 @@ export const UploadExcelFile = () => {
         if (event.target.files?.length) {
             file = event.target.files[0]
         }
-        // const formatFile = await file.arrayBuffer()
-        // const wb = read(formatFile)
-        // const data = utils.sheet_to_json(wb.Sheets[wb.SheetNames[1]])
-        // console.log(data);
-
         const reader = new FileReader()
         reader.onload = (e: any) => {
             const data = new Uint8Array(e.target?.result as ArrayBuffer)
             const workbook = read(data, { type: 'array' })
             const worksheet = workbook.Sheets[workbook.SheetNames[1]]
             const excelData = utils.sheet_to_json<DraftApplication>(worksheet)
-            // Do something with the data here
-            console.log(excelData)
+            // console.log(excelData)
             excelData.forEach(app => {
                 dispatch(addApplication(app))
             })
         }
-        reader.readAsArrayBuffer(file);
+        reader.readAsArrayBuffer(file)
     }
     return <>
         <LabelInputFile htmlFor="upload-file">Uplaod excel file</LabelInputFile>

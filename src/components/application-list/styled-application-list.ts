@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const ApplicationListStyle = styled.section`
     padding:  .5em ;
     overflow-y: auto;
-    margin: .5em 0;
+    margin: 0 0 1.5em 0;
     scroll-behavior: smooth;
 `
 

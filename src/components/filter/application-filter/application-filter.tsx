@@ -1,4 +1,3 @@
-import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks"
 import { RootState } from "../../../store/store"
 import { Application } from '../../../modules/interfaces'
@@ -7,8 +6,8 @@ import { trackerService } from "../../../services/tracker.service"
 import { useEffect, useState } from "react"
 import { FilterButton } from "../filter-button/filter-button"
 import { setFilterBy } from "../../../store/reducers/tracker-slice"
-import { Options } from "./styled-application-filter"
-import { FlexContainer, StyledCustomSelectFilter, StyledInput, StyledResetButton, StyledSearchButton } from "./interfaces-application-filter"
+import { Options } from "./interfaces-application-filter"
+import { FlexContainer, StyledCustomSelectFilter, StyledInput, StyledResetButton, StyledSearchButton } from "./styled-application-filter"
 import { UploadExcelFile } from "../../upload-excel-file"
 
 export const ApplicationFilter = () => {

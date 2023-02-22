@@ -8,22 +8,27 @@ import { StyledApplicationDetailsProps } from "./interfaces-application-details"
 
 export const StyledApplicationDetails = styled.div<StyledApplicationDetailsProps>`
     background-color: #fff;
-    width: 600px;
-    min-height: 500px;
-    max-height: calc(100vh - 40px);
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
+    width: 500px;
+    /* min-height: 300px; */
+    /* min-height: 100%; */
+    /* max-height: calc(100vh - 240px); */
+    max-height: 100%;
+    margin: .5em 0 1.5em 0;
+    border-radius: 12px;
+    /* border-top-left-radius: 12px; */
+    /* border-bottom-left-radius: 12px; */
     font-family: 'league-spartan-medium';
-    position: absolute;
-    top: 20px;
-    right: ${props => props.isOpen ? '0' : '-600px'};
-    box-shadow: 0 0px 0px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    /* position: absolute; */
+    /* top: 20px; */
+    /* right: ${props => props.isOpen ? '0' : '-600px'}; */
+    /* box-shadow: 0 0px 0px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%); */
     transition: right 1s;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 .5em 1.5em .5em;
+    padding: 0 .5em 0 .5em;
     box-sizing: border-box;
+    /* margin-block-start: 1em; */
 `
 
 export const TagContainerCol = styled.div`
@@ -52,7 +57,9 @@ export const StyledApplicationContent = styled.div`
     align-self: flex-start;
     width: 100%;
     overflow-x: auto;
-    margin: 1em 0;
+    /* margin: 1em 0; */
+    margin-block-start: 1em;
+    flex-grow: 1;
 `
 
 export const StyledCompanyLogoAppDetails = styled(StyledCompanyLogo)`
@@ -76,8 +83,10 @@ export const StyledCompanyNameAppDetails = styled(StyledCompanyName)`
 
 export const ButtonsWrapper = styled.div`
     display: flex;
+    align-items: flex-end;
     gap: 4em;
-    margin-top: 1em;
+    /* margin-top: 1em; */
+    /* padding: 1em 1em 0 1em; */
     padding: 1em;
 `
 export const StyledRemoveButton = styled(StyledButton)`

@@ -2,7 +2,7 @@ import { ApplicationList } from "../components/application-list/application-list
 import { SideNav } from "../components/side-nav/side-nav"
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'
-import { getApplication, removeApplication, setFilterBy } from '../store/reducers/tracker-slice'
+import { getApplication } from '../store/reducers/tracker-slice'
 import { RootState } from '../store/store'
 import { ApplicationDetails } from "../components/application-details/application-details"
 import { useEffect } from "react"
@@ -16,12 +16,15 @@ const StyledTrackerBoard = styled.div`
 const MainContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    margin-inline-start: 250px;
+    align-items: center;
+    width: 100%;
+  
 `
 export const TrackerBoard = () => {
     const dispatch = useAppDispatch()
     const applicationDetails = useAppSelector((state: RootState) => state.tracker.applicationDetails)
     const filterBy = useAppSelector((state: RootState) => state.tracker.filterBy)
+    const applications = useAppSelector((state: RootState) => state.tracker.applications)
 
     useEffect(() => {
         // if (applications.length) return
@@ -40,8 +43,10 @@ export const TrackerBoard = () => {
         <SideNav />
         <MainContentWrapper>
             <ApplicationFilter />
-            <ApplicationList />
+            <div style={{ display: 'flex', overflowY: 'auto', gap: '.5em' }}>
+                <ApplicationList />
+                <ApplicationDetails application={applicationDetails} />
+            </div>
         </MainContentWrapper>
-        <ApplicationDetails application={applicationDetails} />
     </StyledTrackerBoard >
 }
