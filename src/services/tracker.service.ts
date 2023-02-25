@@ -1,108 +1,117 @@
+// import { mock } from './mock.axios.service'
 import { DraftApplication, Application, Logo, FilterBy } from "../modules/interfaces";
-import axios, { AxiosRequestConfig } from 'axios'
-import { mock } from './mock.axios.service'
 import { data } from '../data/data'
 import { utilService } from "./util.service";
 import { saveToLocalStorge } from './localStorageService'
 import { MY_BRAND_API_KEY, MY_BRAND_BASE_URL } from '../private'
+import { Status } from "../modules/enums";
+import Axios from 'axios'
+// import axios from 'axios';
 
 const STORAGE_KEY = 'application'
 
 
-mock.onGet('/application').reply(function (config) {
-    const applicationsFromStorage: string | null = localStorage.getItem(STORAGE_KEY)
-    let applications: Application[] = []
-    if (applicationsFromStorage === null) applications = data
-    if (applicationsFromStorage !== null) {
-        applications = JSON.parse(applicationsFromStorage)
-        if (!applications.length) applications = data
-    }
-    saveToLocalStorge(STORAGE_KEY, applications)
+const BASE_URL = process.env.NODE_ENV === 'production'
+    ? '/api/'
+    : '//localhost:3030/api/'
 
-    const filterBy: FilterBy = config.params.filterBy
-
-    if (filterBy.location.length > 0) {
-        applications =
-            applications.filter(app => filterBy.location.find(loc => loc === app.location))
-    }
-    if (filterBy.position.length > 0) {
-        applications =
-            applications.filter(app => filterBy.position.find(pos => pos === app.position))
-    }
-    if (filterBy.status.length > 0) {
-        applications =
-            applications.filter(app => filterBy.status.find(pos => pos === app.status))
-    }
-    if (filterBy.serachInput) {
-        applications =
-            applications.filter(app =>
-            (app.company.toLowerCase().includes(filterBy.serachInput) ||
-                app.position.toLowerCase().includes(filterBy.serachInput) ||
-                app.location.toLowerCase().includes(filterBy.serachInput)
-            ))
-    }
-
-    return [
-        200,
-        { applications }
-    ]
+var axios = Axios.create({
+    withCredentials: true
 })
+// mock.onGet('/application').reply(function (config) {
+//     const applicationsFromStorage: string | null = localStorage.getItem(STORAGE_KEY)
+//     let applications: Application[] = []
+//     if (applicationsFromStorage === null) applications = data
+//     if (applicationsFromStorage !== null) {
+//         applications = JSON.parse(applicationsFromStorage)
+//         if (!applications.length) applications = data
+//     }
+//     saveToLocalStorge(STORAGE_KEY, applications)
 
-mock.onGet(/\/application\/\d+/).reply(async function (config: AxiosRequestConfig<any>) {
-    let id: string
-    if (config.url !== undefined) {
-        id = config.url.replace(/\D/g, '')
-    }
-    let applications: Application[] = await getApplications()
-    const application = applications.find(app => app.id === id)
-    return [
-        200,
-        application
-    ]
-})
+//     const filterBy: FilterBy = config.params.filterBy
 
-mock.onPost('/application').reply(async function (config) {
-    const { data } = JSON.parse(config.data)
-    const { application } = data
-    let updatedApplication: Application = {
-        ...application,
-        id: utilService.makeId(),
-        submittedAt: Date.now(),
-        isPinned: false
-    }
-    const companyUrl = updatedApplication.company.replace(/\s/g, '')
-    const iconUrl = await getCompanyData(`${companyUrl.toLowerCase()}.com`)
-    updatedApplication.logoUrl = iconUrl ? iconUrl : 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1677083107/job-application-tracker/na-icon_ngcgpa.png'
-    let applications: Application[] = await getApplications()
-    applications.unshift(updatedApplication)
-    saveToLocalStorge(STORAGE_KEY, applications)
-    return [
-        200,
-        { updatedApplication }
-    ]
-})
+//     if (filterBy.location.length > 0) {
+//         applications =
+//             applications.filter(app => filterBy.location.find(loc => loc === app.location))
+//     }
+//     if (filterBy.position.length > 0) {
+//         applications =
+//             applications.filter(app => filterBy.position.find(pos => pos === app.position))
+//     }
+//     if (filterBy.status.length > 0) {
+//         applications =
+//             applications.filter(app => filterBy.status.find(pos => pos === app.status))
+//     }
+//     if (filterBy.serachInput) {  // fix typo
+//         applications =
+//             applications.filter(app =>
+//             (app.company.toLowerCase().includes(filterBy.serachInput) ||
+//                 app.position.toLowerCase().includes(filterBy.serachInput) ||
+//                 app.location.toLowerCase().includes(filterBy.serachInput)
+//             ))
+//     }
 
-mock.onPut('/application').reply(async function (config) {
-    const { data } = JSON.parse(config.data)
-    const { application } = data
-    let applications: Application[] = await getApplications()
-    applications = applications.map(app => app.id === application.id ? application : app)
-    saveToLocalStorge(STORAGE_KEY, applications)
-    return [
-        200,
-        { application }
-    ]
-})
+//     return [
+//         200,
+//         { applications }
+//     ]
+// })
 
-mock.onDelete('/application').reply(async function (config: AxiosRequestConfig<any>) {
-    const applicationId: string = config.data
-    let applications: Application[] = await getApplications()
-    applications = applications.filter(app => app.id !== applicationId)
-    saveToLocalStorge(STORAGE_KEY, applications)
-    return [
-        200
-    ]
-})
+// mock.onGet(/\/application\/\d+/).reply(async function (config: AxiosRequestConfig<any>) {
+//     let id: string
+//     if (config.url !== undefined) {
+//         id = config.url.replace(/\D/g, '')
+//     }
+//     let applications: Application[] = await getApplications()
+//     const application = applications.find(app => app.id === id)
+//     return [
+//         200,
+//         application
+//     ]
+// })
+
+// mock.onPost('/application').reply(async function (config) {
+//     const { data } = JSON.parse(config.data)
+//     const { application } = data
+//     let updatedApplication: Application = {
+//         ...application,
+//         id: utilService.makeId(),
+//         submittedAt: Date.now(),
+//         isPinned: false
+//     }
+//     const companyUrl = updatedApplication.company.replace(/\s/g, '')
+//     const iconUrl = await getCompanyData(`${companyUrl.toLowerCase()}.com`)
+//     updatedApplication.logoUrl = iconUrl ? iconUrl : 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1677083107/job-application-tracker/na-icon_ngcgpa.png'
+//     let applications: Application[] = await getApplications()
+//     applications.unshift(updatedApplication)
+//     saveToLocalStorge(STORAGE_KEY, applications)
+//     return [
+//         200,
+//         { updatedApplication }
+//     ]
+// })
+
+// mock.onPut('/application').reply(async function (config) {
+//     const { data } = JSON.parse(config.data)
+//     const { application } = data
+//     let applications: Application[] = await getApplications()
+//     applications = applications.map(app => app.id === application.id ? application : app)
+//     saveToLocalStorge(STORAGE_KEY, applications)
+//     return [
+//         200,
+//         { application }
+//     ]
+// })
+
+// mock.onDelete('/application').reply(async function (config: AxiosRequestConfig<any>) {
+//     const applicationId: string = config.data
+//     let applications: Application[] = await getApplications()
+//     applications = applications.filter(app => app.id !== applicationId)
+//     saveToLocalStorge(STORAGE_KEY, applications)
+//     return [
+//         200
+//     ]
+// })
 
 // ------------------------------------------------------------------------------------------
 export const trackerService = {
@@ -112,15 +121,19 @@ export const trackerService = {
     getApplicationById
 }
 
-async function getApplications(filterBy: FilterBy = {
+async function getApplications(filterByFromUser: FilterBy = {
     location: [],
     position: [],
     status: [],
     serachInput: ''
 }) {
     try {
-        const { data } = await axios.get('/application', { params: { filterBy } })
-        return data.applications
+        const filterBy = { filterBy: JSON.stringify(filterByFromUser) }
+        const { data } =
+            await axios.get(`${BASE_URL}tracker/`, { params: filterBy })
+        // console.log(data);
+        const applications: Application[] = data
+        return applications
     } catch (err: any) {
         console.error('Cannot get applications', err)
     }
