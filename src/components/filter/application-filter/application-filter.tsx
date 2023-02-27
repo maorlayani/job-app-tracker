@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks"
 import { RootState } from "../../../store/store"
-import { Application } from '../../../modules/interfaces'
-import { Status } from '../../../modules/enums'
+import { Application } from '../../../models/interfaces'
+import { Status } from '../../../models/enums'
 import { trackerService } from "../../../services/tracker.service"
 import { useEffect, useState } from "react"
 import { FilterButton } from "../filter-button/filter-button"

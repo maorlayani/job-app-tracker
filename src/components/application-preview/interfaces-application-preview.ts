@@ -1,4 +1,4 @@
-import { Application } from "../../modules/interfaces"
+import { Application } from "../../models/interfaces"
 
 export interface ApplicationPreviewProps {
     application: Application

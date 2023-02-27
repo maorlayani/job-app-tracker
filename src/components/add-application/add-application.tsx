@@ -5,7 +5,7 @@ import { StyledAddApplicationForm } from "../styles/add-application-form"
 import { useNavigate, useParams } from "react-router-dom"
 import { addApplication, toggleApplicationDetails, updateApplication } from "../../store/reducers/tracker-slice"
 import { useAppDispatch } from "../../hooks/redux-hooks"
-import { Status } from '../../modules/enums'
+import { Status } from '../../models/enums'
 import { StyledButton } from '../styles/button.styled'
 import { useEffect } from "react"
 import { trackerService } from "../../services/tracker.service"
@@ -40,7 +40,7 @@ export const AddApplication = () => {
 
     const onAddApplication = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault()
-        if (application.id) {
+        if (application._id) {
             dispatch(updateApplication(application))
         } else {
             dispatch(addApplication(application))

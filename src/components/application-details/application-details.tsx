@@ -21,13 +21,13 @@ export const ApplicationDetails: React.FC<ApplicationDetailsProps> = ({ applicat
 
     const onRemoveApplication = (ev: React.MouseEvent<HTMLButtonElement>) => {
         ev.stopPropagation()
-        dispatch(removeApplication(application.id))
+        dispatch(removeApplication(application._id))
         dispatch(toggleApplicationDetails())
     }
 
     const onUpdateApplication = (ev: React.MouseEvent<HTMLButtonElement>) => {
         ev.stopPropagation()
-        navigate(`/edit/${application.id}`)
+        navigate(`/edit/${application._id}`)
         onCloseDetails()
     }
 

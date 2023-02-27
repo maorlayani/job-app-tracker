@@ -1,7 +1,7 @@
 import { useState } from "react"
 import closeIcon from '../../../assets/svg/close-icon.svg'
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks"
-import { Application, FilterBy } from "../../../modules/interfaces"
+import { Application, FilterBy } from "../../../models/interfaces"
 import { trackerService } from "../../../services/tracker.service"
 import { setFilterBy } from "../../../store/reducers/tracker-slice"
 import { RootState } from "../../../store/store"

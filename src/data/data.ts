@@ -1,10 +1,10 @@
-import { Application } from '../modules/interfaces'
-import { Status } from '../modules/enums'
+import { Application } from '../models/interfaces'
+import { Status } from '../models/enums'
 import { utilService } from '../services/util.service'
 
 export const data: Application[] = [
     {
-        id: utilService.makeId(),
+        _id: utilService.makeId(),
         company: 'Google',
         position: 'Frontend Developer',
         submittedAt: Date.now(),
@@ -17,7 +17,7 @@ export const data: Application[] = [
         isPinned: false
     },
     {
-        id: utilService.makeId(),
+        _id: utilService.makeId(),
         company: 'Apple',
         position: 'Fullstack Developer',
         submittedAt: Date.now(),
@@ -30,7 +30,7 @@ export const data: Application[] = [
         isPinned: false
     },
     {
-        id: utilService.makeId(),
+        _id: utilService.makeId(),
         company: 'Elbit',
         position: 'Embedd Developer',
         submittedAt: Date.now(),
@@ -43,7 +43,7 @@ export const data: Application[] = [
         isPinned: false
     },
     {
-        id: utilService.makeId(),
+        _id: utilService.makeId(),
         company: 'Monday',
         position: 'Backend Developer',
         submittedAt: Date.now(),
@@ -56,7 +56,7 @@ export const data: Application[] = [
         isPinned: false
     },
     {
-        id: utilService.makeId(),
+        _id: utilService.makeId(),
         company: 'ironSource',
         position: 'Java Developer',
         submittedAt: Date.now(),
@@ -69,7 +69,7 @@ export const data: Application[] = [
         isPinned: false
     },
     {
-        id: utilService.makeId(),
+        _id: utilService.makeId(),
         company: 'Google',
         position: 'Frontend Developer',
         submittedAt: Date.now(),
@@ -82,7 +82,7 @@ export const data: Application[] = [
         isPinned: false
     },
     {
-        id: utilService.makeId(),
+        _id: utilService.makeId(),
         company: 'Apple',
         position: 'Fullstack Developer',
         submittedAt: Date.now(),
@@ -96,7 +96,7 @@ export const data: Application[] = [
 
     },
     {
-        id: utilService.makeId(),
+        _id: utilService.makeId(),
         company: 'Elbit',
         position: 'Embedd Developer',
         submittedAt: Date.now(),

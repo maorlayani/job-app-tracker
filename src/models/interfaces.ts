@@ -1,7 +1,7 @@
 import { Status } from "./enums"
 
 export interface Application {
-    id: string,
+    _id: string,
     company: string,
     position: string,
     positionDesc?: string,
@@ -20,7 +20,7 @@ export interface Application {
 }
 
 export interface DraftApplication {
-    id?: string,
+    _id?: string,
     company: string,
     position: string,
     positionDesc?: string,

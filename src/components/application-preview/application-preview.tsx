@@ -1,4 +1,4 @@
-import { Application } from '../../modules/interfaces'
+import { Application } from '../../models/interfaces'
 import Globalfonts from '../../assets/global-fonts'
 import React from 'react'
 import { toggleApplicationDetails, setCurrentApplicationDetails, updateApplication } from '../../store/reducers/tracker-slice'
@@ -33,7 +33,7 @@ export const ApplicationPreview: React.FC<ApplicationPreviewProps> = ({ applicat
     }
 
     return <React.Fragment>
-        <PreviewLI key={application.id} onClick={() => onSetAppliction(application)}>
+        <PreviewLI key={application._id} onClick={() => onSetAppliction(application)}>
             <PreviewIconsWrapper>
                 <StyledIcon isMarked={application.isPinned} onClick={togglePinApplication} title="Pinned">
                     <BsFillBookmarkDashFill />

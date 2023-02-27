@@ -24,14 +24,14 @@ export const ApplicationList = () => {
             <StyledListTitle>Pinned Applications</StyledListTitle>
             <ul>
                 {filteredApplicationByIsPinned(true).map(app => {
-                    return <ApplicationPreview key={app.id} application={app} />
+                    return <ApplicationPreview key={app._id} application={app} />
                 })}
             </ul>
         </>}
         {filteredApplicationByIsPinned(true)[0] && <StyledListTitle>Other Applications</StyledListTitle>}
         <ul>
             {filteredApplicationByIsPinned(false).map(app => {
-                return <ApplicationPreview key={app.id} application={app} />
+                return <ApplicationPreview key={app._id} application={app} />
             })}
         </ul>
     </ApplicationListStyle>

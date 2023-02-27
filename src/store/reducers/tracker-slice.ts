@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { data } from '../../data/data'
-import { Application, DraftApplication, FilterBy, FilterModal } from '../../modules/interfaces'
+import { Application, DraftApplication, FilterBy, FilterModal } from '../../models/interfaces'
 import { trackerService } from '../../services/tracker.service'
 
 interface TrackerState {
@@ -30,7 +30,7 @@ export const getApplication = createAsyncThunk(
     'tracker/getApplication',
     async (arg, { getState }) => {
         const { tracker } = getState() as { tracker: TrackerState }
-        const applications = await trackerService.getApplications(tracker.filterBy)
+        const applications: Application[] = await trackerService.getApplications(tracker.filterBy)
         return applications
     }
 )
@@ -59,17 +59,6 @@ export const removeApplication = createAsyncThunk(
     }
 )
 
-// export const setFilterBy = createAsyncThunk(
-//     'tracker/setFilterBy',
-//     async (filterBy: FilterBy) => {
-//         console.log('getapp', filterBy);
-
-//         // await getApplication()
-//         // await trackerService.getApplications(filterBy)
-//         return filterBy
-//     }
-// )
-
 export const trackerSlice = createSlice({
     name: 'tracker',
     initialState,
@@ -89,8 +78,11 @@ export const trackerSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getApplication.fulfilled, (state, action) => {
+            .addCase(getApplication.fulfilled, (state, action: PayloadAction<Application[]>) => {
                 state.applications = [...action.payload]
+            })
+            .addCase(getApplication.rejected, (state, action) => {
+                console.log(action.error);
             })
             .addCase(addApplication.pending, (state) => {
                 state.isLoading = true
@@ -101,11 +93,13 @@ export const trackerSlice = createSlice({
             })
             .addCase(updateApplication.fulfilled, (state, action: PayloadAction<Application>) => {
                 state.applications = state.applications.map(app =>
-                    app.id === action.payload.id ? action.payload : app)
+                    app._id === action.payload._id ? action.payload : app)
+                console.log(state.applications);
+
             })
             .addCase(removeApplication.fulfilled, (state, action: PayloadAction<any>) => {
                 state.applications = state.applications.filter(app =>
-                    app.id !== action.payload)
+                    app._id !== action.payload)
             })
     }
 })

@@ -1,15 +1,9 @@
 // import { mock } from './mock.axios.service'
-import { DraftApplication, Application, Logo, FilterBy } from "../modules/interfaces";
-import { data } from '../data/data'
-import { utilService } from "./util.service";
-import { saveToLocalStorge } from './localStorageService'
+import { DraftApplication, Application, Logo, FilterBy } from "../models/interfaces";
 import { MY_BRAND_API_KEY, MY_BRAND_BASE_URL } from '../private'
-import { Status } from "../modules/enums";
 import Axios from 'axios'
-// import axios from 'axios';
 
 const STORAGE_KEY = 'application'
-
 
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/api/'
@@ -18,57 +12,7 @@ const BASE_URL = process.env.NODE_ENV === 'production'
 var axios = Axios.create({
     withCredentials: true
 })
-// mock.onGet('/application').reply(function (config) {
-//     const applicationsFromStorage: string | null = localStorage.getItem(STORAGE_KEY)
-//     let applications: Application[] = []
-//     if (applicationsFromStorage === null) applications = data
-//     if (applicationsFromStorage !== null) {
-//         applications = JSON.parse(applicationsFromStorage)
-//         if (!applications.length) applications = data
-//     }
-//     saveToLocalStorge(STORAGE_KEY, applications)
 
-//     const filterBy: FilterBy = config.params.filterBy
-
-//     if (filterBy.location.length > 0) {
-//         applications =
-//             applications.filter(app => filterBy.location.find(loc => loc === app.location))
-//     }
-//     if (filterBy.position.length > 0) {
-//         applications =
-//             applications.filter(app => filterBy.position.find(pos => pos === app.position))
-//     }
-//     if (filterBy.status.length > 0) {
-//         applications =
-//             applications.filter(app => filterBy.status.find(pos => pos === app.status))
-//     }
-//     if (filterBy.serachInput) {  // fix typo
-//         applications =
-//             applications.filter(app =>
-//             (app.company.toLowerCase().includes(filterBy.serachInput) ||
-//                 app.position.toLowerCase().includes(filterBy.serachInput) ||
-//                 app.location.toLowerCase().includes(filterBy.serachInput)
-//             ))
-//     }
-
-//     return [
-//         200,
-//         { applications }
-//     ]
-// })
-
-// mock.onGet(/\/application\/\d+/).reply(async function (config: AxiosRequestConfig<any>) {
-//     let id: string
-//     if (config.url !== undefined) {
-//         id = config.url.replace(/\D/g, '')
-//     }
-//     let applications: Application[] = await getApplications()
-//     const application = applications.find(app => app.id === id)
-//     return [
-//         200,
-//         application
-//     ]
-// })
 
 // mock.onPost('/application').reply(async function (config) {
 //     const { data } = JSON.parse(config.data)
@@ -91,27 +35,6 @@ var axios = Axios.create({
 //     ]
 // })
 
-// mock.onPut('/application').reply(async function (config) {
-//     const { data } = JSON.parse(config.data)
-//     const { application } = data
-//     let applications: Application[] = await getApplications()
-//     applications = applications.map(app => app.id === application.id ? application : app)
-//     saveToLocalStorge(STORAGE_KEY, applications)
-//     return [
-//         200,
-//         { application }
-//     ]
-// })
-
-// mock.onDelete('/application').reply(async function (config: AxiosRequestConfig<any>) {
-//     const applicationId: string = config.data
-//     let applications: Application[] = await getApplications()
-//     applications = applications.filter(app => app.id !== applicationId)
-//     saveToLocalStorge(STORAGE_KEY, applications)
-//     return [
-//         200
-//     ]
-// })
 
 // ------------------------------------------------------------------------------------------
 export const trackerService = {
@@ -126,27 +49,28 @@ async function getApplications(filterByFromUser: FilterBy = {
     position: [],
     status: [],
     serachInput: ''
-}) {
+}): Promise<Application[]> {
     try {
         const filterBy = { filterBy: JSON.stringify(filterByFromUser) }
-        const { data } =
-            await axios.get(`${BASE_URL}tracker/`, { params: filterBy })
-        // console.log(data);
+        const { data } = await axios.get(`${BASE_URL}tracker/`, { params: filterBy })
         const applications: Application[] = data
         return applications
     } catch (err: any) {
         console.error('Cannot get applications', err)
+        throw (err)
     }
 }
 
 async function saveApplication(application: Application | DraftApplication): Promise<any> {
     try {
-        if (application.id) {
-            const { data } = await axios.put('/application', { data: { application } })
-            return data.application
+        if (application._id) {
+            const { data } = await axios.put(`${BASE_URL}tracker/${application._id}`, application)
+            console.log('data');
+            console.log(data);
+            return data
         } else {
-            const { data } = await axios.post('/application', { data: { application } })
-            return data.updatedApplication
+            const { data } = await axios.post(`${BASE_URL}tracker/`, application)
+            return data
         }
     } catch (err: any) {
         console.error('Cannot add application', err)
@@ -155,7 +79,7 @@ async function saveApplication(application: Application | DraftApplication): Pro
 
 async function removeApplication(applicationId: string) {
     try {
-        await axios.delete('/application', { data: applicationId })
+        await axios.delete(`${BASE_URL}tracker/${applicationId}`)
     } catch (err: any) {
         console.error('Cannot remove application', err)
     }
@@ -163,7 +87,7 @@ async function removeApplication(applicationId: string) {
 
 async function getApplicationById(applicationId: string) {
     try {
-        const { data } = await axios.get(`/application/${applicationId}`)
+        const { data } = await axios.get(`${BASE_URL}tracker/${applicationId}`)
         return data
     } catch (err: any) {
         console.error('Cannot get application', err)

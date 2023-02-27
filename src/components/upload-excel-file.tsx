@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { read, utils, writeFile } from 'xlsx';
 import { useAppDispatch } from '../hooks/redux-hooks';
-import { DraftApplication } from '../modules/interfaces';
+import { DraftApplication } from '../models/interfaces';
 import { addApplication } from '../store/reducers/tracker-slice';
 import { StyledButton } from './styles/button.styled';
 
