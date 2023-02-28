@@ -6,7 +6,8 @@ export interface Application {
     position: string,
     positionDesc?: string,
     postedAt?: string,
-    submittedAt: number | string,
+    submittedAt: number,
+    // submittedAt: number | string,
     status: Status,
     location: string,
     contact?: string,
@@ -46,7 +47,7 @@ export interface FilterBy {
     position: string[],
     location: string[],
     status: string[],
-    serachInput: string
+    searchInput: string
 }
 
 export interface FilterModal {

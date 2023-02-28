@@ -1,4 +1,3 @@
-// import { mock } from './mock.axios.service'
 import { DraftApplication, Application, Logo, FilterBy } from "../models/interfaces";
 import { MY_BRAND_API_KEY, MY_BRAND_BASE_URL } from '../private'
 import Axios from 'axios'
@@ -48,7 +47,7 @@ async function getApplications(filterByFromUser: FilterBy = {
     location: [],
     position: [],
     status: [],
-    serachInput: ''
+    searchInput: ''
 }): Promise<Application[]> {
     try {
         const filterBy = { filterBy: JSON.stringify(filterByFromUser) }

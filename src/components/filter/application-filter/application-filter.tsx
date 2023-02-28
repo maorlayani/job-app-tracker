@@ -25,7 +25,7 @@ export const ApplicationFilter = () => {
     const getOptions = async () => {
         try {
             const applications: Application[] =
-                await trackerService.getApplications({ location: [], position: [], status: [], serachInput: '' })
+                await trackerService.getApplications({ location: [], position: [], status: [], searchInput: '' })
             const locationOpt = removeDuplicates(applications, 'location')
             const positionOpt = removeDuplicates(applications, 'position')
             setOptions({ location: locationOpt, position: positionOpt })
@@ -47,7 +47,7 @@ export const ApplicationFilter = () => {
     const onResetFilter = () => {
         setIsChecked(true)
         setSearchInput('')
-        dispatch(setFilterBy({ location: [], position: [], status: [], serachInput: '' }))
+        dispatch(setFilterBy({ location: [], position: [], status: [], searchInput: '' }))
     }
 
     const changeHandler = (ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +56,7 @@ export const ApplicationFilter = () => {
 
     const onSetSearch = () => {
         console.log(searchInput);
-        dispatch(setFilterBy({ ...filterBy, serachInput: searchInput }))
+        dispatch(setFilterBy({ ...filterBy, searchInput: searchInput }))
     }
 
     return <StyledCustomSelectFilter>

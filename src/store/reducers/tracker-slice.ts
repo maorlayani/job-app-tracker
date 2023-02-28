@@ -14,13 +14,13 @@ interface TrackerState {
 
 const initialState: TrackerState = {
     applications: [],
-    applicationDetails: data[0],
+    applicationDetails: { company: '' } as Application,
     isDetailsOpen: false,
     filterBy: {
         position: [],
         location: [],
         status: [],
-        serachInput: ''
+        searchInput: ''
     },
     filterModal: { isModalOpen: false, type: '' },
     isLoading: false
@@ -30,7 +30,8 @@ export const getApplication = createAsyncThunk(
     'tracker/getApplication',
     async (arg, { getState }) => {
         const { tracker } = getState() as { tracker: TrackerState }
-        const applications: Application[] = await trackerService.getApplications(tracker.filterBy)
+        let applications: Application[] = await trackerService.getApplications(tracker.filterBy)
+        applications = applications.sort((a, b) => b.submittedAt - a.submittedAt)
         return applications
     }
 )
