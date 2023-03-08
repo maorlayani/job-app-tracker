@@ -1,5 +1,4 @@
 import { ApplicationList } from "../components/application-list/application-list"
-import { SideNav } from "../components/side-nav/side-nav"
 import styled from "styled-components"
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'
 import { getApplication, setCurrentApplicationDetails } from '../store/reducers/tracker-slice'
@@ -12,13 +11,13 @@ import { ApplicationFilter } from "../components/filter/application-filter/appli
 const StyledTrackerBoard = styled.div`
     display: flex;
     height: 100vh;
-`
+    `
 const MainContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-  
+    margin-block-start: 70px;
 `
 export const TrackerBoard = () => {
     const dispatch = useAppDispatch()
@@ -29,7 +28,6 @@ export const TrackerBoard = () => {
     useEffect(() => {
         // if (applications.length) return
         loadApplications()
-        console.log(applications);
     }, [filterBy.location, filterBy.position, filterBy.status, filterBy.searchInput])
 
     const loadApplications = async () => {
@@ -41,12 +39,11 @@ export const TrackerBoard = () => {
     }
 
     return <StyledTrackerBoard>
-        <SideNav />
         <MainContentWrapper>
             <ApplicationFilter />
             <div style={{ display: 'flex', overflowY: 'auto', gap: '.5em' }}>
                 <ApplicationList />
-                {applications.length && <ApplicationDetails />}
+                {applications.length > 0 && <ApplicationDetails />}
             </div>
         </MainContentWrapper>
     </StyledTrackerBoard >
