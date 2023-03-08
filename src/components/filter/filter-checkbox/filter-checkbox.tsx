@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useAppSelector } from "../../../hooks/redux-hooks"
 import { RootState } from "../../../store/store"
-import { FilterCheckboxProps } from "./styled-filter-checkbox"
-import { StyledCheckbox, StyledCheckboxLabel } from "./interfaces-filter-checkbox"
+import { FilterCheckboxProps } from "./interfaces-filter-checkbox"
+import { StyledCheckbox, StyledCheckboxLabel } from "./styled-filter-checkbox"
 
 export const FilterCheckbox: React.FC<FilterCheckboxProps> = ({ label, type, checkboxHandler }) => {
     const [isChecked, setIsChecked] = useState(false)
@@ -17,13 +17,11 @@ export const FilterCheckbox: React.FC<FilterCheckboxProps> = ({ label, type, che
 
     const toggleCheckbox = () => {
         setIsChecked(!isChecked)
-        checkboxHandler(type, label)
+        if (type) checkboxHandler(type, label)
     }
 
     return <>
-        {/* <div> */}
         <StyledCheckbox isChecked={isChecked} onClick={toggleCheckbox}></StyledCheckbox>
-        {/* </div> */}
         <StyledCheckboxLabel onClick={toggleCheckbox}>{label}</StyledCheckboxLabel>
     </>
 }
