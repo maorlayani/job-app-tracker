@@ -13,17 +13,20 @@ export const StyledAppHeader = styled.div`
     align-items: center;
     /* padding-block-start: 30px; */
     font-family: 'league-spartan-medium';
+    box-shadow: -1px -1px 3px 2px #cfcfcf;
 `
 
 export const StyledLink = styled(Link)`
 box-sizing: border-box;
-    color: lightgray;
+    color: #cfcfcf;
     text-decoration: none;
     padding: 1em;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 70px;
+    font-family: 'league-spartan-bold';
+    /* font-weight: 600; */
     &:hover{
         color: #ae84d1;
         box-shadow: inset 0 -4px 0 #ae84d1;
