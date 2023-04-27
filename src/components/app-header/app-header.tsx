@@ -1,8 +1,9 @@
 import { LinksWrapper, Logo, StyledLink, StyledAppHeader } from "./styled-app-header"
 import logoImg from '../../assets/img/logo.png'
-
+import Globalfonts from '../../assets/global-fonts'
 export const AppHeader = () => {
     return <StyledAppHeader>
+        <Globalfonts />
         <Logo>
             <img src={logoImg} alt="" />
         </Logo>
