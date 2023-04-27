@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { data } from '../../data/data'
+// import { data } from '../../data/data'
 import { Application, DraftApplication, FilterBy, FilterModal } from '../../models/interfaces'
 import { trackerService } from '../../services/tracker.service'
 

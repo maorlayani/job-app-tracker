@@ -12,7 +12,7 @@ export const StyledFilterModal = styled.div`
     display: flex;
     flex-direction: column;
     font-size: .9em;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
 `
 
 export const OptionsContainer = styled.div`
@@ -28,5 +28,5 @@ export const StyledFilterModalButton = styled(StyledButton)`
 export const FilterButtonContainer = styled.div`
     display: flex;
     justify-content: flex-end;
-    border-top: 1px solid lightgray;
+    border-top: 1px solid #cfcfcf;
 `

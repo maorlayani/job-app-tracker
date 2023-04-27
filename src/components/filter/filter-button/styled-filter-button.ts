@@ -17,7 +17,7 @@ export const StyledFilterButton = styled.button<StyledFilterButtonProps>`
     color: ${props => props.isFilterChecked ? '#ffffff' : '#00000099'} ;
     background-color:${props => props.isFilterChecked ? '#ae84d1' : '#ffffff'};
     font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     display: inline-flex;
     justify-content: center;
     align-items: center;
