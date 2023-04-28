@@ -5,7 +5,7 @@ export const InputContainer = styled.div`
     flex-direction:column;
     /* gap: 4px; */
     align-items: flex-start;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     /* justify-content: space-between; */
     label {
         font-weight: bold;
@@ -33,9 +33,8 @@ export const InputContainer = styled.div`
     textarea {
         font-family: Arial, Helvetica, sans-serif;
         resize: vertical;
-        width: calc(4em + 800px);
+        width: calc(2em + 800px);
         height: 80px;
-        margin-block-end: 25px;
     }
 
     span {
@@ -43,6 +42,7 @@ export const InputContainer = styled.div`
         font-size: .8em;
         font-weight: 600;
         margin-block-start: .3em;
+        margin-block-end: 1em;
         &:hover {
             cursor: pointer;
         }

@@ -13,8 +13,8 @@ export const StyledApplicationLoader = styled.div`
     align-items: center;
     gap: 1em;
     background-color: #fff;
-    width: 500px;
-    height: 120px;
+    width: 900px;
+    height: 140px;
     margin-block-end: 10px;
     border-radius: 12px;
 `

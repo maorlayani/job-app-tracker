@@ -7,7 +7,7 @@ export const StyledCustomSelectFilter = styled.div`
     align-items: flex-start;
     padding: 3em 0 1em 3em;
     gap: 1em;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     color: #00000099;
 `
 
@@ -36,7 +36,7 @@ export const StyledSearchButton = styled(StyledButton)`
     border-radius: 1.6em;
     padding: 7px 13px;
     font-size: 1em;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     color: #ae84d1;
     background-color: #fff;
     box-shadow: inset 0 0 0 1px #ae84d1;

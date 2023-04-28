@@ -5,12 +5,14 @@ export const PreviewLI = styled.li`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background-color: #fff;
-    width: 500px;
-    height: 120px;
+    background-color: #ffffffeb;
+    width: 900px;
+    min-width: 400px;
+    height: 140px;
     margin-block-end: 10px;
     border-radius: 12px;
     font-family: 'league-spartan-medium';
+    box-shadow: 0 0px 0px 0 rgb(60 64 67 / 30%),0 1px 3px 1px rgb(60 64 67 / 15%);
     &:hover {
         cursor: pointer;
         box-shadow: 0 0 0 1px #ae84d1, 0 1px 3px 1px #ae84d1;
