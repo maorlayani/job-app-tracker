@@ -1,63 +1,45 @@
-import { Application } from '../../models/interfaces'
-import Globalfonts from '../../assets/global-fonts'
-import React from 'react'
-import { toggleApplicationDetails, setCurrentApplicationDetails, updateApplication } from '../../store/reducers/tracker-slice'
-import { HiLocationMarker } from 'react-icons/hi'
-import { AiFillInfoCircle } from 'react-icons/ai'
-import { BiCodeAlt } from 'react-icons/bi'
-import { BsThreeDotsVertical, BsFillBookmarkDashFill } from 'react-icons/bs'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
-import { RootState } from '../../store/store'
-import { StyledCompanyLogo } from '../styles/company-logo.styled'
-import { StyledPosition } from '../styles/position.styled'
-import { StyledCompanyName } from '../styles/company-name.styled'
-import { utilService } from '../../services/util.service'
-import { ApplicationPreviewProps } from './interfaces-application-preview'
-import { PreviewContainer, PreviewContentContainer, PreviewIconsWrapper, PreviewLI, RowContainer, StyledActionIcon, StyledIcon, StyledTag } from './styled-application-preview'
+import React, { useState } from 'react'
+import { ApplicationPreviewProps, PreviewLIProps } from './interfaces-application-preview'
+import { BackCard } from '../back-card/back-card'
+import { FrontCard } from '../front-card/front-card'
+import styled from 'styled-components'
+
+const PreviewLI = styled.li<PreviewLIProps>`
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffffeb;
+    width: 400px;
+    height: 350px;
+    border-radius: 12px;
+    font-family: 'league-spartan-medium';
+    box-shadow: 0 0px 0px 0 rgb(60 64 67 / 30%),0 1px 3px 1px rgb(60 64 67 / 15%);
+    perspective: 600px;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    transform:${props => props.isFlipped ? ' rotateY(180deg)' : ''};
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 0 1px #ae84d1, 0 1px 3px 1px #ae84d1;
+    }
+    @media (max-width: 500px) {
+        width: 330px;
+    }
+    @media (min-width: 800px) {
+        width: 300px;
+    }
+    @media (min-width: 1270px) {
+        width: 400px;
+    }
+`
 
 export const ApplicationPreview: React.FC<ApplicationPreviewProps> = ({ application }) => {
+    const [isFlipped, setIsFlipped] = useState(false)
 
-    const dispatch = useAppDispatch()
-    const isDetailsOpen = useAppSelector((state: RootState) => state.tracker.isDetailsOpen)
-
-    const onSetAppliction: (application: Application) => void = (application) => {
-        dispatch(setCurrentApplicationDetails(application))
-        if (!isDetailsOpen) dispatch(toggleApplicationDetails())
-    }
-
-    const togglePinApplication = (ev: React.MouseEvent<HTMLDivElement>) => {
-        ev.stopPropagation()
-        const applicationToUpdate: Application = { ...application }
-        applicationToUpdate.isPinned = !application.isPinned
-        dispatch(updateApplication(applicationToUpdate))
-    }
-
-    return <React.Fragment>
-        <PreviewLI key={application._id} onClick={() => onSetAppliction(application)}>
-            <PreviewIconsWrapper>
-                <StyledIcon isMarked={application.isPinned} onClick={togglePinApplication} title="Pinned">
-                    <BsFillBookmarkDashFill />
-                </StyledIcon>
-                <StyledActionIcon>
-                    <BsThreeDotsVertical />
-                </StyledActionIcon>
-            </PreviewIconsWrapper>
-            <PreviewContainer>
-                <Globalfonts />
-                <StyledCompanyLogo logoUrl={application.logoUrl}></StyledCompanyLogo>
-                <PreviewContentContainer>
-                    <StyledCompanyName>{application.company}</StyledCompanyName>
-                    <StyledPosition>{application.position}</StyledPosition>
-                    <RowContainer>
-                        <HiLocationMarker />
-                        <StyledTag>{application.location}</StyledTag>
-                        <BiCodeAlt />
-                        {application.experience !== undefined && <StyledTag>{utilService.checkIsPlural(application.experience, 'year')} experience</StyledTag>}
-                        <AiFillInfoCircle />
-                        <StyledTag>{application.status}</StyledTag>
-                    </RowContainer>
-                </PreviewContentContainer>
-            </PreviewContainer>
-        </PreviewLI >
-    </ React.Fragment >
+    return (
+        <PreviewLI onClick={() => setIsFlipped(!isFlipped)} isFlipped={isFlipped}>
+            <FrontCard application={application} />
+            <BackCard />
+        </PreviewLI>
+    )
 }

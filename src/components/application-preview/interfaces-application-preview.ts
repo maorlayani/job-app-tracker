@@ -7,3 +7,7 @@ export interface ApplicationPreviewProps {
 export interface StyledIconProps {
     isMarked: boolean
 }
+
+export interface PreviewLIProps {
+    isFlipped: boolean
+}

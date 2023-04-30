@@ -1,34 +1,20 @@
 import styled from "styled-components"
-import { StyledIconProps } from "./interfaces-application-preview"
+import { PreviewLIProps, StyledIconProps } from "./interfaces-application-preview"
 
-export const PreviewLI = styled.li`
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffffeb;
-    width: 900px;
-    min-width: 400px;
-    height: 140px;
-    margin-block-end: 10px;
-    border-radius: 12px;
-    font-family: 'league-spartan-medium';
-    box-shadow: 0 0px 0px 0 rgb(60 64 67 / 30%),0 1px 3px 1px rgb(60 64 67 / 15%);
-    &:hover {
-        cursor: pointer;
-        box-shadow: 0 0 0 1px #ae84d1, 0 1px 3px 1px #ae84d1;
-    }
-`
+
 
 export const PreviewContainer = styled.div`
     display: flex;
     gap: 2em;
     align-items: center;
     padding: 0 2em 2em 2em;
+    flex-direction: column;
 `
 
 export const PreviewContentContainer = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     flex-grow: 1;
     gap: 8px;
 `
