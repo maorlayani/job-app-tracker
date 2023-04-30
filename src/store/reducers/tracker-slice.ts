@@ -83,7 +83,6 @@ export const trackerSlice = createSlice({
                 state.applications = [...action.payload]
             })
             .addCase(getApplication.rejected, (state, action) => {
-                console.log(action.error);
             })
             .addCase(addApplication.pending, (state) => {
                 state.isLoading = true
@@ -95,8 +94,6 @@ export const trackerSlice = createSlice({
             .addCase(updateApplication.fulfilled, (state, action: PayloadAction<Application>) => {
                 state.applications = state.applications.map(app =>
                     app._id === action.payload._id ? action.payload : app)
-                console.log(state.applications);
-
             })
             .addCase(removeApplication.fulfilled, (state, action: PayloadAction<any>) => {
                 state.applications = state.applications.filter(app =>

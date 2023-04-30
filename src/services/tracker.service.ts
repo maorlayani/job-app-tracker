@@ -1,8 +1,6 @@
-import { DraftApplication, Application, Logo, FilterBy } from "../models/interfaces";
-import { MY_BRAND_API_KEY, MY_BRAND_BASE_URL } from '../private'
+import { DraftApplication, Application, Logo, FilterBy, Technology } from "../models/interfaces";
+import { GOOGLE_MAPS_API_KEY, MY_BRAND_API_KEY, MY_BRAND_BASE_URL } from '../secret'
 import Axios from 'axios'
-
-const STORAGE_KEY = 'application'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/api/'
@@ -11,7 +9,6 @@ const BASE_URL = process.env.NODE_ENV === 'production'
 var axios = Axios.create({
     withCredentials: true
 })
-
 
 // mock.onPost('/application').reply(async function (config) {
 //     const { data } = JSON.parse(config.data)
@@ -40,7 +37,9 @@ export const trackerService = {
     getApplications,
     saveApplication,
     removeApplication,
-    getApplicationById
+    getApplicationById,
+    getTechnologies,
+    getCoordinates
 }
 
 async function getApplications(filterByFromUser: FilterBy = {
@@ -64,11 +63,23 @@ async function saveApplication(application: Application | DraftApplication): Pro
     try {
         if (application._id) {
             const { data } = await axios.put(`${BASE_URL}tracker/${application._id}`, application)
-            console.log('data');
-            console.log(data);
+            // console.log('data');
+            // console.log(data);
             return data
         } else {
-            const { data } = await axios.post(`${BASE_URL}tracker/`, application)
+            // console.log('from server');
+            const applicationToSave = { ...application }
+            if (applicationToSave.postedDate) {
+                const formatPostedAt = new Date(applicationToSave.postedDate)
+                applicationToSave.postedDate = formatPostedAt.getTime()
+            }
+            if (applicationToSave.submittedAt) {
+                const formatSubmittedAt = new Date(applicationToSave.submittedAt)
+                applicationToSave.submittedAt = formatSubmittedAt.getTime()
+            }
+            // console.log(applicationToSave);
+
+            const { data } = await axios.post(`${BASE_URL}tracker/`, applicationToSave)
             return data
         }
     } catch (err: any) {
@@ -93,22 +104,27 @@ async function getApplicationById(applicationId: string) {
     }
 }
 
-async function getCompanyData(companyName: string) {
+async function getTechnologies(): Promise<Technology[]> {
     try {
-        const apiData = await fetch(
-            `${MY_BRAND_BASE_URL}${companyName}`,
-            {
-                headers: {
-                    'Authorization': `Bearer ${MY_BRAND_API_KEY}`
-                }
-            })
-        const data = await apiData.json()
+        const { data } = await axios.get(`${BASE_URL}technology/`)
+        const technologies: Technology[] = data
+        return technologies
+    } catch (err: any) {
+        console.error('Cannot get technologies', err)
+        throw (err)
+    }
+}
 
-        const logos: Logo[] = data.logos
-        const iconLogo: Logo | undefined = logos.find(logo => logo.type === 'icon')
-        // console.log('formats', icon?.formats[0].src);
-        return iconLogo?.formats[0].src
+
+async function getCoordinates(location: string) {
+    try {
+        const data: any = await axios.get(`${BASE_URL}tracker/location/${location}`)
+        // console.log(data);
+        // console.log(data.data.results[0].geometry.location);
+        const coor = data.data.results[0].geometry.location
+        return coor
+
     } catch (err) {
-        console.error(err);
+        console.error('Cannot get coordinates', err);
     }
 }

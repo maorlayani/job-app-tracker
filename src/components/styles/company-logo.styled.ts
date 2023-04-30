@@ -22,4 +22,5 @@ background-size: 100%;
 /* box-shadow: 0 0 0 0 #ae84d1, 0 1px 3px 1px #ae84d1; */
 /* border: 0.5px solid #ae84d1; */
 box-shadow: 0 0px 0px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+margin-block-end: 12px;
 `

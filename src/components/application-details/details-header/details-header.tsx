@@ -53,7 +53,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ application, isFul
         </StyledCompanyNameAppDetails>
         <SocailContainer>
             {application.links?.map(link =>
-                <SocialLink href={link.url} target="_blank">
+                <SocialLink key={link.name} href={link.url} target="_blank">
                     <SocialIcon src={getSocialIcon(link.name)}></SocialIcon>
                 </SocialLink>)}
         </SocailContainer>

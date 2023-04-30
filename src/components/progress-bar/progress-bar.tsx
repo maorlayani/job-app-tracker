@@ -17,7 +17,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ application }) => {
     if (!application.status) return <></>
     return <StyledProgressBar>
         {getStatusMarks().map((s, idx, arr) =>
-            <MarkContainer>
+            <MarkContainer key={s}>
                 {s === application.status.toLowerCase() && <MarkSign left={getPosition(idx, arr.length - 1)}></MarkSign>}
                 <Mark left={getPosition(idx, arr.length - 1)} key={s}>
                     {s === application.status.toLowerCase() && <InsideMark></InsideMark>}

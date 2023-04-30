@@ -6,12 +6,21 @@ import { RootState } from '../store/store'
 import { ApplicationDetails } from "../components/application-details/application-details"
 import { useEffect } from "react"
 import { ApplicationFilter } from "../components/filter/application-filter/application-filter"
+import { Outlet } from "react-router-dom"
+import background from '../assets/svg/stacked-peaks-haikei-1.svg'
+import Globalfonts from '../assets/global-fonts'
 
 
 const StyledTrackerBoard = styled.div`
     display: flex;
     height: 100vh;
-    `
+    overflow: hidden;
+    /* background-image: url(${background}); */
+    background-image: linear-gradient(45deg, #D4DCE1, #fff);
+    background-size: cover;
+    background-position: center;
+    /* background-color: '#ffffffeb'; */
+`
 const MainContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -38,13 +47,17 @@ export const TrackerBoard = () => {
         }
     }
 
-    return <StyledTrackerBoard>
-        <MainContentWrapper>
-            <ApplicationFilter />
-            <div style={{ display: 'flex', overflowY: 'auto', gap: '.5em' }}>
-                <ApplicationList />
-                {applications.length > 0 && <ApplicationDetails />}
-            </div>
-        </MainContentWrapper>
-    </StyledTrackerBoard >
+    return <>
+        <StyledTrackerBoard>
+            <Globalfonts />
+            <MainContentWrapper>
+                <ApplicationFilter />
+                <div style={{ display: 'flex', overflowY: 'auto', gap: '.5em' }}>
+                    <ApplicationList />
+                    {/* {applications.length > 0 && <ApplicationDetails />} */}
+                </div>
+            </MainContentWrapper>
+        </StyledTrackerBoard >
+        <Outlet />
+    </>
 }

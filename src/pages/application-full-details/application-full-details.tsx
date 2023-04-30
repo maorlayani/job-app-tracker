@@ -18,8 +18,6 @@ export const ApplicationFullDetails = () => {
 
     useEffect(() => {
         loadApplication()
-        console.log(applicationDetails);
-
     }, [params.applicationId])
 
     const loadApplication = async () => {
