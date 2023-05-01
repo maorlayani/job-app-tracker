@@ -1,48 +1,59 @@
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks"
-import { RootState } from "../../../store/store"
-import { Application } from '../../../models/interfaces'
-import { Status } from '../../../models/enums'
-import { trackerService } from "../../../services/tracker.service"
-import { useEffect, useState } from "react"
-import { FilterButton } from "../filter-button/filter-button"
+import { useAppDispatch } from "../../../hooks/redux-hooks"
+import { useState } from "react"
 import { setFilterBy } from "../../../store/reducers/tracker-slice"
-import { Options } from "./interfaces-application-filter"
-import { FlexContainer, StyledCustomSelectFilter, StyledInput, StyledResetButton, StyledSearchButton } from "./styled-application-filter"
-import { UploadExcelFile } from "../../upload-excel-file"
+import { FilterTextSearch } from "./filter-text-search"
+import { FilterButtonList } from "./filter-button-list"
+import { FilterToggleButton } from "./filter-toggle-button"
+import styled, { keyframes } from "styled-components"
+// import { UploadExcelFile } from "../../upload-excel-file"
+
+const growDown = keyframes`
+    from {
+        transform: translateY(-150px);
+    }
+    to {
+        transform: translateY(0);
+    }
+`
+const StyledApplicationFilter = styled.div`
+    width: 100%;
+    margin-block-end: .5em;
+    box-shadow: -1px -1px 3px 2px #cfcfcf;
+    display: flex;
+    flex-direction: column;
+    background-color: #e8e4e41f;
+`
+const MainContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em 0 0 0;
+    gap: 1em;
+    color: #00000099;
+    animation: ${growDown} 300ms;
+    @media (max-width: 500px) {
+        gap: .5em;
+    }
+    @media (min-width: 1050px) {
+        flex-direction: row;
+        justify-content: center;
+    }
+`
+const VerticaLine = styled.div`
+    width: 2px;
+    height: 90%; 
+    background-color: #0000004c; 
+    display: none;
+    @media (min-width: 1270px) {
+        display: block;
+    }
+`
 
 export const ApplicationFilter = () => {
-
-    const [options, setOptions] = useState<Options>({ location: [], position: [] })
+    const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [isChecked, setIsChecked] = useState(false)
     const [searchInput, setSearchInput] = useState('')
     const dispatch = useAppDispatch()
-    const filterBy = useAppSelector((state: RootState) => state.tracker.filterBy)
-
-    useEffect(() => {
-        getOptions()
-    }, [])
-
-    const getOptions = async () => {
-        try {
-            const applications: Application[] =
-                await trackerService.getApplications({ location: [], position: [], status: [], searchInput: '' })
-            const locationOpt = removeDuplicates(applications, 'location')
-            const positionOpt = removeDuplicates(applications, 'position')
-            setOptions({ location: locationOpt, position: positionOpt })
-        } catch (err) {
-            console.error('Cannot get filtered applications', err)
-        }
-    }
-
-    const removeDuplicates = (array: Application[], key: 'location' | 'position') => {
-        let typeOpt = array.map(app => app[key])
-        typeOpt = typeOpt.filter((val, idx, arr) => arr.indexOf(val) === idx)
-        return typeOpt
-    }
-
-    const getAllAppStatus = () => {
-        return [Status.submitted, Status.assignment, Status.interview, Status.contract, Status.rejection]
-    }
 
     const onResetFilter = () => {
         setIsChecked(true)
@@ -50,27 +61,14 @@ export const ApplicationFilter = () => {
         dispatch(setFilterBy({ location: [], position: [], status: [], searchInput: '' }))
     }
 
-    const changeHandler = (ev: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchInput(ev.target.value)
-    }
-
-    const onSetSearch = () => {
-        console.log(searchInput);
-        dispatch(setFilterBy({ ...filterBy, searchInput: searchInput }))
-    }
-
-    return <StyledCustomSelectFilter>
-        <FlexContainer>
-            <StyledInput type="text" value={searchInput} onChange={changeHandler} />
-            <StyledSearchButton onClick={onSetSearch}>Search</StyledSearchButton>
-            <UploadExcelFile />
-        </FlexContainer>
-        <FlexContainer>
-            <FilterButton text='Location' opt={options.location} isChecked={isChecked} setIsChecked={setIsChecked} />
-            <FilterButton text='Position' opt={options.position} isChecked={isChecked} setIsChecked={setIsChecked} />
-            <FilterButton text='Status' opt={getAllAppStatus()} isChecked={isChecked} setIsChecked={setIsChecked} />
-            <FilterButton text='Sort by' opt={['Date: Newest to Oldest', 'Date: Oldest to Newest']} isChecked={isChecked} setIsChecked={setIsChecked} />
-            <StyledResetButton onClick={onResetFilter}>Reset</StyledResetButton>
-        </FlexContainer>
-    </StyledCustomSelectFilter>
+    return (
+        <StyledApplicationFilter>
+            {isFilterOpen && <MainContent>
+                <FilterTextSearch searchInput={searchInput} setSearchInput={setSearchInput} />
+                <VerticaLine></VerticaLine>
+                <FilterButtonList isChecked={isChecked} setIsChecked={setIsChecked} onResetFilter={onResetFilter} />
+            </MainContent>}
+            <FilterToggleButton isFilterOpen={isFilterOpen} setIsFilterOpen={setIsFilterOpen} />
+        </StyledApplicationFilter>
+    )
 } 

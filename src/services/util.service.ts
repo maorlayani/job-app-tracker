@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { Application } from '../models/interfaces'
 
 dayjs.extend(relativeTime)
 
@@ -23,8 +24,16 @@ const checkIsPlural = (num: number, noun: string) => {
     return `${num} ${noun}s`
 }
 
+const removeDuplicates = (array: Application[], key: 'location' | 'position') => {
+    let typeOpt = array.map(app => app[key])
+    typeOpt = typeOpt.filter((val, idx, arr) => arr.indexOf(val) === idx)
+    return typeOpt
+}
+
+
 export const utilService = {
     makeId,
     getTimeFromNow,
-    checkIsPlural
+    checkIsPlural,
+    removeDuplicates
 }
