@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { ApplicationPreviewProps, PreviewLIProps } from './interfaces-application-preview'
+import { useState } from 'react'
+import { CardProps, StyledCardProps } from './interfaces-card'
 import { BackCard } from '../back-card/back-card'
 import { FrontCard } from '../front-card/front-card'
 import styled from 'styled-components'
 
-const PreviewLI = styled.li<PreviewLIProps>`
+const StyledCard = styled.li<StyledCardProps>`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -33,13 +33,13 @@ const PreviewLI = styled.li<PreviewLIProps>`
     }
 `
 
-export const ApplicationPreview: React.FC<ApplicationPreviewProps> = ({ application }) => {
+export const Card: React.FC<CardProps> = ({ application }) => {
     const [isFlipped, setIsFlipped] = useState(false)
 
     return (
-        <PreviewLI onClick={() => setIsFlipped(!isFlipped)} isFlipped={isFlipped}>
+        <StyledCard onClick={() => setIsFlipped(!isFlipped)} isFlipped={isFlipped}>
             <FrontCard application={application} />
             <BackCard />
-        </PreviewLI>
+        </StyledCard>
     )
 }

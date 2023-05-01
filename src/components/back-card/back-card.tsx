@@ -1,11 +1,12 @@
 import styled from "styled-components"
-import { StyledButton } from "../styles/button.styled"
-import { Card } from "../styles/card.styled"
+import { CardButton } from "../styles/buttons.styled"
+import { CardFace } from "../styles/card.styled"
 
-const StyledBackCard = styled(Card)`
-    // background-image: linear-gradient(250deg,#cee3f396,#fff);
+const StyledBackCard = styled(CardFace)`
+// background-color: #e8e4e41f;
+    background-image: linear-gradient(250deg, #e8e4e41f,#fff);
     // background: linear-gradient(225deg, #cee3f3 0%, #fff 100%);
-    background: linear-gradient(225deg, #cee3f3 0%, #fff 100%);
+    // background: linear-gradient(225deg, #cee3f3 0%, #fff 100%);
         // background-color: #cee3f396;  
     transform: rotateY(180deg);
     display: flex;
@@ -14,10 +15,9 @@ const StyledBackCard = styled(Card)`
     justify-content: center;
     align-items: center;
 `
-const BackCardButton = styled(StyledButton)`
-    border-radius: 12px;
-    padding: 8px;
-    width: 150px;
+const BackCardButton = styled(CardButton)`
+    background-color: #e8e4e41f;
+    margin: 0;
 `
 export const BackCard = () => {
 

@@ -1,49 +1,51 @@
-import { BsFillBookmarkDashFill } from "react-icons/bs"
 import { useAppDispatch } from "../../hooks/redux-hooks"
 import { Application } from "../../models/interfaces"
-import { setCurrentApplicationDetails, updateApplication } from "../../store/reducers/tracker-slice"
-import { PreviewContainer, PreviewContentContainer, PreviewIconsWrapper, RowContainer, StyledIcon, StyledTag } from "../application-preview/styled-application-preview"
+import { setCurrentApplicationDetails } from "../../store/reducers/tracker-slice"
 import Globalfonts from '../../assets/global-fonts'
-import { StyledCompanyLogo } from "../styles/company-logo.styled"
 import { StyledCompanyName } from "../styles/company-name.styled"
 import { StyledPosition } from "../styles/position.styled"
-import { HiLocationMarker } from "react-icons/hi"
-import { BiCodeAlt } from "react-icons/bi"
-import { utilService } from "../../services/util.service"
-import { AiFillInfoCircle } from "react-icons/ai"
 import styled from "styled-components"
-import { StyledButton } from "../styles/button.styled"
+import { CardButton } from "../styles/buttons.styled"
 import { useNavigate } from "react-router-dom"
-import { Card } from "../styles/card.styled"
+import { CardFace } from "../styles/card.styled"
+import { FrontCardProps } from "./interfaces-front-card"
+import { FrontCardIcons } from "./front-card-icons"
+import { FrontCardLogo } from "./front-card-logo"
+import { FrontCardContent } from "./front-card-content"
 
-interface FrontCardProps {
-    application: Application
-}
-const FrontCardButton = styled(StyledButton)`
-    border-radius: 12px;
-    padding: 8px;
-    width: 150px;
-    margin-block-start: 20px;
+const StyledFrontCard = styled(CardFace)`
 `
-const CompanyLogoContainer = styled.div`
-    border-block-end: 1px solid lightgray;
-    width: 100%;
-    justify-content: center; 
+
+const FrontCardMainContent = styled.div`
     display: flex;
+    gap: 2em;
+    align-items: center;
+    padding: 0 2em 2em 2em;
+    flex-direction: column;
+`
+const ContentContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    gap: 8px;
+`
+const FrontCardButton = styled(CardButton)`
+    @media (max-width: 500px) {
+       margin: unset;
+    }
+    @media (min-width: 800px) {
+        margin: unset;
+    }
+    @media (min-width: 1270px) {
+        margin-block-start: 20px;
+    }
 `
 
-const StyledFrontCard = styled(Card)`
-`
 export const FrontCard: React.FC<FrontCardProps> = ({ application }) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
-    const togglePinApplication = (ev: React.MouseEvent<HTMLDivElement>) => {
-        ev.stopPropagation()
-        const applicationToUpdate: Application = { ...application }
-        applicationToUpdate.isPinned = !application.isPinned
-        dispatch(updateApplication(applicationToUpdate))
-    }
     const onSetAppliction: (application: Application) => void = (application) => {
         dispatch(setCurrentApplicationDetails(application))
         navigate(`/tracker/${application._id}`)
@@ -52,32 +54,20 @@ export const FrontCard: React.FC<FrontCardProps> = ({ application }) => {
         ev.stopPropagation()
         onSetAppliction(application)
     }
+
     return (
         <StyledFrontCard>
-            <PreviewIconsWrapper>
-                <StyledIcon isMarked={application.isPinned} onClick={togglePinApplication} title="Pinned">
-                    <BsFillBookmarkDashFill />
-                </StyledIcon>
-            </PreviewIconsWrapper>
-            <PreviewContainer>
-                <Globalfonts />
-                <CompanyLogoContainer>
-                    <StyledCompanyLogo logoUrl={application.logoUrl}></StyledCompanyLogo>
-                </CompanyLogoContainer>
-                <PreviewContentContainer>
+            <Globalfonts />
+            <FrontCardIcons application={application} />
+            <FrontCardMainContent>
+                <FrontCardLogo application={application} />
+                <ContentContainer>
                     <StyledCompanyName>{application.company}</StyledCompanyName>
                     <StyledPosition>{application.position}</StyledPosition>
-                    <RowContainer>
-                        <HiLocationMarker />
-                        <StyledTag>{application.location}</StyledTag>
-                        <BiCodeAlt />
-                        {application.experience !== undefined && <StyledTag>{utilService.checkIsPlural(application.experience, 'year')} experience</StyledTag>}
-                        <AiFillInfoCircle />
-                        <StyledTag>{application.status}</StyledTag>
-                    </RowContainer>
-                </PreviewContentContainer>
+                    <FrontCardContent application={application} />
+                </ContentContainer>
                 <FrontCardButton onClick={onOpenDetaisModal}>More Details</FrontCardButton>
-            </PreviewContainer>
+            </FrontCardMainContent>
         </StyledFrontCard>
     )
 }

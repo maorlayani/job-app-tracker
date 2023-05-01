@@ -1,6 +1,6 @@
 import { Application } from "../../models/interfaces"
 
-export interface ApplicationPreviewProps {
+export interface CardProps {
     application: Application
 }
 
@@ -8,6 +8,6 @@ export interface StyledIconProps {
     isMarked: boolean
 }
 
-export interface PreviewLIProps {
+export interface StyledCardProps {
     isFlipped: boolean
 }

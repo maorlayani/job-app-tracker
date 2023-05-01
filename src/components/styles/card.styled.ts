@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Card = styled.div`
+export const CardFace = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
