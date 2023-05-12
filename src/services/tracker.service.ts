@@ -1,6 +1,7 @@
 import { DraftApplication, Application, Logo, FilterBy, Technology } from "../models/interfaces";
-import { GOOGLE_MAPS_API_KEY, MY_BRAND_API_KEY, MY_BRAND_BASE_URL } from '../secret'
 import Axios from 'axios'
+import { ElementType } from "../models/enums";
+import { FormSectionTxt } from "../components/add-application/form-sections-bar";
 
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/api/'
@@ -10,36 +11,16 @@ var axios = Axios.create({
     withCredentials: true
 })
 
-// mock.onPost('/application').reply(async function (config) {
-//     const { data } = JSON.parse(config.data)
-//     const { application } = data
-//     let updatedApplication: Application = {
-//         ...application,
-//         id: utilService.makeId(),
-//         submittedAt: Date.now(),
-//         isPinned: false
-//     }
-//     const companyUrl = updatedApplication.company.replace(/\s/g, '')
-//     const iconUrl = await getCompanyData(`${companyUrl.toLowerCase()}.com`)
-//     updatedApplication.logoUrl = iconUrl ? iconUrl : 'https://res.cloudinary.com/dqhrqqqul/image/upload/v1677083107/job-application-tracker/na-icon_ngcgpa.png'
-//     let applications: Application[] = await getApplications()
-//     applications.unshift(updatedApplication)
-//     saveToLocalStorge(STORAGE_KEY, applications)
-//     return [
-//         200,
-//         { updatedApplication }
-//     ]
-// })
-
-
-// ------------------------------------------------------------------------------------------
 export const trackerService = {
     getApplications,
     saveApplication,
     removeApplication,
     getApplicationById,
     getTechnologies,
-    getCoordinates
+    getCoordinates,
+    getFirstSectionInputsData,
+    getContactInfoInputsData,
+    getFormBarSections
 }
 
 async function getApplications(filterByFromUser: FilterBy = {
@@ -63,11 +44,8 @@ async function saveApplication(application: Application | DraftApplication): Pro
     try {
         if (application._id) {
             const { data } = await axios.put(`${BASE_URL}tracker/${application._id}`, application)
-            // console.log('data');
-            // console.log(data);
             return data
         } else {
-            // console.log('from server');
             const applicationToSave = { ...application }
             if (applicationToSave.postedDate) {
                 const formatPostedAt = new Date(applicationToSave.postedDate)
@@ -77,8 +55,6 @@ async function saveApplication(application: Application | DraftApplication): Pro
                 const formatSubmittedAt = new Date(applicationToSave.submittedAt)
                 applicationToSave.submittedAt = formatSubmittedAt.getTime()
             }
-            // console.log(applicationToSave);
-
             const { data } = await axios.post(`${BASE_URL}tracker/`, applicationToSave)
             return data
         }
@@ -104,9 +80,10 @@ async function getApplicationById(applicationId: string) {
     }
 }
 
-async function getTechnologies(): Promise<Technology[]> {
+async function getTechnologies(techSerachFromUser: string): Promise<Technology[]> {
     try {
-        const { data } = await axios.get(`${BASE_URL}technology/`)
+        const techSerach = { techSerach: techSerachFromUser }
+        const { data } = await axios.get(`${BASE_URL}technology/`, { params: techSerach })
         const technologies: Technology[] = data
         return technologies
     } catch (err: any) {
@@ -115,16 +92,113 @@ async function getTechnologies(): Promise<Technology[]> {
     }
 }
 
-
 async function getCoordinates(location: string) {
     try {
         const data: any = await axios.get(`${BASE_URL}tracker/location/${location}`)
-        // console.log(data);
-        // console.log(data.data.results[0].geometry.location);
         const coor = data.data.results[0].geometry.location
         return coor
-
     } catch (err) {
         console.error('Cannot get coordinates', err);
     }
+}
+
+function getFirstSectionInputsData() {
+    return [
+        {
+            type: ElementType.textInput,
+            labelTxt: 'Company',
+            name: 'company',
+            placeholder: 'Enter company name',
+            isRequired: true
+        },
+        {
+            type: ElementType.textInput,
+            labelTxt: 'Position',
+            name: 'position',
+            placeholder: 'Enter position',
+            isRequired: true
+        },
+        {
+            type: ElementType.textarea,
+            labelTxt: 'Company Description',
+            name: 'companyDesc',
+            placeholder: 'Add description',
+            isRequired: false
+        },
+        {
+            type: ElementType.textarea,
+            labelTxt: 'Position Description',
+            name: 'positionDesc',
+            placeholder: 'Add description',
+            isRequired: false
+        },
+        {
+            type: ElementType.textInput,
+            labelTxt: 'Location',
+            name: 'location',
+            placeholder: 'Enter location',
+            isRequired: true
+        },
+        {
+            type: ElementType.rangeInput,
+            labelTxt: 'Years of experience',
+            name: 'experience',
+            placeholder: '',
+            isRequired: true
+        }
+    ]
+}
+
+function getContactInfoInputsData() {
+    return [
+        {
+            type: ElementType.textInput,
+            labelTxt: 'Name',
+            name: 'contactName',
+            placeholder: 'Enter contact name',
+            isRequired: false
+        },
+        {
+            type: ElementType.textInput,
+            labelTxt: 'Email',
+            name: 'contactEmail',
+            placeholder: 'Enter email',
+            isRequired: false
+        },
+        {
+            type: ElementType.textInput,
+            labelTxt: 'Phone',
+            name: 'contactPhone',
+            placeholder: 'Enter contact phone',
+            isRequired: false
+        },
+        {
+            type: ElementType.textInput,
+            labelTxt: 'Linkedin',
+            name: 'contactLinkedin',
+            placeholder: 'Enter contact linkedin link',
+            isRequired: false
+        }
+    ]
+}
+
+function getFormBarSections() {
+    return [
+        {
+            idx: "I",
+            type: FormSectionTxt.firstSection
+        },
+        {
+            idx: "II",
+            type: FormSectionTxt.secondSection
+        },
+        {
+            idx: "III",
+            type: FormSectionTxt.thirdSection
+        },
+        {
+            idx: "IIII",
+            type: FormSectionTxt.fourthSection
+        }
+    ]
 }

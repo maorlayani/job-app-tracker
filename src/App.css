@@ -43,3 +43,15 @@ h6 {
 ::-webkit-scrollbar-thumb:hover {
     background: #555555cf;
 }
+
+.rdrDayToday .rdrDayNumber span:after {
+    background: #ae84d1 !important;
+
+}
+
+.rdrDayToday:not(.rdrDayPassive) .rdrInRange~.rdrDayNumber span:after,
+.rdrDayToday:not(.rdrDayPassive) .rdrStartEdge~.rdrDayNumber span:after,
+.rdrDayToday:not(.rdrDayPassive) .rdrEndEdge~.rdrDayNumber span:after,
+.rdrDayToday:not(.rdrDayPassive) .rdrSelected~.rdrDayNumber span:after {
+    background: #fff !important;
+}

@@ -1,21 +1,23 @@
 import styled from "styled-components"
 import { FilterButtonWrapper } from "../filter/filter-button/styled-filter-button"
 import { StyledFilterModal } from "../filter/filter-modal/styled-filter-modal"
-import { StyledButton } from "../styles/button.styled"
+import { StyledButton } from "../styles/buttons.styled"
 import { FlexRowCenterContainer } from "../styles/helper.styled"
-import { InputContainer } from "../styles/input-container.styled"
+import background from '../../assets/svg/low-poly-grid-haikei.svg'
 
 export const StyledAddApplication = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* margin-block-start: 70px; */
-    /* justify-content: center; */
-    /* gap: 4em; */
-    margin: 0 2em 0 2em;
-    h1 {
+    height: 100vh;
+    /* background-image: url(${background}); */
+    background-image: linear-gradient(45deg, #D4DCE1, #fff);
+    background-size: cover;
+    background-position: center;
+    overflow: auto;
+    h3 {
         align-self: 'flex-start';
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
         margin-inline-end: 2em;
         /* margin: 1em 0 .2em;  */
         font-size: 2em;
@@ -27,22 +29,23 @@ export const AddApplicationTitleWarpper = styled(FlexRowCenterContainer)`
 `
 
 export const StyledAddApplicationForm = styled.form`
-    width: 850px;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px;
-    box-shadow: 0 1px 3px 1px #ae84d1;
+    // padding: 30px 0;
+    /* box-shadow: 0 1px 3px 1px black; */
+    /* box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149); */
     border-radius: 12px;
     margin: 2em 0;
 `
 
 export const InputsWarpper = styled.div`
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 2em;
     margin-block-end: 15px;
-    max-width: 100%;
 `
 
 export const TextareaWarpper = styled.div`
@@ -51,13 +54,7 @@ export const TextareaWarpper = styled.div`
     margin-block-end: 15px;
 `
 
-export const ContactInputWarpper = styled(InputContainer)`
-    width: 400px;
-    gap: .7em;
-    input{
-        max-width: 320px;
-    }
-`
+
 export const ContactInputContainer = styled(FlexRowCenterContainer)`
     width: 100%;
     justify-content: space-between;
@@ -76,7 +73,8 @@ export const TechButton = styled(StyledButton)`
 `
 
 export const TechModal = styled(StyledFilterModal)`
-    top: 330px;
+    top: 360px;
+    width: 200px;
 `
 
 export const TechContainer = styled(InputsWarpper)`
@@ -90,17 +88,29 @@ export const TechTagContainer = styled.div`
     gap: 20px;  
     width: 100%;
 `
-export const TechTag = styled.span`
-    border-radius: 12px;
+export const TechTagContent = styled.div`
+    display: flex;
+    align-items: center;
+    border-radius: 9px;
+    background-color: #d9d9d9c7;
+    width: fit-content;
+`
+
+export const TechName = styled.span`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     color: #574268d2;
-    background-color: #00000014;
     font-weight: 600;
-    padding: 0.3em 0.7em;
+    padding: 0.3em 0.7em 0.3em 0;
     &:hover{
         cursor: default;
     }
+`
+
+export const TechLogo = styled.img`
+    width: 24px;
+    height: 24px;
+    padding: 0 .3em ;
 `
