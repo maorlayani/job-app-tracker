@@ -1,23 +1,24 @@
+import { FunctionComponent } from "react"
 import { Status } from "./enums"
 
 export interface Application {
     _id: string,
     company: string,
+    companyDesc?: string,
     position: string,
     positionDesc?: string,
     postedAt?: string,
-    submittedAt: number,
-    // submittedAt: number | string,
-    status: Status,
     location: string,
-    contact?: string,
-    postedDate?: Date,
-    companyDesc?: string,
-    technologies?: string[]
     experience?: number,
+    technologies?: Technology[]
+    contact?: { name?: string, email?: string, phone?: string, linkedin?: string },
     submittedVia: string,
-    logoUrl?: string,
+    submittedAt: number,
+    status: Status,
+    postedDate?: number,
     positionUrl?: string,
+    logoUrl?: string,
+    links?: [{ name: string, url: string }],
     isPinned: boolean
 }
 
@@ -31,11 +32,11 @@ export interface DraftApplication {
     location: string,
     experience?: number,
     technologies?: string[]
-    contact?: { name?: string, email?: 'string', phone?: 'string', linkedin?: 'string' },
+    contact?: { name?: string, email?: string, phone?: string, linkedin?: string },
     submittedVia: string,
-    submittedAt?: number | string
+    submittedAt?: string | number
     status: Status,
-    postedDate?: Date,
+    postedDate?: string | number,
     positionUrl?: string
 }
 
@@ -55,4 +56,14 @@ export interface FilterBy {
 export interface FilterModal {
     isModalOpen: boolean,
     type: string
+}
+
+export interface Technology {
+    _id: string,
+    name: string,
+    logoUrl: string
+}
+
+export interface Register {
+    (field: string, type: string): any
 }
