@@ -1,14 +1,35 @@
-import styled from "styled-components"
-import { StyledButton } from "../styles/button.styled"
+import styled, { keyframes } from "styled-components"
+import { StyledButton } from "../styles/buttons.styled"
 import { StyledCompanyLogo } from "../styles/company-logo.styled"
 import { StyledCompanyName } from "../styles/company-name.styled"
 import { ImgCloseIconContainer } from "../styles/img-close-icon-container"
 import { StyledPosition } from "../styles/position.styled"
 import { StyledApplicationDetailsProps } from "./interfaces-application-details"
+import { TechTagContent, TechName } from '../add-application/styled-add-application'
 
-export const StyledApplicationDetails = styled.div<StyledApplicationDetailsProps>`
+const growDown = keyframes`
+   0% {
+        transform: scaleY(0)
+    }
+    /* 25% {
+        transform: scaleY(.25)
+    } */
+    50% {
+        transform: scaleY(.5)
+    }
+    /* 75% {
+        transform: scaleY(.75)
+    } */
+    100% {
+        transform: scaleY(1)
+    }
+`
+
+
+// export const StyledApplicationDetails = styled.div<StyledApplicationDetailsProps>`
+export const StyledApplicationDetails = styled.div`
     background-color: #fff;
-    width: 500px;
+    width: 900px;
     /* min-height: 300px; */
     /* min-height: 100%; */
     /* max-height: calc(100vh - 240px); */
@@ -18,40 +39,56 @@ export const StyledApplicationDetails = styled.div<StyledApplicationDetailsProps
     /* border-top-left-radius: 12px; */
     /* border-bottom-left-radius: 12px; */
     font-family: 'league-spartan-medium';
-    /* position: absolute; */
-    /* top: 20px; */
-    /* right: ${props => props.isOpen ? '0' : '-600px'}; */
     /* box-shadow: 0 0px 0px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%); */
-    transition: right 1s;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 .5em 0 .5em;
     box-sizing: border-box;
     /* margin-block-start: 1em; */
+    animation: ${growDown} 250ms ease-in-out forwards;
+    transform-origin: top center;
 `
 
 export const TagContainerCol = styled.div`
     display: flex;
     flex-direction: column;
     padding: 1em;
+    padding: .2em;
+    flex-wrap: wrap;
+    gap: .2em;
+    margin-block-end: 1em;
 `
 
 export const TagContainerRow = styled.div`
-    display: inline-flex;
-    padding: .5em;
+    /* display: inline-flex; */
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
+    padding: .2em;
     flex-wrap: wrap;
-    gap: .2em;
+    /* gap: 4em; */
+    margin-block-end: 1em;
+    button{
+        margin: 1em;
+    }
 `
 
-export const StyledTag = styled.span`
+export const StyledTag = styled.div`
     font-size: 1em;
     color: #2c3a3a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* span {
+        color: #574268d2;
+    } */
 `
 
 export const StyledTagContent = styled.span`
-    color: #5ba4a4;
-`
+    /* color: #5ba4a4; */
+    color: #574268d2;
+   `
 
 export const StyledApplicationContent = styled.div`
     align-self: flex-start;
@@ -62,31 +99,10 @@ export const StyledApplicationContent = styled.div`
     flex-grow: 1;
 `
 
-export const StyledCompanyLogoAppDetails = styled(StyledCompanyLogo)`
-    max-width: 75px;
-    min-width: 75px;
-    max-height: 75px;
-    min-height: 75px;
-    border: 0.5px solid #ae84d1;
-    margin: 1em 0;
-`
-export const StyledPositionAppDetails = styled(StyledPosition)`
-    font-size: 1.3em;
-    margin-block-end: .1em;
-`
-
-export const StyledCompanyNameAppDetails = styled(StyledCompanyName)`
-    font-size: 0.9em;
-    color:  #574268d2;
-    margin-block-end: .5em;
-`
-
 export const ButtonsWrapper = styled.div`
     display: flex;
     align-items: flex-end;
     gap: 4em;
-    /* margin-top: 1em; */
-    /* padding: 1em 1em 0 1em; */
     padding: 1em;
 `
 export const StyledRemoveButton = styled(StyledButton)`
@@ -104,9 +120,32 @@ export const StyledRemoveButton = styled(StyledButton)`
             background-color: unset;
         }
 `
-export const StyledCloseIcon = styled(ImgCloseIconContainer)`
-    img{
+export const StyledDetailsIcon = styled(ImgCloseIconContainer)`
+    padding: unset;
+    img {
         width: 25px;
         height: 25px;
     }
+    &:hover{
+        cursor: unset;
+    }
+`
+
+export const TagTitle = styled.span`
+    font-size: 1.2em;
+    min-width: 150px;
+`
+
+export const DetailsTechTagContent = styled(TechTagContent)`
+    background-color: #D4DCE1;
+    font-size: .8em;
+    padding: .3em;
+    img{
+        width: 20px;
+        height: 20px;
+    }
+`
+
+export const ResetFormBottun = styled(StyledRemoveButton)`
+    background-color: transparent;  
 `

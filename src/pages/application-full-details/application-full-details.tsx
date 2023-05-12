@@ -1,9 +1,9 @@
 import { FullDetailsContent, ContentContainer, StyledApplicationFullDetails, MainContainer, RightSideContentContainer, MapContainer, LeftSideContentContainer } from "./styled-application-full-details"
 import { DetailsHeader } from "../../components/application-details/details-header/details-header"
 import { DetailsTechTagContent, StyledTagContent, TagContainerCol, TagTitle } from "../../components/application-details/styled-application-details"
-import { StyledTag } from "../../components/application-preview/styled-application-preview"
+import { StyledTag } from "../../components/styles/tag.styled"
 import { utilService } from "../../services/util.service"
-import { TechLogo, TechTag, TechTagContainer } from "../../components/add-application/styled-add-application"
+import { TechLogo, TechName, TechTagContainer } from "../../components/add-application/styled-add-application"
 import { ProgressBar } from "../../components/progress-bar/progress-bar"
 import { GoogleMap } from "../../components/google-map/google-map"
 import { useParams } from "react-router-dom"
@@ -23,6 +23,8 @@ export const ApplicationFullDetails = () => {
     const loadApplication = async () => {
         if (params.applicationId) {
             const application = await trackerService.getApplicationById(params.applicationId)
+            console.log(application);
+
             setApplicationDetails(application)
         }
     }
@@ -104,7 +106,7 @@ export const ApplicationFullDetails = () => {
                                 <TechTagContainer>
                                     {applicationDetails.technologies.map(tech => <DetailsTechTagContent key={tech._id}>
                                         <TechLogo src={tech.logoUrl} />
-                                        <TechTag>{tech.name}</TechTag>
+                                        <TechName>{tech.name}</TechName>
                                     </DetailsTechTagContent>)}
                                 </TechTagContainer>
                             </StyledTagContent>

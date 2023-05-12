@@ -2,12 +2,19 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { removeApplication, setCurrentApplicationDetails, toggleApplicationDetails } from '../../store/reducers/tracker-slice'
 import { RootState } from '../../store/store'
 import { StyledHorizontalLine } from '../styles/horizontal-line.styled'
-import { StyledButton } from '../styles/button.styled'
+import { StyledButton } from '../styles/buttons.styled'
 import { useNavigate } from 'react-router-dom'
-import closeIcon from '../../assets/svg/close-icon.svg'
 import { utilService } from '../../services/util.service'
 import { useEffect, useState } from 'react'
-import { ButtonsWrapper, StyledApplicationContent, StyledApplicationDetails, StyledCloseIcon, StyledCompanyLogoAppDetails, StyledCompanyNameAppDetails, StyledPositionAppDetails, StyledRemoveButton, StyledTag, StyledTagContent, TagContainerCol, TagContainerRow } from './styled-application-details'
+import { ButtonsWrapper, StyledApplicationContent, StyledApplicationDetails, StyledDetailsIcon, StyledRemoveButton, StyledTag, StyledTagContent, TagContainerCol, TagContainerRow, TagTitle, DetailsTechTagContent } from './styled-application-details'
+import { DetailsHeader } from './details-header/details-header'
+import statusIcon from '../../assets/img/status.png'
+import submittedIcon from '../../assets/img/submitted-via.png'
+import technologiesIcon from '../../assets/img/technologies.png'
+import experienceIcon from '../../assets/img/experience.png'
+import contacteIcon from '../../assets/img/contact.png'
+import { ProgressBar } from '../progress-bar/progress-bar'
+import { TechLogo, TechName, TechTagContainer, TechTagContent } from '../add-application/styled-add-application'
 
 export const ApplicationDetails = () => {
     const dispatch = useAppDispatch()
@@ -40,50 +47,81 @@ export const ApplicationDetails = () => {
         onCloseDetails()
     }
 
-    return <StyledApplicationDetails isOpen={isDetailsOpen} >
-        {/* <StyledCloseIcon>
-            <img src={closeIcon} alt="close icon" onClick={onCloseDetails} />
-        </StyledCloseIcon> */}
-        <StyledCompanyLogoAppDetails logoUrl={applicationDetails.logoUrl}></StyledCompanyLogoAppDetails>
-        <StyledPositionAppDetails>{applicationDetails.position}</StyledPositionAppDetails>
-        <StyledCompanyNameAppDetails>
-            {applicationDetails.company}, {applicationDetails.location} |
-            <StyledTagContent> Submitted {utilService.getTimeFromNow(applicationDetails.submittedAt)}</StyledTagContent>
-        </StyledCompanyNameAppDetails>
-        <StyledHorizontalLine></StyledHorizontalLine>
-
+    return <StyledApplicationDetails>
+        {/* <DetailsHeader application={applicationDetails} isFullDetails={false} /> */}
         <StyledApplicationContent>
             <TagContainerCol>
-                <StyledTag>Summary</StyledTag>
-                <StyledHorizontalLine></StyledHorizontalLine>
-                <TagContainerRow>
+                {/* <StyledTag>Summary</StyledTag>
+                <StyledHorizontalLine></StyledHorizontalLine> */}
+                <TagContainerCol>
                     <TagContainerRow>
-                        <StyledTag>Application status </StyledTag>
-                        <StyledTagContent>{applicationDetails.status}</StyledTagContent>
+
+                        <TagContainerCol>
+                            <TagTitle>Application status</TagTitle>
+                            <StyledTag>
+                                <StyledDetailsIcon>
+                                    <img src={statusIcon} title='Application Status' />
+                                </StyledDetailsIcon>
+                                <StyledTagContent>{applicationDetails.status}</StyledTagContent>
+                            </StyledTag>
+                        </TagContainerCol>
+                        <TagContainerCol>
+                            <TagTitle>Applied Via</TagTitle>
+                            <StyledTag>
+                                <StyledDetailsIcon>
+                                    <img src={submittedIcon} title='Applied Via' />
+                                </StyledDetailsIcon>
+                                <StyledTagContent>{applicationDetails.submittedVia}</StyledTagContent>
+                            </StyledTag>
+                        </TagContainerCol>
+                        {applicationDetails.experience !== undefined && <TagContainerCol>
+                            <TagTitle>Experience required</TagTitle>
+                            <StyledTag>
+                                <StyledDetailsIcon>
+                                    <img src={experienceIcon} title='Experience required' />
+                                </StyledDetailsIcon>
+                                <StyledTagContent>{utilService.checkIsPlural(applicationDetails.experience, 'year')}</StyledTagContent>
+                            </StyledTag>
+                        </TagContainerCol>}
+                        {applicationDetails.contact && <TagContainerCol>
+                            <TagTitle>Contact</TagTitle>
+                            <StyledTag>
+                                <StyledDetailsIcon>
+                                    <img src={contacteIcon} title='Contact' />
+                                </StyledDetailsIcon>
+                                <span>{applicationDetails.contact.name}</span>
+                            </StyledTag>
+                            <StyledTagContent>
+                                <ul style={{ paddingInlineStart: '1em' }}>
+                                    {/* <li>Name: {applicationDetails.contact.name} </li> */}
+                                    {/* <li>Talent acquisition manager</li> */}
+                                    <li>Email: {applicationDetails.contact.email}</li>
+                                    <li>Phone: {applicationDetails.contact.phone}</li>
+                                    {/* <li>{applicationDetails.contact.linkedin}</li> */}
+                                    <li><a href={applicationDetails.contact.linkedin} target='_blank'> Linkedin</a></li>
+                                </ul>
+                            </StyledTagContent>
+                        </TagContainerCol>}
                     </TagContainerRow>
-                    <TagContainerRow>
-                        <StyledTag>Application submitted via </StyledTag><StyledTagContent>{applicationDetails.submittedVia}</StyledTagContent>
-                    </TagContainerRow>
-                    <TagContainerRow><StyledTag>Technologies </StyledTag><StyledTagContent>{applicationDetails.technologies?.map((tech, idx) => <ol key={tech + idx}>{tech}</ol>)}</StyledTagContent></TagContainerRow>
-                    {applicationDetails.experience !== undefined && <TagContainerRow>
-                        <StyledTag>Experience required</StyledTag>
-                        <StyledTagContent>{utilService.checkIsPlural(applicationDetails.experience, 'year')}</StyledTagContent>
-                    </TagContainerRow>}
-                    <TagContainerRow>
-                        <StyledTag>Contact </StyledTag>
-                        <StyledTagContent>
-                            <ul style={{ paddingInlineStart: '1em' }}>
-                                <li>John Doe </li>
-                                <li>Talent acquisition manager</li>
-                                <li>Phone: 054-3454321</li>
-                                <li>Email: johndoe@company.com</li>
-                                <li><a href="https://www.linkedin.com/in/john-doe/" target='_blank'> Linkedin</a></li>
-                            </ul>
-                        </StyledTagContent>
-                    </TagContainerRow>
-                </TagContainerRow>
+                    {applicationDetails.technologies && <TagContainerCol>
+                        <TagTitle>Technologies</TagTitle>
+                        <StyledTag>
+                            <StyledTagContent>
+                                <TechTagContainer>
+                                    {applicationDetails.technologies.map(tech => <DetailsTechTagContent key={tech._id}>
+                                        <TechLogo src={tech.logoUrl} />
+                                        <TechName >{tech.name}</TechName>
+                                    </DetailsTechTagContent>)}
+                                </TechTagContainer>
+                            </StyledTagContent>
+                        </StyledTag>
+                    </TagContainerCol>}
+
+
+                    <ProgressBar application={applicationDetails} />
+                </TagContainerCol>
             </TagContainerCol>
-            <TagContainerCol>
+            {/* <TagContainerCol>
                 <StyledTag onClick={() => setIsAdditionalOpen(true)}>Show additional information{isAdditionalOpen ? '' : '...'}</StyledTag>
                 <StyledHorizontalLine></StyledHorizontalLine>
                 {isAdditionalOpen && <>
@@ -107,12 +145,13 @@ export const ApplicationDetails = () => {
                         </StyledTagContent></TagContainerCol>
                 </>}
                 {isAdditionalOpen && <StyledTag onClick={() => setIsAdditionalOpen(false)}>Hide{!isAdditionalOpen ? '' : '...'}</StyledTag>}
-            </TagContainerCol>
+            </TagContainerCol> */}
         </StyledApplicationContent>
 
         {isAdditionalOpen && <StyledHorizontalLine></StyledHorizontalLine>}
         <ButtonsWrapper>
-            <StyledButton onClick={onUpdateApplication}>Edit</StyledButton>
+            {/* <StyledButton onClick={onUpdateApplication}>Edit</StyledButton> */}
+            <StyledButton onClick={() => navigate(`/tracker/${applicationDetails._id}`)}>More Details</StyledButton>
             <StyledRemoveButton onClick={onRemoveApplication}>Delete</StyledRemoveButton>
         </ButtonsWrapper>
     </StyledApplicationDetails >
