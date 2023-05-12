@@ -3,7 +3,7 @@ import { read, utils, writeFile } from 'xlsx';
 import { useAppDispatch } from '../hooks/redux-hooks';
 import { DraftApplication } from '../models/interfaces';
 import { addApplication } from '../store/reducers/tracker-slice';
-import { StyledButton } from './styles/button.styled';
+import { StyledButton } from './styles/buttons.styled';
 
 const LabelInputFile = styled.label`
     padding: 7px 13px;

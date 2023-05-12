@@ -32,7 +32,7 @@ export const FilterButtonList: React.FC<FilterButtonListProps> = ({ isChecked, s
     const getOptions = async () => {
         try {
             const applications: Application[] =
-                await trackerService.getApplications({} as FilterBy)
+                await trackerService.getApplications()
             const locationOpt = utilService.removeDuplicates(applications, 'location')
             const positionOpt = utilService.removeDuplicates(applications, 'position')
             setOptions({ location: locationOpt, position: positionOpt })

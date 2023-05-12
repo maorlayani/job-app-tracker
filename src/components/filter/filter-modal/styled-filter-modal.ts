@@ -1,17 +1,18 @@
 import styled from "styled-components"
-import { StyledButton } from "../../styles/button.styled"
+import { StyledButton } from "../../styles/buttons.styled"
 
 export const StyledFilterModal = styled.div`
     width: 300px;  
     max-height: 400px;
     background-color: #fff;
     position: absolute;
-    top: 130px;
+    top: 170px;
     border-radius: .8em;
     box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.08) ,0px 4px 4px rgba(0,0,0,0.3);
     display: flex;
     flex-direction: column;
     font-size: .9em;
+    z-index: 10;
     /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
 `
 

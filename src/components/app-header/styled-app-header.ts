@@ -14,6 +14,7 @@ export const StyledAppHeader = styled.div`
     /* padding-block-start: 30px; */
     font-family: 'league-spartan-medium';
     box-shadow: -1px -1px 3px 2px #cfcfcf;
+    z-index: 10;
 `
 
 export const StyledLink = styled(Link)`

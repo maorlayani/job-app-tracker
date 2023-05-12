@@ -1,10 +1,9 @@
 import styled from "styled-components"
 import { StyledFilterButtonProps } from "./interfaces-filter-button"
 
-
 export const FilterButtonWrapper = styled.div`
     display: flex;
-    flex-direction: column;
+    min-width: fit-content;
 `
 
 export const StyledFilterButton = styled.button<StyledFilterButtonProps>`
@@ -17,17 +16,16 @@ export const StyledFilterButton = styled.button<StyledFilterButtonProps>`
     color: ${props => props.isFilterChecked ? '#ffffff' : '#00000099'} ;
     background-color:${props => props.isFilterChecked ? '#ae84d1' : '#ffffff'};
     font-weight: 600;
-    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     display: inline-flex;
     justify-content: center;
     align-items: center;
     transition-property: background-color,box-shadow, color;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
     transition-duration: 167ms;
-
-   span:last-child {
+    span:last-child {
         margin-inline-start: 4px;
-}
+        min-width: fit-content;
+    }
     &:hover{
         cursor: pointer;
         box-shadow: inset 0 0 0 ${props => !props.isFilterChecked ? ' 2px #0000004c' : '1px'} ;
@@ -39,5 +37,10 @@ export const StyledFilterButton = styled.button<StyledFilterButtonProps>`
         box-shadow: inset 0 0 0 ${props => !props.isFilterChecked ? '2px #00000099' : '1px'} ;
         color: ${props => !props.isFilterChecked ? 'rgba(0,0,0,0.9)' : ''} ;
         background-color:${props => props.isFilterChecked ? '#a36ccf' : ''};
+    }
+    @media (max-width: 500px) {
+        font-size: .8em;
+        padding: 4px 6px;
+        height: 26px;
     }
 `

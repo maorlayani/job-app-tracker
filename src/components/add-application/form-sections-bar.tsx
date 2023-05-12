@@ -33,6 +33,7 @@ export const FormSectionsBar: React.FC<FormSectionsBarProps> = ({ setSelectedSec
         <StyledFormProgressBar>
             {trackerService.getFormBarSections().map(section => {
                 return <FormSection
+                    key={section.type}
                     idx={section.idx}
                     isSelected={selectedSection === section.type}
                     beforeContent={section.type}
