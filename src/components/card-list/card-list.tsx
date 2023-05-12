@@ -60,7 +60,7 @@ export const CardList = () => {
         <StyledCardList>
             {isLoading && <ApplicationLoader />}
             {isPinned && <React.Fragment>
-                <CardListTitle>Pnned Applications</CardListTitle>
+                <CardListTitle>Pinned Applications</CardListTitle>
                 <CardListUl>
                     {filteredApplicationByPinned(true).map(app => {
                         return <Card key={app._id} application={app} />

@@ -26,11 +26,7 @@ const StyledCard = styled.li<StyledCardProps>`
         width: 330px;
     }
     @media (min-width: 800px) {
-        width: 300px;
-    }
-    @media (min-width: 1270px) {
-        width: 400px;
-    }
+        width: 290px;
 `
 
 export const Card: React.FC<CardProps> = ({ application }) => {
