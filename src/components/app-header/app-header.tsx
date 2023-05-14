@@ -1,18 +1,18 @@
-import { LinksWrapper, Logo, StyledLink, StyledAppHeader } from "./styled-app-header"
+import { LinksWrapper, Logo, StyledNavLink, StyledAppHeader } from "./styled-app-header"
 import logoImg from '../../assets/img/logo.png'
-import Globalfonts from '../../assets/global-fonts'
+// import Globalfonts from '../../assets/global-fonts'
 export const AppHeader = () => {
     return <StyledAppHeader>
-        <Globalfonts />
+        {/* <Globalfonts /> */}
         <Logo>
             <img src={logoImg} alt="" />
         </Logo>
         <LinksWrapper>
-            <StyledLink to={'/'}>Home</StyledLink>
-            <StyledLink to={'/edit'}>Add Application</StyledLink>
-            <StyledLink to={'/'}>My Activity</StyledLink>
-            <StyledLink to={'/'}>Reports</StyledLink>
-            <StyledLink to={'/'}>Contact us</StyledLink>
+            <StyledNavLink to={'/'}>Home</StyledNavLink>
+            <StyledNavLink to={'/edit'}>Add Application</StyledNavLink>
+            <StyledNavLink to={'/activity'}>My Activity</StyledNavLink>
+            <StyledNavLink to={'/reports'}>Reports</StyledNavLink>
+            <StyledNavLink to={'/contact'}>Contact us</StyledNavLink>
         </LinksWrapper>
     </StyledAppHeader>
 }

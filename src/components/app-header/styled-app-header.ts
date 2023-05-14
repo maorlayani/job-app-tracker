@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import styled from "styled-components"
 
 export const StyledAppHeader = styled.div`
@@ -12,13 +12,14 @@ export const StyledAppHeader = styled.div`
     /* flex-direction: column; */
     align-items: center;
     /* padding-block-start: 30px; */
-    font-family: 'league-spartan-medium';
+    // font-family: 'league-spartan-medium';
     box-shadow: -1px -1px 3px 2px #cfcfcf;
     z-index: 10;
+    
 `
 
-export const StyledLink = styled(Link)`
-box-sizing: border-box;
+export const StyledNavLink = styled(NavLink)`
+    box-sizing: border-box;
     color: #cfcfcf;
     text-decoration: none;
     padding: 1em;
@@ -26,9 +27,13 @@ box-sizing: border-box;
     align-items: center;
     justify-content: center;
     height: 70px;
-    font-family: 'league-spartan-bold';
-    /* font-weight: 600; */
+    //  font-family: 'league-spartan-bold';
+     font-weight: 700; 
     &:hover{
+        color: #ae84d1;
+        box-shadow: inset 0 -4px 0 #ae84d1;
+    }
+    &.active{
         color: #ae84d1;
         box-shadow: inset 0 -4px 0 #ae84d1;
     }
