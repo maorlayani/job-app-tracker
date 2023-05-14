@@ -13,7 +13,7 @@ const StyledCardList = styled.div`
 `
 
 const CardListTitle = styled.span`
-    font-family: 'league-spartan-bold'; 
+    // font-family: 'league-spartan-bold'; 
     color: #18121dd2;
     margin-block-end: .5em;
     display: block;

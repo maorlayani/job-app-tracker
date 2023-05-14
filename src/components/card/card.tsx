@@ -12,7 +12,7 @@ const StyledCard = styled.li<StyledCardProps>`
     width: 400px;
     height: 350px;
     border-radius: 12px;
-    font-family: 'league-spartan-medium';
+    // font-family: 'league-spartan-medium';
     box-shadow: 0 0px 0px 0 rgb(60 64 67 / 30%),0 1px 3px 1px rgb(60 64 67 / 15%);
     perspective: 600px;
     transition: transform 1s;

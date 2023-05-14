@@ -12,7 +12,7 @@ const StyledFormSection = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-inline-end: 15px;
+    // margin-inline-end: 15px;
 `
 interface FormSectionLabelProps {
     isSelected: boolean,

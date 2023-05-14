@@ -30,7 +30,7 @@ export const FullDetailsContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'league-spartan-medium';
+    // font-family: 'league-spartan-medium';
     overflow-y: auto;
     animation: ${grow} .8s forwards;
     transform-origin: 50% 50%;

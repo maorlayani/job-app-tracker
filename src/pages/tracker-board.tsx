@@ -50,7 +50,7 @@ export const TrackerBoard = () => {
     return (
         <React.Fragment>
             <StyledTrackerBoard>
-                <Globalfonts />
+                {/* <Globalfonts /> */}
                 <MainContentContainer>
                     <ApplicationFilter />
                     <CardListContainer>

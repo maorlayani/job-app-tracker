@@ -12,7 +12,7 @@ const LabelInputFile = styled.label`
     border: none;
     background-color: #ae84d1;
     color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+    // font-family: Arial, Helvetica, sans-serif;
     font-weight: 500;
     font-size: 1em;
     align-self: center;

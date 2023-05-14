@@ -23,6 +23,7 @@ const Textarea = styled(Input)`
     resize: vertical;
     height: 80px;
     padding: 10px 15px 10px 10px;
+    font-family: inherit;
 `
 
 export interface InputsProps {

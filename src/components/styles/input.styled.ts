@@ -9,7 +9,7 @@ export const Input = styled.input`
     height: 40px;
     box-sizing: border-box;
     font-size: 1em;
-    font-family: inherit;
+    // font-family: inherit;
     box-shadow: 1px 1px 3px 1px #cfcfcf;
 `
 export const StyledLabelTitle = styled.label`
@@ -17,5 +17,5 @@ export const StyledLabelTitle = styled.label`
     font-size: 11px;
     margin-block-end: 8px;
     font-size: 1em;
-    font-family: inherit;
+    // font-family: inherit;
 `

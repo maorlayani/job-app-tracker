@@ -16,7 +16,7 @@ const StyledSearchInput = styled.input`
     border: none;
     padding: .3em .5em;
     box-shadow: inset 0 0 0 1px #0000004c;
-    font-family: inherit;
+    // font-family: inherit;
     color: inherit;
     @media (max-width: 500px) {
         width: 265px;

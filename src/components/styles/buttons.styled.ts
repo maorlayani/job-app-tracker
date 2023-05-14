@@ -7,7 +7,7 @@ export const StyledButton = styled.button`
    min-width: 90px;
    background-color: #ae84d1;
    color: #fff;
-   font-family: Arial, Helvetica, sans-serif;
+   // font-family: Arial, Helvetica, sans-serif;
    font-weight: 500;
    font-size: 1em;
    &:hover{
@@ -42,7 +42,7 @@ export const StyledResetButton = styled(StyledButton)`
     background-color: transparent;
     color: inherit;
     font-weight: 600;
-    font-family: inherit;
+   //  font-family: inherit;
     padding: .4em;
     border-radius: 6px;
     &:hover{

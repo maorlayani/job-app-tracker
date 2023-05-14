@@ -4,6 +4,7 @@ import { FormSection } from "./form-section"
 
 const StyledFormProgressBar = styled.div`
     display: flex;
+    gap: 1.5em;
     width: 80%;
     height: 30px;
     border-radius: 9px;
@@ -21,7 +22,7 @@ export enum FormSectionTxt {
     firstSection = 'Basic info',
     secondSection = 'Skills',
     thirdSection = 'Dates',
-    fourthSection = 'Additional info',
+    fourthSection = 'More info',
 }
 
 export const FormSectionsBar: React.FC<FormSectionsBarProps> = ({ setSelectedSection, selectedSection }) => {
