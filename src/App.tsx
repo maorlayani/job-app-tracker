@@ -7,6 +7,7 @@ import { AddApplication } from './components/add-application/add-application'
 import { AppHeader } from './components/app-header/app-header'
 import { ApplicationFullDetails } from './pages/application-full-details/application-full-details'
 import Globalfonts from './assets/global-fonts'
+import { Archive } from './pages/archive/archive'
 
 const AppStyle = styled.div`
   padding: 0;
@@ -24,6 +25,7 @@ export const App = () => {
           <Route path=':applicationId' element={<ApplicationFullDetails />} />
         </Route>
         <Route path='/edit/:id?' element={<AddApplication />} />
+        <Route path='archive' element={<Archive />} />
         {/* <Route path='/tracker/:id?' element={<ApplicationFullDetails />} /> */}
       </Routes>
     </AppStyle >

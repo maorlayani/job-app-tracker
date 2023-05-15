@@ -28,8 +28,8 @@ const SectionContainer = styled.div`
     animation: ${slideIn} .5s ease-out;
 `
 export interface ApplicationDates {
-    submittedAt: string,
-    postedDate: string
+    submittedAt: any,
+    postedDate: any
 }
 export const AddApplication = () => {
     const navigate = useNavigate()
@@ -73,8 +73,15 @@ export const AddApplication = () => {
     const onAddApplication = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault()
         application.technologies = [...techList]
-        application.postedDate = dates.postedDate
-        application.submittedAt = dates.submittedAt
+        // const test = dates.postedDate.toLocaleDateString('en-US')
+
+        // console.log(Date.parse(dates.postedDate));
+        // console.log(Date.parse(dates.submittedAt));
+
+        application.postedDate = Date.parse(dates.postedDate)
+        application.submittedAt = Date.parse(dates.submittedAt)
+        // console.log(application.submittedAt = dates.submittedAt);
+
         application.contact = {
             name: application.contactName,
             email: application.contactEmail,
@@ -105,7 +112,7 @@ export const AddApplication = () => {
             positionDesc: '',
             postedAt: '',
             location: '',
-            experience: '2',
+            experience: '0',
             technologies: [],
             contactName: '',
             contactEmail: '',
@@ -122,8 +129,6 @@ export const AddApplication = () => {
     }
 
     return <StyledAddApplication>
-        <AddApplicationTitleWarpper>
-        </AddApplicationTitleWarpper>
         <FormSectionsBar selectedSection={selectedSection} setSelectedSection={setSelectedSection} />
         <StyledAddApplicationForm onSubmit={onAddApplication}>
 

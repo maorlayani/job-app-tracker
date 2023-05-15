@@ -21,7 +21,7 @@ const RadioInputContainer = styled.div`
 `
 
 interface CustomDateInputProps {
-    selectedDate: string
+    selectedDate: any
     setDates: Dispatch<SetStateAction<ApplicationDates>>
 }
 export const CustomDateInput: React.FC<CustomDateInputProps> = ({ selectedDate, setDates }) => {

@@ -14,7 +14,7 @@ interface ThirdSectionProps {
     setDates: Dispatch<SetStateAction<ApplicationDates>>
 }
 export const ThirdSection: React.FC<ThirdSectionProps> = ({ dates, setDates }) => {
-    const [selectedDate, setSelectedDate] = useState('')
+    const [selectedDate, setSelectedDate] = useState<any>()
 
     return (
         <StyledThirdSection>

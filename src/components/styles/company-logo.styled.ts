@@ -9,8 +9,8 @@ export const StyledCompanyLogo = styled.div<StyledCompanyLogoProps>`
     border-radius: 12px;
     min-width: 65px;
     min-height: 65px;
-    max-width: 65px;
-    max-height: 65px;
+    // max-width: 65px;
+    // max-height: 65px;
     display: flex;
     align-items: center;
     justify-content: center;

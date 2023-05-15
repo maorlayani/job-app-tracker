@@ -47,14 +47,14 @@ async function saveApplication(application: Application | DraftApplication): Pro
             return data
         } else {
             const applicationToSave = { ...application }
-            if (applicationToSave.postedDate) {
-                const formatPostedAt = new Date(applicationToSave.postedDate)
-                applicationToSave.postedDate = formatPostedAt.getTime()
-            }
-            if (applicationToSave.submittedAt) {
-                const formatSubmittedAt = new Date(applicationToSave.submittedAt)
-                applicationToSave.submittedAt = formatSubmittedAt.getTime()
-            }
+            // if (applicationToSave.postedDate) {
+            //     const formatPostedAt = new Date(applicationToSave.postedDate)
+            //     applicationToSave.postedDate = formatPostedAt.getTime()
+            // }
+            // if (applicationToSave.submittedAt) {
+            //     const formatSubmittedAt = new Date(applicationToSave.submittedAt)
+            //     applicationToSave.submittedAt = formatSubmittedAt.getTime()                
+            // }
             const { data } = await axios.post(`${BASE_URL}tracker/`, applicationToSave)
             return data
         }

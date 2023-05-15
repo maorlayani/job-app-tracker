@@ -11,7 +11,7 @@ export const AppHeader = () => {
             <StyledNavLink to={'/'}>Home</StyledNavLink>
             <StyledNavLink to={'/edit'}>Add Application</StyledNavLink>
             <StyledNavLink to={'/activity'}>My Activity</StyledNavLink>
-            <StyledNavLink to={'/reports'}>Reports</StyledNavLink>
+            <StyledNavLink to={'/archive'}>Archive</StyledNavLink>
             <StyledNavLink to={'/contact'}>Contact us</StyledNavLink>
         </LinksWrapper>
     </StyledAppHeader>

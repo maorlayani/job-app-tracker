@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import styled from "styled-components"
 import { ApplicationDates } from "../add-application/add-application"
+import { StyledLabelTitle } from "../styles/input.styled"
 
 const StyledDateDisplay = styled.div`
     display: flex;
@@ -23,14 +24,14 @@ const DateContainer = styled.div<DateContainerProps>`
     margin-inline-start: 10px;
     justify-content: center;
     box-shadow: 1px 1px 3px 1px #cfcfcf;
-    border: ${props => props.isFocused ? '2px solid #ae84d1' : ''}
+    border: ${props => props.is}
 `
 const DateLabel = styled.span`
 // width: 100%;
 `
 
 interface DateDisplayProps {
-    selectedDate: string,
+    selectedDate: any,
     selectedInputValue: string,
     valueType: string
     setDates: Dispatch<SetStateAction<ApplicationDates>>
@@ -39,7 +40,7 @@ interface DateDisplayProps {
 
 export const DateDisplay: React.FC<DateDisplayProps> = ({ selectedDate, selectedInputValue, valueType, setDates }) => {
 
-    const [date, setDate] = useState('DD/MM/YYY')
+    const [date, setDate] = useState<any>('DD/MM/YYY')
 
     useEffect(() => {
         setCurrDate()
@@ -47,7 +48,7 @@ export const DateDisplay: React.FC<DateDisplayProps> = ({ selectedDate, selected
     const setCurrDate = () => {
         if (selectedInputValue === valueType) {
             setDates((prevDates: ApplicationDates) => ({ ...prevDates, [valueType]: selectedDate }))
-            setDate(selectedDate)
+            setDate(selectedDate.toLocaleDateString('en-GB'))
         }
     }
 

@@ -35,7 +35,7 @@ export const Card: React.FC<CardProps> = ({ application }) => {
     return (
         <StyledCard onClick={() => setIsFlipped(!isFlipped)} isFlipped={isFlipped}>
             <FrontCard application={application} />
-            <BackCard />
+            <BackCard application={application} />
         </StyledCard>
     )
 }

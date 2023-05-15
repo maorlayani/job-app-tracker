@@ -50,10 +50,10 @@ export const CardList = () => {
     const filteredApplicationByPinned = (isPinned: boolean) => {
         let pinnedApplications
         if (isPinned) {
-            pinnedApplications = applications.filter(app => app.isPinned)
+            pinnedApplications = applications.filter(app => app.isPinned && !app.isArchived)
             return pinnedApplications
         }
-        return applications.filter(app => !app.isPinned)
+        return applications.filter(app => !app.isPinned && !app.isArchived)
     }
 
     return (

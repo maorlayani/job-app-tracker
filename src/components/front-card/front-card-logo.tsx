@@ -8,9 +8,9 @@ const CompanyLogoContainer = styled.div`
     justify-content: center; 
     display: flex;
 `
-export const FrontCardLogo: React.FC<FrontCardProps> = ({ application }) => {
+export const FrontCardLogo: React.FC<FrontCardProps> = ({ application, className, ...props }) => {
     return (
-        <CompanyLogoContainer>
+        <CompanyLogoContainer className={className} {...props}>
             <StyledCompanyLogo logoUrl={application.logoUrl}></StyledCompanyLogo>
         </CompanyLogoContainer>
     )
