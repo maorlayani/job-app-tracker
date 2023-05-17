@@ -24,7 +24,7 @@ export const App = () => {
         <Route path='tracker' element={<TrackerBoard />} >
           <Route path=':applicationId' element={<ApplicationFullDetails />} />
         </Route>
-        <Route path='/edit/:id?' element={<AddApplication />} />
+        <Route path='add' element={<AddApplication />} />
         <Route path='archive' element={<Archive />} />
         {/* <Route path='/tracker/:id?' element={<ApplicationFullDetails />} /> */}
       </Routes>

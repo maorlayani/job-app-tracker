@@ -101,7 +101,7 @@ export const AddApplication = () => {
         }
         dispatch(toggleApplicationDetails())
         clearForm()
-        navigate('/')
+        navigate('/tracker')
     }
 
     const clearForm = () => {
