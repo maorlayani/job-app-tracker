@@ -8,6 +8,7 @@ import { AppHeader } from './components/app-header/app-header'
 import { ApplicationFullDetails } from './pages/application-full-details/application-full-details'
 import Globalfonts from './assets/global-fonts'
 import { Archive } from './pages/archive/archive'
+import { SignupLogin } from './pages/signup-login/signup-login'
 
 const AppStyle = styled.div`
   padding: 0;
@@ -25,11 +26,12 @@ export const App = () => {
           <Route path=':applicationId' element={<ApplicationFullDetails />} />
         </Route>
         <Route path='add' element={<AddApplication />} />
-        <Route path='archive' element={<Archive />} />
         {/* <Route path='/tracker/:id?' element={<ApplicationFullDetails />} /> */}
+        <Route path='archive' element={<Archive />} />
+        <Route path='register/:status' element={<SignupLogin />} />
       </Routes>
     </AppStyle >
   )
 }
-
+// ROD2zXHuVCEqwyi9 
 
