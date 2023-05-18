@@ -9,7 +9,8 @@ const StyledSignupLogin = styled.div`
     background-color: #f9fafc;
     height: 100vh;
     width: 100%;
-    overflow-x: auto;
+    // overflow-x: auto;
+    overflow: hidden;
 `
 const MainContentContainer = styled.div`
     display: flex;
@@ -18,9 +19,16 @@ const MainContentContainer = styled.div`
     align-items: center;
     gap: 1em;
     margin: 120px 50px 120px 50px;
+    @media (max-width: 500px) {
+        margin-inline: 20px;
+    }
+    
 `
 const Title = styled.h1`
     font-size: 3em;
+    @media (max-width: 500px) {
+        font-size: 2em;
+    }
 `
 const InputsContainer = styled.div`
     display: flex;
@@ -30,7 +38,11 @@ const InputsContainer = styled.div`
     border-radius: 6px;
     box-shadow: 0 0 10px rgba(0,0,0,.102);
     padding: 25px 40px;
-    width: 400px;
+    width: 450px;
+    box-sizing: border-box;
+    @media (max-width: 500px) {
+        width: 100%;
+    }
 `
 const InputsTitle = styled.span`
     text-transform: capitalize;
@@ -57,6 +69,7 @@ const RegisterSubmitbutton = styled(StyledButton)`
 `
 const StyledLink = styled(Link)`
     margin-block-start: .5em;   
+    text-align: center;
 `
 type Inputs = {
     username: string,
