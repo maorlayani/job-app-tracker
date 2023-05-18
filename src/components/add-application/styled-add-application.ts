@@ -12,6 +12,7 @@ export const StyledAddApplication = styled.div`
     height: 100vh;
     /* background-image: url(${background}); */
     background-image: linear-gradient(45deg, #D4DCE1, #fff);
+
     background-size: cover;
     background-position: center;
     overflow: auto;

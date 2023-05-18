@@ -1,10 +1,19 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { StyledButton } from '../styles/buttons.styled'
 
 const CallToActionButton = styled(StyledButton)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 150px;
     font-size: 1.1em;
+    text-decoration: none;
 `
+// const CallToActionButton = styled(StyledButton)`
+//     width: 150px;
+//     font-size: 1.1em;
+// `
 const DemoButton = styled.button`
     background-color: transparent; 
     border: none;
@@ -27,7 +36,7 @@ const DemoButton = styled.button`
 export const HomePageCallToAction = () => {
     return (
         <>
-            <CallToActionButton>Sign up</CallToActionButton>
+            <CallToActionButton as={Link} to={'register/signup'}>Sign up</CallToActionButton>
             <DemoButton>View demo</DemoButton>
         </>
     )

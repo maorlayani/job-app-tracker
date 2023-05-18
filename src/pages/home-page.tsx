@@ -5,7 +5,8 @@ import { HomePageSlider } from '../components/home-page-cmps/slider'
 const StyledHomePage = styled.div`
     height: 100vh;
     width: 100%;
-    background-image: linear-gradient(45deg, #D4DCE1, #fff);
+    // background-image: linear-gradient(45deg, #D4DCE1, #fff);
+    background-color: #f9fafc;
     overflow-x: auto;
 `
 const MainContentContainer = styled.div`

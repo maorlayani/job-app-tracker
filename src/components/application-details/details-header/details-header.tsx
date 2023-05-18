@@ -42,7 +42,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ application, isFul
         <StyledCompanyNameAppDetails>
             {`${application.company}, ${application.location} | `}
             <StyledTimeTag>
-                Submitted {utilService.getTimeFromNow(application.submittedAt)}
+                Applied {utilService.getTimeFromNow(application.submittedAt)}
             </StyledTimeTag>
             {/* <h1 style={{ color: '#5B6F87', fontSize: '40px', padding: '10px', background: '#fff' }}>Test</h1>
             <h1 style={{ color: '#7B8F9D', fontSize: '40px', padding: '10px', background: '#fff' }}>Test</h1>

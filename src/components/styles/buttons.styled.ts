@@ -7,14 +7,13 @@ export const StyledButton = styled.button`
    min-width: 90px;
    background-color: #ae84d1;
    color: #fff;
-   // font-family: Arial, Helvetica, sans-serif;
    font-weight: 500;
    font-size: 1em;
-   &:hover{
+   &:hover {
       background-color: #ae84d1bc;
       cursor: pointer;
     }
-   &:active{
+   &:active {
       background-color: #a673cf;
    }
 `
@@ -27,9 +26,8 @@ export const CardButton = styled(StyledButton)`
    background-color: #fff;
    color: #ae84d1;
    border: 1px solid #ae84d1;
-   &:hover{
+   &:hover {
       background-color: #ae84d140;
-      /* color: #ae84d140; */
       border: 1px solid #ae84d18c;
    }
    &:active{
@@ -39,23 +37,22 @@ export const CardButton = styled(StyledButton)`
    }
 `
 export const StyledResetButton = styled(StyledButton)`
-    background-color: transparent;
-    color: inherit;
-    font-weight: 600;
-   //  font-family: inherit;
-    padding: .4em;
-    border-radius: 6px;
-    &:hover{
-        background-color: #00000014;
-    }
-    &:active{
-        background-color: #0000001e;
-        color: #000000e5
-    }
-     @media (max-width: 500px) {
-        font-size: .85em;
-        padding: 4px 6px;
-        height: 26px;
-        min-width: 40px;
-    }
+   background-color: transparent;
+   color: inherit;
+   font-weight: 600;
+   padding: .4em;
+   border-radius: 6px;
+   &:hover {
+      background-color: #00000014;
+   }
+   &:active {
+      background-color: #0000001e;
+      color: #000000e5
+   }
+   @media (max-width: 500px) {
+      font-size: .85em;
+      padding: 4px 6px;
+      height: 26px;
+      min-width: 40px;
+   }
 `
