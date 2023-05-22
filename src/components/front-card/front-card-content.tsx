@@ -10,15 +10,7 @@ const StyeldFrontCardContent = styled.div`
     display: flex;
     gap: 10px;
     color: #463553d3;
-    @media (max-width: 500px) {
-        flex-direction: column;
-    }
-    @media (min-width: 800px) {
-        flex-direction: column;
-    }
-    @media (min-width: 1270px) {
-        flex-direction: row;
-    }
+    flex-direction: column;
 `
 const TagContainer = styled.div`
     display: flex;
@@ -27,9 +19,12 @@ const TagContainer = styled.div`
     gap: 5px;
 `
 const StyledTag = styled.span`
-    min-width: fit-content;
+    width: 100px;
     font-size: 0.9em;
     margin-block-start: 2px;
+    max-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `
 
 export const FrontCardContent: React.FC<FrontCardProps> = ({ application }) => {

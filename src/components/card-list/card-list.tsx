@@ -13,28 +13,25 @@ const StyledCardList = styled.div`
 `
 
 const CardListTitle = styled.span`
-    // font-family: 'league-spartan-bold'; 
     color: #18121dd2;
     margin-block-end: .5em;
     display: block;
 `
 
 const CardListUl = styled.ul`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    width: 500px;
     margin-block-end: 20px;
-    @media (min-width: 800px) {
-        width: 750px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2em;
+    @media (max-width: 500px) {
+        grid-gap: 1em;
+        grid-template-columns: repeat(1, 1fr);
     }
-    @media (min-width: 1050px) {
-        width: 1000px;
+    @media (min-width: 800px) {
+        grid-template-columns: repeat(3, 1fr);
     }
     @media (min-width: 1270px) {
-        justify-content: flex-start;
-        width: 1240px;
+        grid-template-columns: repeat(4, 1fr);
     }
 `
 export const CardList = () => {

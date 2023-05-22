@@ -31,15 +31,7 @@ const ContentContainer = styled.div`
     gap: 8px;
 `
 const FrontCardButton = styled(CardButton)`
-    @media (max-width: 500px) {
-       margin: unset;
-    }
-    @media (min-width: 800px) {
-        margin: unset;
-    }
-    @media (min-width: 1270px) {
-        margin-block-start: 20px;
-    }
+    margin: 0;
 `
 
 export const FrontCard: React.FC<FrontCardProps> = ({ application }) => {

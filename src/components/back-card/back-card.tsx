@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { useAppDispatch } from "../../hooks/redux-hooks"
 import { Application } from "../../models/interfaces"
-import { updateApplication } from "../../store/reducers/tracker-slice"
+import { setCurrentApplicationDetails, updateApplication } from "../../store/reducers/tracker-slice"
 import { CardButton } from "../styles/buttons.styled"
 import { CardFace } from "../styles/card.styled"
 
@@ -36,11 +36,15 @@ export const BackCard: React.FC<BackCardProps> = ({ application }) => {
         applicationToUpdate.archivedDate = Date.now()
         dispatch(updateApplication(applicationToUpdate))
     }
+    const openActivityLog = (ev: React.MouseEvent<HTMLButtonElement>) => {
+        ev.stopPropagation()
+        dispatch(setCurrentApplicationDetails(application))
+    }
 
     return <StyledBackCard>
         <h3>More Actions</h3>
         <BackCardButton onClick={(ev) => ev.stopPropagation()}>Update Status</BackCardButton>
-        <BackCardButton onClick={(ev) => ev.stopPropagation()}>Activity Log</BackCardButton>
+        <BackCardButton onClick={openActivityLog}>Activity Log</BackCardButton>
         <BackCardButton onClick={archiveApplication}>Archive</BackCardButton>
     </StyledBackCard>
 }

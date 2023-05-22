@@ -68,13 +68,13 @@ export const FilterTextSearch: React.FC<FilterTextSearchProps> = ({ searchInput,
         dispatch(setFilterBy({ ...filterBy, searchInput: searchInput }))
     }
 
-    const changeHandler = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const onHandleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
         setSearchInput(ev.target.value)
     }
 
     return (
         <StyledFilterTextSearch>
-            <StyledSearchInput type="text" value={searchInput} onChange={changeHandler} placeholder="Enter a keyword..." />
+            <StyledSearchInput type="text" value={searchInput} onChange={onHandleChange} placeholder="Enter a keyword..." />
             <StyledSearchButton onClick={onSetSearch}>Search</StyledSearchButton>
         </StyledFilterTextSearch>
     )

@@ -9,10 +9,9 @@ const StyledCard = styled.li<StyledCardProps>`
     display: flex;
     flex-direction: column;
     background-color: #ffffffeb;
-    width: 400px;
+    width:  230px;
     height: 350px;
     border-radius: 12px;
-    // font-family: 'league-spartan-medium';
     box-shadow: 0 0px 0px 0 rgb(60 64 67 / 30%),0 1px 3px 1px rgb(60 64 67 / 15%);
     perspective: 600px;
     transition: transform 1s;
@@ -23,10 +22,17 @@ const StyledCard = styled.li<StyledCardProps>`
         box-shadow: 0 0 0 1px #ae84d1, 0 1px 3px 1px #ae84d1;
     }
     @media (max-width: 500px) {
-        width: 330px;
+        width: 300px;
+    }
+    @media (min-width: 600px) {
+        width: 270px;
     }
     @media (min-width: 800px) {
-        width: 290px;
+        width: 230px;
+    }
+    @media (min-width: 900px) {
+        width: 270px;
+    }
 `
 
 export const Card: React.FC<CardProps> = ({ application }) => {
