@@ -25,7 +25,7 @@ const StyledContactInput = styled(FormTextInput)`
     width: 100%;
     margin-block-start: 10px;
     label {
-        width: 65px;
+        width: 95px;
     }
     @media (min-width: 800px) {
         width: 48%;

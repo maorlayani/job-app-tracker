@@ -12,3 +12,18 @@ export enum ElementType {
     numInput = 'number',
     rangeInput = 'range'
 }
+
+export enum ApplicationKeys {
+    company = 'company',
+    companyDesc = 'companyDesc',
+    position = 'position',
+    positionDesc = 'positionDesc',
+    postedAt = 'postedAt',
+    location = 'location',
+    experience = 'experience',
+    submittedVia = 'submittedVia',
+    submittedAt = 'submittedAt',
+    status = 'status',
+    postedDate = 'postedDate',
+    positionUrl = 'positionUrl'
+}

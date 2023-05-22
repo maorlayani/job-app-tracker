@@ -11,7 +11,7 @@ export interface Application {
     location: string,
     experience?: number,
     technologies?: Technology[]
-    contact?: { name?: string, email?: string, phone?: string, linkedin?: string },
+    contact?: Contact,
     submittedVia: string,
     submittedAt: number,
     status: Status,
@@ -34,7 +34,7 @@ export interface DraftApplication {
     location: string,
     experience?: number,
     technologies?: string[]
-    contact?: { name?: string, email?: string, phone?: string, linkedin?: string },
+    contact?: Contact,
     submittedVia: string,
     submittedAt?: string | number
     status: Status,
@@ -68,4 +68,11 @@ export interface Technology {
 
 export interface Register {
     (field: string, type: string): any
+}
+
+export interface Contact {
+    name?: string,
+    linkedin?: string,
+    email?: string,
+    phone?: string,
 }

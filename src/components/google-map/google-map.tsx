@@ -6,8 +6,8 @@ import { GOOGLE_MAPS_API_KEY } from "../../secret"
 import { Coordinates, GoogleMapProps } from "./interfaces-google-map"
 
 const MapContainer = styled.div`
-    height: 300px;
-    div {
+    height: 230px;
+   div {
         border-radius: 3px;
     }
 `
@@ -49,6 +49,6 @@ export const GoogleMap: React.FC<GoogleMapProps> = ({ location }) => {
                 center={coordinates}
                 defaultZoom={zoom}>
             </GoogleMapReact>
-        </MapContainer >
+        </MapContainer>
     )
 } 

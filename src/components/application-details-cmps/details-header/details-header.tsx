@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { utilService } from "../../../services/util.service"
 import { StyledHorizontalLine } from "../../styles/horizontal-line.styled"
-import { StyledTagContent } from "../styled-application-details"
 import { SocailContainer, SocialIcon, SocialLink, StyledCloseIcon, StyledCompanyLogoAppDetails, StyledCompanyNameAppDetails, StyledDetailsHeader, StyledPositionAppDetails, StyledTimeTag } from "./styled.details-header"
 import closeIcon from '../../../assets/svg/close-icon.svg'
 import { DetailsHeaderProps } from "./interface-details-header"

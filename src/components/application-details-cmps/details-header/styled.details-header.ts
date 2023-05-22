@@ -3,7 +3,6 @@ import { StyledCompanyLogo } from "../../styles/company-logo.styled";
 import { StyledCompanyName } from "../../styles/company-name.styled";
 import { ImgCloseIconContainer } from "../../styles/img-close-icon-container";
 import { StyledPosition } from "../../styles/position.styled";
-import { StyledTagContent } from "../styled-application-details";
 
 export const StyledDetailsHeader = styled.div`
     width: 90%;
@@ -38,12 +37,13 @@ export const StyledPositionAppDetails = styled(StyledPosition)`
 
 export const StyledCompanyNameAppDetails = styled(StyledCompanyName)`
     font-size: 0.9em;
-    color:  #574268d2;
+    color:  #877993d2;
     margin-block-end: .5em;
 `
 
-export const StyledTimeTag = styled(StyledTagContent)`
+export const StyledTimeTag = styled.span`
     color: #5ba4a4;
+    font-size: 1.1em;
 `
 
 export const SocailContainer = styled.div`
