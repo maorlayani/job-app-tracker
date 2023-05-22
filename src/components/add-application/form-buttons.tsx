@@ -1,6 +1,5 @@
 import styled from "styled-components"
-import { StyledRemoveButton } from "../application-details/styled-application-details"
-import { StyledButton } from "../styles/buttons.styled"
+import { StyledButton, StyledRemoveButton } from "../styles/buttons.styled"
 
 export const StyledFormButtons = styled.div`
     // width:100%;

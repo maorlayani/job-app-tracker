@@ -9,7 +9,7 @@ const StyledTechTagPreview = styled.div<StyledTechTagPreviewProps>`
     background-color: ${props => props.isSelected ? '#a683c3ba' : '#d9d9d9c7'};
     width: fit-content;
     padding: 2px;
-    color: ${props => props.isSelected ? '#fff' : '#574268d2'};
+    color: ${props => props.isSelected ? '#fff' : '#877993d2'};
     &:hover{
             cursor: pointer;
         }
@@ -32,13 +32,15 @@ interface StyledTechTagPreviewProps {
 
 interface TechTagPreviewProps {
     tech: Technology,
-    setApplicationTechnologies: (selectedTech: Technology) => void
+    setApplicationTechnologies: (selectedTech: Technology) => void,
+    istoggleDisable?: boolean
 }
 
-export const TechTagPreview: React.FC<TechTagPreviewProps> = ({ tech, setApplicationTechnologies }) => {
+export const TechTagPreview: React.FC<TechTagPreviewProps> = ({ tech, setApplicationTechnologies, istoggleDisable }) => {
     const [isSelected, setIsSelected] = useState(false)
 
     const toggleTechTag = () => {
+        if (istoggleDisable) return
         setIsSelected(!isSelected)
         setApplicationTechnologies(tech)
     }

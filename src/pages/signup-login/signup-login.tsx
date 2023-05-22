@@ -9,7 +9,6 @@ const StyledSignupLogin = styled.div`
     background-color: #f9fafc;
     height: 100vh;
     width: 100%;
-    // overflow-x: auto;
     overflow: hidden;
 `
 const MainContentContainer = styled.div`
@@ -85,9 +84,8 @@ export const SignupLogin = () => {
     }, [])
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         console.log(data);
-
-
     }
+
     return (
         <StyledSignupLogin>
             <MainContentContainer>

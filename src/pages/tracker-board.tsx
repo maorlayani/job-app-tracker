@@ -8,10 +8,12 @@ import { ApplicationFilter } from "../components/filter/application-filter/appli
 import { Outlet } from "react-router-dom"
 import background from '../assets/svg/stacked-peaks-haikei-1.svg'
 import Globalfonts from '../assets/global-fonts'
+import { ActivityLog } from "../components/activity-log/activity-log"
 
 const StyledTrackerBoard = styled.div`
     display: flex;
     height: 100vh;
+    // position: relative;
     overflow: hidden;
     /* background-image: url(${background}); */
     background-image: linear-gradient(45deg, #D4DCE1, #fff);
@@ -57,7 +59,8 @@ export const TrackerBoard = () => {
                         <CardList />
                     </CardListContainer>
                 </MainContentContainer>
-            </StyledTrackerBoard >
+                {/* <ActivityLog /> */}
+            </StyledTrackerBoard>
             <Outlet />
         </React.Fragment>
     )

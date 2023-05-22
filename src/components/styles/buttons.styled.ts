@@ -56,3 +56,20 @@ export const StyledResetButton = styled(StyledButton)`
       min-width: 40px;
    }
 `
+
+export const StyledRemoveButton = styled(StyledButton)`
+    border: 1px solid #ae84d1;
+    color: #ae84d1;
+    background-color: #fff;
+        &:hover{
+            color: #b592d1bb;
+            border: 1px solid #b592d1bb;
+            background-color: unset;
+        }
+        &:active{
+            border: 1px solid #ae84d1;
+            color: #ae84d1;
+            background-color: unset;
+        }
+`
+

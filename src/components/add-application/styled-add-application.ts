@@ -102,7 +102,7 @@ export const TechName = styled.span`
     align-items: center;
     justify-content: center;
     /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
-    color: #574268d2;
+    color: #877993d2;
     font-weight: 600;
     padding: 0.3em 0.7em 0.3em 0;
     &:hover{

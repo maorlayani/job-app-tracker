@@ -19,7 +19,7 @@ interface FormRadioInputProps {
     setSelectedInputValue: (selectedInputValue: string) => void
 }
 export const FormRadioInput: React.FC<FormRadioInputProps> = ({ name, labelTxt, id, setSelectedInputValue }) => {
-    const changeHandler = () => {
+    const onHandleChange = () => {
         setSelectedInputValue(id)
     }
 
@@ -31,7 +31,7 @@ export const FormRadioInput: React.FC<FormRadioInputProps> = ({ name, labelTxt, 
                 value={id}
                 id={id}
                 multiple={false}
-                onChange={changeHandler} />
+                onChange={onHandleChange} />
             <FormLabel htmlFor={id} labelTxt={labelTxt} />
         </StyledFormRadioInput>
     )

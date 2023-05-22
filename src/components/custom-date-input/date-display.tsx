@@ -24,7 +24,7 @@ const DateContainer = styled.div<DateContainerProps>`
     margin-inline-start: 10px;
     justify-content: center;
     box-shadow: 1px 1px 3px 1px #cfcfcf;
-    border: ${props => props.is}
+    border: ${props => props.isFocused ? '2px solid #ae84d1' : ''};
 `
 const DateLabel = styled.span`
 // width: 100%;
