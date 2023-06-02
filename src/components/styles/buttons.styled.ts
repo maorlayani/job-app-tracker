@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export const StyledButton = styled.button`
@@ -73,3 +74,16 @@ export const StyledRemoveButton = styled(StyledButton)`
         }
 `
 
+export const CallToActionButton = styled(StyledButton)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    font-size: 1.1em;
+    text-decoration: none;
+`
+
+export const StyledLink = styled(Link)`
+    margin-block-start: .5em;   
+    text-align: center;
+`

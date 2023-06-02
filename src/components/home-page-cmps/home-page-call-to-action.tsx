@@ -1,19 +1,27 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { StyledButton } from '../styles/buttons.styled'
+import { CallToActionButton, StyledButton, StyledRemoveButton } from '../styles/buttons.styled'
+import { RootState } from '../../store/store'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
+import { StyledResetButton } from '../styles/buttons.styled'
+import { logout } from '../../store/reducers/user-slice'
 
-const CallToActionButton = styled(StyledButton)`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    font-size: 1.1em;
-    text-decoration: none;
-`
+// const CallToActionButton = styled(StyledButton)`
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     width: 150px;
+//     font-size: 1.1em;
+//     text-decoration: none;
+// `
 // const CallToActionButton = styled(StyledButton)`
 //     width: 150px;
 //     font-size: 1.1em;
 // `
+const LogoutButton = styled(StyledRemoveButton)`
+    width: 150px;
+    font-size: 1.1em;
+`
 const DemoButton = styled.button`
     background-color: transparent; 
     border: none;
@@ -34,9 +42,16 @@ const DemoButton = styled.button`
     }
 `
 export const HomePageCallToAction = () => {
+    const user = useAppSelector((state: RootState) => state.user.user)
+    const dispatch = useAppDispatch()
+
+    const onLogout = () => {
+        if (user) dispatch(logout(user.sessionId))
+    }
     return (
         <>
-            <CallToActionButton as={Link} to={'register/signup'}>Sign up</CallToActionButton>
+            {user ? <LogoutButton onClick={onLogout}>Logout</LogoutButton>
+                : <CallToActionButton as={Link} to={'register/signup'}>Sign up</CallToActionButton>}
             <DemoButton>View demo</DemoButton>
         </>
     )
