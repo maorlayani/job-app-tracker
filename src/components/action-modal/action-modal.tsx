@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { StyledButton } from '../styles/buttons.styled'
 import { ImgCloseIconContainer } from '../styles/img-close-icon-container'
 import closeIcon from '../../assets/svg/close-icon.svg'
+import React, { ReactElement } from 'react'
 
 const StyledActionModal = styled.div`
     box-sizing: border-box;
@@ -56,24 +57,26 @@ const CloseIconContainer = styled(ImgCloseIconContainer)`
 `
 interface ActionModalProps {
     classname?: string,
-    title: string,
+    title?: string,
     msg: string,
     btnTxt: string,
     onAction: () => void,
-    onClose: () => void
+    onClose: () => void,
+    contenteCmp?: ReactElement
 }
 
-export const ActionModal: React.FC<ActionModalProps> = ({ classname, title, msg, btnTxt, onAction, onClose, ...props }) => {
+export const ActionModal: React.FC<ActionModalProps> = ({ contenteCmp, classname, title, msg, btnTxt, onAction, onClose, ...props }) => {
     return (
         <StyledActionModal className={classname} {...props}>
             <CloseIconContainer>
                 <img src={closeIcon} alt="close icon" onClick={onClose} />
             </CloseIconContainer>
-            <ModalHeader>
+            {title && <ModalHeader>
                 <ModalTitle>{title}</ModalTitle>
-            </ModalHeader>
+            </ModalHeader>}
             <ContentContiner>
                 <ModalContent>{msg}</ModalContent>
+                {contenteCmp}
                 <ActionButton onClick={onAction}>{btnTxt}</ActionButton>
             </ContentContiner>
         </StyledActionModal>
