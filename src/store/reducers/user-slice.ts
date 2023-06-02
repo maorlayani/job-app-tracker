@@ -14,7 +14,7 @@ export const signup = createAsyncThunk(
     'user/signup',
     async (userCred: User) => {
         const user: MinUser | null = await userService.signup(userCred)
-        console.log('from slicer', user);
+        // console.log('from slicer', user);
         return user
     }
 )
@@ -23,7 +23,7 @@ export const login = createAsyncThunk(
     'user/login',
     async (userCred: UserCredentials) => {
         const user = await userService.login(userCred)
-        console.log('from slicer', user);
+        // console.log('from slicer', user);
         return user
     }
 )
@@ -32,6 +32,15 @@ export const logout = createAsyncThunk(
     'user/logout',
     async (sessionId: string) => {
         await userService.logout(sessionId)
+    }
+)
+
+
+export const updateUser = createAsyncThunk(
+    'user/update',
+    async (userUpdetedDetails: { field: string, updatedValue: string, currnetPassword: string }) => {
+        const user = await userService.UpdaeUser(userUpdetedDetails.field, userUpdetedDetails.updatedValue, userUpdetedDetails.currnetPassword)
+        return user
     }
 )
 
@@ -50,7 +59,21 @@ export const userSlice = createSlice({
             .addCase(login.fulfilled, (state, action: PayloadAction<MinUser | null>) => {
                 state.user = action.payload
             })
+            .addCase(login.rejected, (state) => {
+                state.user = null
+            })
             .addCase(logout.fulfilled, (state) => {
+                state.user = null
+            })
+            .addCase(updateUser.fulfilled, (state, action) => {
+                if (action.payload && state.user) state.user = {
+                    sessionId: state.user.sessionId,
+                    creatdedAt: state.user.creatdedAt,
+                    ...action.payload
+                }
+                else state.user = null
+            })
+            .addCase(updateUser.rejected, (state) => {
                 state.user = null
             })
     }

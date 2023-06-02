@@ -76,3 +76,20 @@ export interface Contact {
     email?: string,
     phone?: string,
 }
+
+export interface UserCredentials {
+    email: string,
+    password: string
+}
+
+export interface MinUser {
+    username: string,
+    email: string,
+    sessionId: string,
+    creatdedAt: string,
+    updatedAt: string
+}
+
+export interface User extends UserCredentials {
+    username: string
+}
