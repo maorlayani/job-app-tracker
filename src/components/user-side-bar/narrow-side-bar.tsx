@@ -4,7 +4,7 @@ import { UserIcon } from '../user-icon/user-icon'
 const StyledNarrowSideBar = styled.div`
     width: 20px;
     height: 80%;
-    background-color: #fff;
+    background-color: #dbb3fc;
     border-top-right-radius: 9px;
     border-bottom-right-radius: 9px;
     display: flex;
@@ -25,7 +25,7 @@ const UserIconContainer = styled.div<NarrowSideBarProps>`
     box-shadow: ${props => props.isSideBarOpen ? '0px 0px 3px 2px #cfcfcf' : '3px 1px 5px 0px #cfcfcf'};
     &:hover {
         cursor: pointer;
-        background-color: lightgrey;
+        background-color: #dbb3fc;
     }
     img {
         width: 35px;
