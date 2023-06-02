@@ -1,19 +1,25 @@
 import { NavLink } from "react-router-dom"
 import styled from "styled-components"
+// import { useAppSelector } from "../../hooks/redux-hooks"
+// import { RootState } from "../../store/store"
+// import { LoggedUserHeader } from "./logged-user-header"
 
 export const StyledAppHeader = styled.div`
     background-color: #fff;
     width: 100%;
     height: 70px;
-    position: fixed;
+    position: sticky;
+    top:0;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     box-shadow: -1px -1px 3px 2px #cfcfcf;
-    z-index: 10;  
+    padding: 0 4em;
+    z-index: 100;  
 `
 export const LinksWrapper = styled.div`
     display: flex;
-    margin: 0 4em;
+   
     @media (max-width: 500px) {
         margin: 0;
         width: 100%;
@@ -40,6 +46,8 @@ export const StyledNavLink = styled(NavLink)`
     }   
 `
 export const AppHeader = () => {
+    // const user = useAppSelector((state: RootState) => state.user.user)
+
     return (
         <StyledAppHeader>
             <LinksWrapper>
@@ -48,6 +56,7 @@ export const AppHeader = () => {
                 <StyledNavLink to={'/add'}>Add Application</StyledNavLink>
                 <StyledNavLink to={'/archive'}>Archive</StyledNavLink>
             </LinksWrapper>
+            {/* {user && <LoggedUserHeader user={user} />} */}
         </StyledAppHeader>
     )
 }

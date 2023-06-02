@@ -15,13 +15,19 @@ const growDown = keyframes`
         transform: translateY(0);
     }
 `
-const StyledApplicationFilter = styled.div`
+interface StyledApplicationFilterProps {
+    isFilterOpen: boolean
+}
+const StyledApplicationFilter = styled.div<StyledApplicationFilterProps>`
     width: 100%;
     margin-block-end: .5em;
-    box-shadow: -1px -1px 3px 2px #cfcfcf;
+    box-shadow: ${props => props.isFilterOpen ? `-1px -1px 3px 2px #cfcfcf` : ``};
     display: flex;
     flex-direction: column;
     background-color: #e8e4e41f;
+    // position: sticky;
+    // top: 70px;
+    // z-index: 100;  
 `
 const MainContent = styled.div`
     display: flex;
@@ -30,7 +36,7 @@ const MainContent = styled.div`
     padding: 1em 0 0 0;
     gap: 1em;
     color: #00000099;
-    animation: ${growDown} 300ms;
+    // animation: ${growDown} 300ms;
     @media (max-width: 500px) {
         gap: .5em;
     }
@@ -62,7 +68,7 @@ export const ApplicationFilter = () => {
     }
 
     return (
-        <StyledApplicationFilter>
+        <StyledApplicationFilter isFilterOpen={isFilterOpen}>
             {isFilterOpen && <MainContent>
                 <FilterTextSearch searchInput={searchInput} setSearchInput={setSearchInput} />
                 <VerticaLine></VerticaLine>

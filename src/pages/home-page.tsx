@@ -3,11 +3,9 @@ import { HomePageContent } from '../components/home-page-cmps/home-page-content'
 import { HomePageSlider } from '../components/home-page-cmps/slider'
 
 const StyledHomePage = styled.div`
-    height: 100vh;
+    min-height: calc(100vh - 70px);
     width: 100%;
-    // background-image: linear-gradient(45deg, #D4DCE1, #fff);
     background-color: #f9fafc;
-    overflow-x: auto;
 `
 const MainContentContainer = styled.div`
     display: flex;
@@ -15,14 +13,14 @@ const MainContentContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 1em;
-    margin: 120px 50px 120px 50px;
+    padding: 40px 0;
     @media (max-width: 500px) {
-        margin: 120px 20px 100px 20px;
+        padding: 40px 20px;
         gap: 3em;
     }
     @media (min-width: 1270px) {
         display: flex;
-    flex-direction: row;
+        flex-direction: row;
     }
 `
 

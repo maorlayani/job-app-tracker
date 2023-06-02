@@ -9,13 +9,11 @@ import { Outlet } from "react-router-dom"
 import background from '../assets/svg/stacked-peaks-haikei-1.svg'
 import Globalfonts from '../assets/global-fonts'
 import { ActivityLog } from "../components/activity-log/activity-log"
+import { UserSideBar } from "../components/user-side-bar/user-side-bar"
 
 const StyledTrackerBoard = styled.div`
     display: flex;
-    height: 100vh;
-    // position: relative;
-    overflow: hidden;
-    /* background-image: url(${background}); */
+    min-height: calc(100vh - 70px);
     background-image: linear-gradient(45deg, #D4DCE1, #fff);
     background-size: cover;
     background-position: center;
@@ -25,11 +23,9 @@ const MainContentContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-block-start: 70px;
 `
 const CardListContainer = styled.div`
     display: flex;
-    overflow-Y: auto;
     gap: .5em;
 `
 
@@ -53,6 +49,7 @@ export const TrackerBoard = () => {
         <React.Fragment>
             <StyledTrackerBoard>
                 {/* <Globalfonts /> */}
+                <UserSideBar />
                 <MainContentContainer>
                     <ApplicationFilter />
                     <CardListContainer>

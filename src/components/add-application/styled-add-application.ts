@@ -9,24 +9,20 @@ export const StyledAddApplication = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    /* background-image: url(${background}); */
+    min-height: calc(100vh - 70px);
     background-image: linear-gradient(45deg, #D4DCE1, #fff);
-
     background-size: cover;
     background-position: center;
-    overflow: auto;
+    padding-block-start: 40px;
     h3 {
         align-self: 'flex-start';
-        /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
         margin-inline-end: 2em;
-        /* margin: 1em 0 .2em;  */
         font-size: 2em;
     }
 `
 
 export const AddApplicationTitleWarpper = styled(FlexRowCenterContainer)`
-       margin-block-start: 90px;
+    //    margin-block-start: 90px;
 `
 
 export const StyledAddApplicationForm = styled.form`
@@ -34,9 +30,6 @@ export const StyledAddApplicationForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    // padding: 30px 0;
-    /* box-shadow: 0 1px 3px 1px black; */
-    /* box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149); */
     border-radius: 12px;
     margin: 2em 0;
 `

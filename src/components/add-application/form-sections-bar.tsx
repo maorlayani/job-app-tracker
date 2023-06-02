@@ -8,7 +8,7 @@ const StyledFormProgressBar = styled.div`
     width: 80%;
     height: 30px;
     border-radius: 9px;
-    margin-block-start: 120px;
+    // margin-block-start: 120px;
     &:hover {
         cursor: pointer;
     }
