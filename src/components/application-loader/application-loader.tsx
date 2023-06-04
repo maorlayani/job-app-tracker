@@ -1,13 +1,14 @@
-import { LogoLoader, RectangleLoader, StyledApplicationLoader, TitleLoader } from "./styled-application-loader"
+import { ConetntContainer, LogoLoader, RectangleLoader, StyledApplicationLoader, SubTitleLoader, TitleLoader } from "./styled-application-loader"
 
 export const ApplicationLoader = () => {
     return <StyledApplicationLoader>
         <LogoLoader></LogoLoader>
-        {/* <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}> */}
-        <div style={{ display: 'flex', flexDirection: 'column', flexGrow: '1', gap: '.5em' }}>
+        <ConetntContainer>
             <TitleLoader></TitleLoader>
+            <SubTitleLoader></SubTitleLoader>
             <RectangleLoader></RectangleLoader>
             <RectangleLoader></RectangleLoader>
-        </div>
+            <RectangleLoader></RectangleLoader>
+        </ConetntContainer>
     </StyledApplicationLoader>
 }
