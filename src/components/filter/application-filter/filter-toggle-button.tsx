@@ -10,6 +10,7 @@ const StyledFilterToggleButton = styled.div`
     height: 24px;
     witdh: 24px;
     padding: .25em;
+    margin: .5em 0;
     color: #00000099;
     &:hover{
         cursor: pointer;
@@ -22,7 +23,8 @@ const OpenFilterButton = styled(StyledResetButton)`
     font-size: .7em;
     min-width: fit-content;
     margin-inline-end: 10px;
-    svg{
+    padding: .8rem;
+    svg {
        margin-block-end: 3px;
     }
 `

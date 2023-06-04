@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-// import { data } from '../../data/data'
 import { Application, DraftApplication, FilterBy, FilterModal, Technology } from '../../models/interfaces'
 import { trackerService } from '../../services/tracker.service'
 
@@ -11,7 +10,9 @@ interface TrackerState {
     filterModal: FilterModal,
     isLoading: boolean,
     technologies: Technology[]
-    techSearch: string
+    techSearch: string,
+    location: string[],
+    position: string[]
 }
 
 const initialState: TrackerState = {
@@ -27,7 +28,9 @@ const initialState: TrackerState = {
     filterModal: { isModalOpen: false, type: '' },
     isLoading: false,
     technologies: [],
-    techSearch: ''
+    techSearch: '',
+    location: [],
+    position: []
 }
 
 export const getApplication = createAsyncThunk(
@@ -85,8 +88,12 @@ export const trackerSlice = createSlice({
         },
         setTechnologiesSearch: (state, action: PayloadAction<string>) => {
             state.techSearch = action.payload
-            // console.log( state.technologies);
-
+        },
+        setLoaction: (state, action: PayloadAction<string[]>) => {
+            state.location = action.payload
+        },
+        setPosition: (state, action: PayloadAction<string[]>) => {
+            state.position = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -120,6 +127,8 @@ export const {
     setFilterBy,
     toggleFilterModal,
     toggleApplicationDetails,
-    setCurrentApplicationDetails } = trackerSlice.actions
+    setCurrentApplicationDetails,
+    setLoaction,
+    setPosition } = trackerSlice.actions
 
 export default trackerSlice.reducer;

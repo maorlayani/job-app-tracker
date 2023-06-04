@@ -4,32 +4,27 @@ import { setFilterBy } from "../../../store/reducers/tracker-slice"
 import { RootState } from "../../../store/store"
 import { StyledButton } from "../../styles/buttons.styled"
 import { FilterTextSearchProps } from "./interfaces-application-filter"
+import { Input } from "../../styles/input.styled"
 
 const StyledFilterTextSearch = styled.div`
     display: flex;
     gap: 1em;
+    width: 100%;
 `
-const StyledSearchInput = styled.input`
-    width: 440px;
+const StyledSearchInput = styled(Input)`
+    width: 100%;
+    height: 32px;
     border-radius: 6px;
-    outline: none;
-    border: none;
-    padding: .3em .5em;
     box-shadow: inset 0 0 0 1px #0000004c;
-    // font-family: inherit;
+    font-family: inherit;
     color: inherit;
+    font-size: .9rem;
     @media (max-width: 500px) {
         width: 265px;
-        height: 22px;
+        height: 30px;
     }
     @media (min-width: 800px) {
-        width: 500px;
-    }
-    @media (min-width: 1050px) {
-        width: 265px;
-    }
-    @media (min-width: 1270px) {
-        width: 530px;
+         width: 100%;
     }
 `
 export const StyledSearchButton = styled(StyledButton)`
@@ -45,18 +40,18 @@ export const StyledSearchButton = styled(StyledButton)`
     transition-property: background-color,box-shadow, color;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
     transition-duration: 167ms;
-    &:hover{
+    &:hover {
       background-color: #f5d5ff78;
       cursor: pointer;
         box-shadow: inset 0 0 0 2px #ae84d1;
     }
-    &:active{
+    &:active {
         box-shadow: inset 0 0 0 2px #906dac;
         color: #906dac;
         background-color: #f5d5ff78;
     }
    @media (max-width: 500px) {
-    height: 30px;
+        height: 30px;
     }  
 `
 

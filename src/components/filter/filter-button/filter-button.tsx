@@ -16,9 +16,7 @@ export const FilterButton: React.FC<FilterButtonProps> = ({ text, opt, isChecked
     })
 
     const onToggleFilterModal = (isModalOpen: boolean, type: string) => {
-        if (filterModal.type !== type) {
-            dispatch(toggleFilterModal({ isModalOpen: true, type }))
-        }
+        if (filterModal.type !== type) dispatch(toggleFilterModal({ isModalOpen: true, type }))
         else dispatch(toggleFilterModal({ isModalOpen, type }))
         setIsChecked(false)
     }

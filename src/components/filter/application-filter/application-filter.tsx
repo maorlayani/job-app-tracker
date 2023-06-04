@@ -5,7 +5,6 @@ import { FilterTextSearch } from "./filter-text-search"
 import { FilterButtonList } from "./filter-button-list"
 import { FilterToggleButton } from "./filter-toggle-button"
 import styled, { keyframes } from "styled-components"
-// import { UploadExcelFile } from "../../upload-excel-file"
 
 const growDown = keyframes`
     from {
@@ -25,24 +24,29 @@ const StyledApplicationFilter = styled.div<StyledApplicationFilterProps>`
     display: flex;
     flex-direction: column;
     background-color: #e8e4e41f;
-    // position: sticky;
-    // top: 70px;
-    // z-index: 100;  
+    align-items: center;
 `
 const MainContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1em 0 0 0;
+    padding: 1.5em 1.5em 0 1.5em;
     gap: 1em;
     color: #00000099;
+    width: 500px;
     // animation: ${growDown} 300ms;
     @media (max-width: 500px) {
         gap: .5em;
+        font-size: .9rem;
+        width: 370px;
+    }
+    @media (min-width: 800px) {
+        width: 700px;
     }
     @media (min-width: 1050px) {
         flex-direction: row;
         justify-content: center;
+        width: 1050px;
     }
 `
 const VerticaLine = styled.div`
