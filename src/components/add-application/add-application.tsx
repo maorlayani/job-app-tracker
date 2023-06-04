@@ -5,7 +5,6 @@ import { useAppDispatch } from "../../hooks/redux-hooks"
 import { useEffect, useState } from "react"
 import { trackerService } from "../../services/tracker.service"
 import { AddApplicationTitleWarpper, StyledAddApplication, StyledAddApplicationForm } from './styled-add-application'
-import { TechList } from '../add-application-modal/interface-add-application-modal'
 import { FormSectionsBar, FormSectionTxt } from './form-sections-bar'
 import styled, { keyframes } from 'styled-components'
 import { FirstSection } from './first-section'
@@ -13,6 +12,7 @@ import { SecondSection } from './second-section'
 import { ThirdSection } from './third-section'
 import { FourthSection } from './fourth-section'
 import { FormButtons } from './form-buttons'
+import { Technology } from '../../models/interfaces'
 
 const slideIn = keyframes`
     0% {
@@ -27,6 +27,8 @@ const SectionContainer = styled.div`
     width: 100%;
     animation: ${slideIn} .5s ease-out;
 `
+export type TechList = Technology[]
+
 export interface ApplicationDates {
     submittedAt: any,
     postedDate: any
@@ -73,15 +75,8 @@ export const AddApplication = () => {
     const onAddApplication = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault()
         application.technologies = [...techList]
-        // const test = dates.postedDate.toLocaleDateString('en-US')
-
-        // console.log(Date.parse(dates.postedDate));
-        // console.log(Date.parse(dates.submittedAt));
-
         application.postedDate = Date.parse(dates.postedDate)
         application.submittedAt = Date.parse(dates.submittedAt)
-        // console.log(application.submittedAt = dates.submittedAt);
-
         application.contact = {
             name: application.contactName,
             email: application.contactEmail,
@@ -152,7 +147,7 @@ export const AddApplication = () => {
             {selectedSection === FormSectionTxt.fourthSection && <SectionContainer>
                 <FourthSection register={register} />
             </SectionContainer>}
-            <FormButtons clearForm={clearForm} />
+            <FormButtons clearForm={clearForm} selectedSection={selectedSection} setSelectedSection={setSelectedSection} />
         </StyledAddApplicationForm>
 
     </StyledAddApplication >
