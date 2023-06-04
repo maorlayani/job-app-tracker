@@ -13,8 +13,12 @@ const StyledRightSideContent = styled.div`
 `
 const MainContainer = styled.div`
     display: flex;
+    flex-direction: column;
     width: 100%;
     gap: 1.5em;
+    @media (min-width: 650px) {
+        flex-direction: row;
+    }
 `
 const MapContainer = styled.div`
     display: flex;

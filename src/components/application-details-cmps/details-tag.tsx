@@ -72,7 +72,6 @@ export const DetailsTag: React.FC<DetailsTagProps> = ({ application, title, cont
 
     const toggleEditMode = () => {
         setIsEditMode(!isEditMode)
-        // console.log('toggle');
     }
     const onHandleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
         let value
@@ -85,7 +84,6 @@ export const DetailsTag: React.FC<DetailsTagProps> = ({ application, title, cont
         const applicationToUpdate = { ...application, [name]: value }
         dispatch(updateApplication(applicationToUpdate))
     }
-    // console.log('render');
 
     return (
         <StyledDetailsTag className={className} {...props}>
@@ -95,7 +93,6 @@ export const DetailsTag: React.FC<DetailsTagProps> = ({ application, title, cont
                 type={name === 'experience' ? 'number' : 'text'}
                 name={name}
                 value={name === 'experience' ? inputNumberValue : inputTextValue}
-                // value={application[name]}
                 onChange={onHandleChange}
                 onBlur={toggleEditMode}
                 autoFocus

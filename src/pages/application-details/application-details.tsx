@@ -14,7 +14,7 @@ const StyledApplicationFullDetails = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 10;
+    z-index: 100;
     background-color: #00000099;
     display: flex;
     justify-content: center;
@@ -31,6 +31,7 @@ const grow = keyframes`
 const FullDetailsContent = styled.div`
     background-color: #fff;
     width: 950px;
+    // height: fit-content;
     border-radius: 12px;
     margin: 40px 0;
     display: flex;
@@ -39,11 +40,17 @@ const FullDetailsContent = styled.div`
     overflow-y: auto;
     animation: ${grow} .8s forwards;
     transform-origin: 50% 50%;
+    overflow-x: hidden;
 `
 export const MainContainer = styled.div`
     display: flex;
     width: 90%;
+    flex-direction: column;
+
     margin-block-end: 2em;
+    @media (min-width: 650px) {
+        flex-direction: row;
+    }
 `
 
 export const ApplicationFullDetails = () => {

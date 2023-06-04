@@ -9,7 +9,6 @@ import TwitterIcon from '../../assets/svg/social/twitter.svg'
 const StyledContactTag = styled(StyledDetailsTag)`
 
 `
-
 const ContatTagContainer = styled.div`
     display: flex;
     align-items: center;
@@ -21,13 +20,13 @@ const ContactTagTitle = styled(TagTitle)`
 `
 const ContactTagContent = styled(TagContent)`
     font-size: .9em;
+    min-width: unset;
 `
 const TitleContainer = styled.div`
     display: flex;
     align-items: center;
-    // gap: .5em;
     a {
-        width:20px;
+        width: 20px;
         height: 20px;
         margin-inline-start: .8em;
     }

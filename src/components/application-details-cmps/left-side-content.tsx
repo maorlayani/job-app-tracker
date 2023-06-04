@@ -9,9 +9,12 @@ const StyledLeftSideContent = styled.div`
     display: flex;
     flex-direction: column;
     margin-inline-end: 3em;
-    min-width: 35%;
-    max-width: 35%;
+   width: 100%;
     box-sizing: border-box;
+    @media (min-width: 650px) {
+        min-width: 35%;
+    max-width: 35%;
+    }
 `
 interface LeftSideContentProps {
     application: Application
@@ -38,7 +41,8 @@ export const LeftSideContent: React.FC<LeftSideContentProps> = ({ application })
                     application={application}
                     content={application.positionUrl}
                     name={ApplicationKeys.positionUrl} />}
-            {application.contact !== undefined && <ContactTag contactDetails={application.contact} />}
+            {application.contact !== undefined &&
+                <ContactTag contactDetails={application.contact} />}
         </StyledLeftSideContent>
     )
 }
