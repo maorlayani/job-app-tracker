@@ -6,9 +6,6 @@ import { RootState } from '../store/store'
 import React, { useEffect } from "react"
 import { ApplicationFilter } from "../components/filter/application-filter/application-filter"
 import { Outlet } from "react-router-dom"
-import background from '../assets/svg/stacked-peaks-haikei-1.svg'
-import Globalfonts from '../assets/global-fonts'
-import { ActivityLog } from "../components/activity-log/activity-log"
 import { UserSideBar } from "../components/user-side-bar/user-side-bar"
 
 const StyledTrackerBoard = styled.div`
@@ -48,7 +45,6 @@ export const TrackerBoard = () => {
     return (
         <React.Fragment>
             <StyledTrackerBoard>
-                {/* <Globalfonts /> */}
                 <UserSideBar />
                 <MainContentContainer>
                     <ApplicationFilter />
@@ -56,7 +52,6 @@ export const TrackerBoard = () => {
                         <CardList />
                     </CardListContainer>
                 </MainContentContainer>
-                {/* <ActivityLog /> */}
             </StyledTrackerBoard>
             <Outlet />
         </React.Fragment>

@@ -32,6 +32,9 @@ const ContentContainer = styled.div`
 `
 const FrontCardButton = styled(CardButton)`
     margin: 0;
+    transition-property: background-color,border, color;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: 167ms;
 `
 
 export const FrontCard: React.FC<FrontCardProps> = ({ application }) => {

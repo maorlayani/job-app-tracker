@@ -6,7 +6,7 @@ import { removeApplication, updateApplication } from '../../store/reducers/track
 import { useAppDispatch } from '../../hooks/redux-hooks'
 import { Application } from '../../models/interfaces'
 import { useState } from 'react'
-import { ActionModal } from '../action-modal.tsx/action-modal'
+import { ActionModal } from '../action-modal/action-modal'
 
 interface ArchiveButtonProps {
     afterContent?: string
