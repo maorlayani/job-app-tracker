@@ -5,7 +5,7 @@ import { FormSectionTxt } from "../components/add-application/form-sections-bar"
 
 const BASE_URL = process.env.NODE_ENV === 'production'
     // ? '/api/'
-    ? 'https://job-app-tracker-backend-na59df0vm-maorlayani.vercel.app/api/'
+    ? 'https://job-app-tracker-backend.vercel.app/api/'
     : '//localhost:3030/api/'
 
 var axios = Axios.create({
