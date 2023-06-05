@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import { App } from './app';
+import { Root } from './root';
 import { HashRouter as Router } from 'react-router-dom'
 import * as serviceWorkerRegistration from './services/service-worker/serviceWorkerRegistration';
 import { Provider } from 'react-redux'
@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <Router>
     <Provider store={store}>
-      <App />
+      <Root />
     </Provider >
   </Router>
 )

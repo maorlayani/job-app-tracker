@@ -16,7 +16,7 @@ const AppStyle = styled.div`
     margin: 0;
 `
 
-export const App = () => {
+export const Root = () => {
   return (
     <AppStyle className="App">
       <Globalfonts />
