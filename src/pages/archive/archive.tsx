@@ -4,8 +4,9 @@ import { ArchiveTable } from "../../components/archive-table/archive-table"
 const StyledArchive = styled.div`
     width: 100%;
     min-height: calc(100vh - 70px);
-        background-image: linear-gradient(45deg,#ded2e2,#fff);
+    background-image: linear-gradient(45deg,#ded2e2,#fff);
     padding-block-start: 40px;
+    overflow-y: auto;
 `
 const TableContainer = styled.div`
     display: flex;

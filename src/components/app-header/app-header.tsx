@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom"
 import styled from "styled-components"
-// import { useAppSelector } from "../../hooks/redux-hooks"
-// import { RootState } from "../../store/store"
-// import { LoggedUserHeader } from "./logged-user-header"
+import { Hamburger } from "./hamburger"
+import { useState } from "react"
+import { DropdownMenu } from "./dropdown-menu"
 
 export const StyledAppHeader = styled.div`
     background-color: #fff;
@@ -16,14 +16,24 @@ export const StyledAppHeader = styled.div`
     box-shadow: -1px -1px 3px 2px #cfcfcf;
     padding: 0 4em;
     z-index: 100;  
+    @media (max-width: 500px) {
+        justify-content: center;
+     }
+`
+const StyledTitle = styled.div`
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: .7px;
+    color: #a6a5a5;
+    display: none;
+    @media (max-width: 500px) {
+        display: block;
+    }
 `
 export const LinksWrapper = styled.div`
     display: flex;
-   
     @media (max-width: 500px) {
-        margin: 0;
-        width: 100%;
-        justify-content: space-between;
+        display: none;
      }
 `
 export const StyledNavLink = styled(NavLink)`
@@ -46,17 +56,18 @@ export const StyledNavLink = styled(NavLink)`
     }   
 `
 export const AppHeader = () => {
-    // const user = useAppSelector((state: RootState) => state.user.user)
-
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     return (
         <StyledAppHeader>
+            <Hamburger isDropdownOpen={isDropdownOpen} setIsDropdownOpen={setIsDropdownOpen} />
+            <DropdownMenu isDropdownOpen={isDropdownOpen} setIsDropdownOpen={setIsDropdownOpen} />
+            <StyledTitle>Job App Tracker</StyledTitle>
             <LinksWrapper>
                 <StyledNavLink to={'/'}>Home</StyledNavLink>
                 <StyledNavLink to={'/tracker'}>Tracker</StyledNavLink>
                 <StyledNavLink to={'/add'}>Add Application</StyledNavLink>
                 <StyledNavLink to={'/archive'}>Archive</StyledNavLink>
             </LinksWrapper>
-            {/* {user && <LoggedUserHeader user={user} />} */}
         </StyledAppHeader>
     )
 }
