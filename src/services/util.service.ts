@@ -19,7 +19,11 @@ const getTimeFromNow = (date: number | string) => {
     // console.log('FormattedDate:', FormattedDate);
     return dayjs(date).fromNow()
 }
-
+const fromatDateToNumber = (formatDate: string): number => {
+    const [day, month, year] = formatDate.split('/')
+    const dateObject = new Date(`${month}/${day}/${year}`)
+    return dateObject.getTime()
+}
 const checkIsPlural = (num: number, noun: string) => {
     if (num <= 1) return `${num} ${noun}`
     return `${num} ${noun}s`
@@ -36,5 +40,6 @@ export const utilService = {
     makeId,
     getTimeFromNow,
     checkIsPlural,
-    removeDuplicates
+    removeDuplicates,
+    fromatDateToNumber
 }

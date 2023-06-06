@@ -46,18 +46,20 @@ export const BottomContent: React.FC<BottomContentProps> = ({ application }) => 
                             setApplicationTechnologies={() => { }} />)}
                 </TechnologiesContainer>
             </>}
-            {application.companyDesc &&
-                <DetailsDescTag title='Company Description'
-                    application={application}
-                    content={application.companyDesc}
-                    name={ApplicationKeys.companyDesc}
-                    isTextArea={true} />}
-            {application.positionDesc &&
-                <DetailsDescTag title='Position Description'
-                    application={application}
-                    content={application.positionDesc}
-                    name={ApplicationKeys.positionDesc}
-                    isTextArea={true} />}
+            {/* {application.companyDesc && */}
+            <DetailsDescTag title='Company Description'
+                application={application}
+                content={application.companyDesc || ''}
+                name={ApplicationKeys.companyDesc}
+                isTextArea={true} />
+            {/* } */}
+            {/* {application.positionDesc && */}
+            <DetailsDescTag title='Position Description'
+                application={application}
+                content={application.positionDesc || ''}
+                name={ApplicationKeys.positionDesc}
+                isTextArea={true} />
+            {/* } */}
             {/* <TagTitle>Timeline</TagTitle>
             <ProgressBar application={application} /> */}
         </StyledBottomContent>
