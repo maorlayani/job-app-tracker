@@ -1,23 +1,10 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { CallToActionButton, StyledButton, StyledRemoveButton } from '../styles/buttons.styled'
+import { CallToActionButton, StyledRemoveButton } from '../styles/buttons.styled'
 import { RootState } from '../../store/store'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
-import { StyledResetButton } from '../styles/buttons.styled'
 import { logout } from '../../store/reducers/user-slice'
 
-// const CallToActionButton = styled(StyledButton)`
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     width: 150px;
-//     font-size: 1.1em;
-//     text-decoration: none;
-// `
-// const CallToActionButton = styled(StyledButton)`
-//     width: 150px;
-//     font-size: 1.1em;
-// `
 const LogoutButton = styled(StyledRemoveButton)`
     width: 150px;
     font-size: 1.1em;

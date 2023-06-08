@@ -4,6 +4,7 @@ import { useAppSelector } from "../../hooks/redux-hooks"
 import { RootState } from "../../store/store"
 import { ApplicationLoader } from "../application-loader/application-loader"
 import { Card } from "../card/card"
+import { CardPlaceholder } from "../card/card-placeholder"
 
 const StyledCardList = styled.div`
     padding:  .5em ;
@@ -52,7 +53,11 @@ export const CardList = () => {
         }
         return applications.filter(app => !app.isPinned && !app.isArchived)
     }
-
+    const checkIsActiveApplication = () => {
+        const activeApplication = applications.filter(app => !app.isArchived)
+        return activeApplication.length === 0
+    }
+    if (checkIsActiveApplication()) return <CardPlaceholder />
     return (
         <StyledCardList>
             {isPinned && <React.Fragment>
