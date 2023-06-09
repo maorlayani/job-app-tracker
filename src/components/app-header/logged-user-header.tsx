@@ -17,15 +17,21 @@ const ContentTag = styled.span`
     font-weight: 700; 
 `
 interface LoggedUserHeaderProps {
-    user: MinUser
+    user: MinUser | null
 }
 export const LoggedUserHeader: React.FC<LoggedUserHeaderProps> = ({ user }) => {
+    console.log(user);
+
     return (
         <StyledLoggedUserHeader>
             <UserIcon />
             <ContentContainer>
-                <ContentTag>{user.username}</ContentTag>
-                <ContentTag>{user.email}</ContentTag>
+                {user ? <>
+                    <ContentTag>{user.username}</ContentTag>
+                    <ContentTag>{user.email}</ContentTag>
+                </>
+                    : <ContentTag>Hello Guest</ContentTag>
+                }
             </ContentContainer>
         </StyledLoggedUserHeader>
     )

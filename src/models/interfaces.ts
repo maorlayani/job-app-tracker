@@ -83,11 +83,13 @@ export interface UserCredentials {
 }
 
 export interface MinUser {
+    id: string,
     username: string,
     email: string,
     sessionId: string,
     creatdedAt: string,
-    updatedAt: string
+    updatedAt: string,
+    JWT: string
 }
 
 export interface User extends UserCredentials {

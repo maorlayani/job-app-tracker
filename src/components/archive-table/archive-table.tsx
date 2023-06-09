@@ -36,6 +36,8 @@ export const ArchiveTable = () => {
     const [cellSortType, setCellSortType] = useState<HeaderTitles>('' as HeaderTitles)
     const [archiveApplications, setArchiveApplications] = useState<Application[]>([])
     const applications = useAppSelector((state: RootState) => state.tracker.applications)
+    const user = useAppSelector((state: RootState) => state.user.user)
+
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -48,7 +50,7 @@ export const ArchiveTable = () => {
 
     const loadApplications = async () => {
         try {
-            await dispatch(getApplication())
+            await dispatch(getApplication(user?.JWT))
         } catch (err) {
             console.error('Cannot load cards', err)
         }

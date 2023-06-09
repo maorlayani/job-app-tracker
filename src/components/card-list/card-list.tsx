@@ -37,7 +37,7 @@ const CardListUl = styled.ul`
 `
 export const CardList = () => {
     const applications = useAppSelector((state: RootState) => state.tracker.applications)
-    const isLoading = useAppSelector((state: RootState) => state.tracker.isLoading)
+    const loading = useAppSelector((state: RootState) => state.tracker.loading)
     const [isPinned, setIsPinned] = useState(false)
 
     useEffect(() => {
@@ -55,7 +55,7 @@ export const CardList = () => {
     }
     const checkIsActiveApplication = () => {
         const activeApplication = applications.filter(app => !app.isArchived)
-        return activeApplication.length === 0
+        return activeApplication.length === 0 || applications.length === 0
     }
     if (checkIsActiveApplication()) return <CardPlaceholder />
     return (
@@ -63,7 +63,7 @@ export const CardList = () => {
             {isPinned && <React.Fragment>
                 <CardListTitle>Pinned Applications</CardListTitle>
                 <CardListUl>
-                    {isLoading && isPinned && <ApplicationLoader />}
+                    {loading.type === 'add' && loading.isLoading && isPinned && <ApplicationLoader />}
                     {filteredApplicationByPinned(true).map(app => {
                         return <Card key={app._id} application={app} />
                     })}
@@ -71,7 +71,7 @@ export const CardList = () => {
             </React.Fragment>}
             {isPinned && <CardListTitle>Other Applications</CardListTitle>}
             <CardListUl>
-                {isLoading && !isPinned && <ApplicationLoader />}
+                {loading.type === 'add' && loading.isLoading && !isPinned && <ApplicationLoader />}
                 {filteredApplicationByPinned(false).map(app => {
                     return <Card key={app._id} application={app} />
                 })}

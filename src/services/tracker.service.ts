@@ -4,7 +4,6 @@ import { ElementType } from "../models/enums";
 import { FormSectionTxt } from "../components/add-application/form-sections-bar";
 
 const BASE_URL = process.env.NODE_ENV === 'production'
-    // ? '/api/'
     ? 'https://job-app-tracker-backend.vercel.app/api/'
     : '//localhost:3030/api/'
 
@@ -28,10 +27,11 @@ async function getApplications(filterByFromUser: FilterBy = {
     position: [],
     status: [],
     searchInput: ''
-}): Promise<Application[]> {
+}, userJWT: string | undefined): Promise<Application[]> {
     try {
-        const filterBy = { filterBy: JSON.stringify(filterByFromUser) }
-        const { data } = await axios.get(`${BASE_URL}tracker/`, { params: filterBy })
+        const filterBy = JSON.stringify(filterByFromUser)
+        const JWT = JSON.stringify(userJWT)
+        const { data } = await axios.get(`${BASE_URL}tracker/`, { params: { filterBy, JWT } })
         const applications: Application[] = data
         return applications
     } catch (err: any) {
@@ -40,22 +40,14 @@ async function getApplications(filterByFromUser: FilterBy = {
     }
 }
 
-async function saveApplication(application: Application | DraftApplication): Promise<any> {
+async function saveApplication(application: Application | DraftApplication, userJWT: string | undefined): Promise<any> {
     try {
         if (application._id) {
             const { data } = await axios.put(`${BASE_URL}tracker/${application._id}`, application)
             return data
         } else {
             const applicationToSave = { ...application }
-            // if (applicationToSave.postedDate) {
-            //     const formatPostedAt = new Date(applicationToSave.postedDate)
-            //     applicationToSave.postedDate = formatPostedAt.getTime()
-            // }
-            // if (applicationToSave.submittedAt) {
-            //     const formatSubmittedAt = new Date(applicationToSave.submittedAt)
-            //     applicationToSave.submittedAt = formatSubmittedAt.getTime()                
-            // }
-            const { data } = await axios.post(`${BASE_URL}tracker/`, applicationToSave)
+            const { data } = await axios.post(`${BASE_URL}tracker/`, { application: applicationToSave, JWT: userJWT })
             return data
         }
     } catch (err: any) {

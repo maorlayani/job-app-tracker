@@ -1,7 +1,6 @@
 // import Axios from 'axios'
 import { User, UserCredentials } from "../models/interfaces";
 import { Client, Account, ID, Avatars } from 'appwrite';
-
 import { APPWRITE_PROJECT_ID } from '../secret';
 
 const client = new Client();
@@ -12,50 +11,53 @@ client
     .setProject(APPWRITE_PROJECT_ID);
 const account = new Account(client);
 
-// const BASE_URL = process.env.NODE_ENV === 'production'
-//     ? '/api/'
-//     : '//localhost:3030/api/'
-
-
-// var axios = Axios.create({
-//     withCredentials: true
-// })
-
 export const userService = {
     signup,
     login,
     logout,
     getUserInitials,
-    UpdaeUser
+    UpdateUser,
+    getLoggedInUser
 }
 
 async function signup(userCred: User) {
     try {
         const res = await account.create(ID.unique(), userCred.email, userCred.password, userCred.username)
         if (res.status) {
-            const session = await setSessionUser({ email: userCred.email, password: userCred.password })
-            return { username: res.name, email: res.name, sessionId: session.$id, creatdedAt: res.$createdAt, updatedAt: res.$updatedAt }
+            const session = await setUserSession({ email: userCred.email, password: userCred.password })
+            const userJWT = await account.createJWT()
+            const user = {
+                id: res.$id,
+                username: res.name,
+                email: res.email,
+                sessionId: session.$id,
+                creatdedAt: res.$createdAt,
+                updatedAt: res.$updatedAt,
+                JWT: userJWT.jwt
+            }
+            return user
         }
         return null
     } catch (err) {
-        console.error('Cannot add user', err)
+        console.error('Cannot create user', err)
         throw (err)
     }
 }
 
 async function login(userCred: UserCredentials) {
     try {
-        const session = await setSessionUser(userCred)
+        const session = await setUserSession(userCred)
         const loggedInUser = await getLoggedInUser()
         if (loggedInUser) {
-            console.log('loggedInUser', loggedInUser);
-
+            const userJWT = await account.createJWT()
             const user = {
+                id: loggedInUser.$id,
                 username: loggedInUser.name,
                 email: loggedInUser.email,
                 sessionId: session.$id,
                 creatdedAt: loggedInUser.$createdAt,
-                updatedAt: loggedInUser.$updatedAt
+                updatedAt: loggedInUser.$updatedAt,
+                JWT: userJWT.jwt
             }
             return user
         }
@@ -65,7 +67,6 @@ async function login(userCred: UserCredentials) {
         throw (err)
     }
 }
-
 async function logout(sessionId: string) {
     try {
         await account.deleteSession(sessionId)
@@ -74,42 +75,40 @@ async function logout(sessionId: string) {
         throw (err)
     }
 }
-
-function getUserInitials(username: string) {
-    const res = avatars.getInitials(username, 40, 40)
-    return res.href
-}
-
-async function setSessionUser(userCred: UserCredentials) {
+async function setUserSession(userCred: UserCredentials) {
     try {
-        const sessionUser = await account.createEmailSession(userCred.email, userCred.password)
-        // const JWT = await account.createJWT()
-        // console.log(JWT);
-        return sessionUser
+        const userSession = await account.createEmailSession(userCred.email, userCred.password)
+        return userSession
     } catch (err) {
-        console.error('Cannot login', err)
         throw (err)
     }
 }
 
 async function getLoggedInUser() {
     try {
-        const res = await account.get()
-        console.log('res', res);
-
-        return res
+        const user = await account.get()
+        return user
     } catch (err) {
         console.error('Cannot get logged in user', err)
         throw (err)
     }
 }
-async function UpdaeUser(field: string, updatedValue: string, currnetPassword: string) {
+async function UpdateUser(field: string, updatedValue: string, currnetPassword: string) {
     try {
         let res
-        if (field === 'name') res = await account.updateName(updatedValue)
-        else if (field === 'email') res = await account.updateEmail(updatedValue, currnetPassword)
-        else if (field === 'password') res = await account.updatePassword(updatedValue, currnetPassword)
-        console.log('res', res);
+        switch (field) {
+            case 'name':
+                res = await account.updateName(updatedValue)
+                break;
+            case 'email':
+                res = await account.updateEmail(updatedValue, currnetPassword)
+                break;
+            case 'password':
+                res = await account.updatePassword(updatedValue, currnetPassword)
+                break;
+            default:
+                break;
+        }
         if (res) {
             return {
                 username: res.name,
@@ -122,4 +121,8 @@ async function UpdaeUser(field: string, updatedValue: string, currnetPassword: s
         console.error(`Cannot update user ${field} logged in user`, err)
         throw (err)
     }
+}
+function getUserInitials(username: string) {
+    const res = avatars.getInitials(username, 40, 40)
+    return res.href
 }

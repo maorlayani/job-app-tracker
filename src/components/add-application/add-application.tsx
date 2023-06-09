@@ -1,7 +1,7 @@
 import { useFormRegister } from '../../hooks/useFormRegister'
 import { useNavigate, useParams } from "react-router-dom"
 import { addApplication, toggleApplicationDetails, updateApplication } from "../../store/reducers/tracker-slice"
-import { useAppDispatch } from "../../hooks/redux-hooks"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks"
 import { useEffect, useState } from "react"
 import { trackerService } from "../../services/tracker.service"
 import { AddApplicationTitleWarpper, StyledAddApplication, StyledAddApplicationForm } from './styled-add-application'
@@ -13,6 +13,8 @@ import { ThirdSection } from './third-section'
 import { FourthSection } from './fourth-section'
 import { FormButtons } from './form-buttons'
 import { Technology } from '../../models/interfaces'
+import { RootState } from '../../store/store'
+import { UserSideBar } from '../user-side-bar/user-side-bar'
 
 const slideIn = keyframes`
     0% {
@@ -37,6 +39,8 @@ export const AddApplication = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const params = useParams()
+    const user = useAppSelector((state: RootState) => state.user.user)
+
     const [selectedSection, setSelectedSection] = useState<FormSectionTxt>(FormSectionTxt.firstSection);
     const [techList, setTechList] = useState<TechList>([])
     const [dates, setDates] = useState<ApplicationDates>({ submittedAt: '', postedDate: '' })
@@ -90,9 +94,9 @@ export const AddApplication = () => {
         console.log(application);
 
         if (application._id) {
-            dispatch(updateApplication(application))
+            dispatch(updateApplication({ application, JWT: user?.JWT }))
         } else {
-            dispatch(addApplication(application))
+            dispatch(addApplication({ application, JWT: user?.JWT }))
         }
         dispatch(toggleApplicationDetails())
         clearForm()
@@ -123,32 +127,36 @@ export const AddApplication = () => {
         setTechList([])
     }
 
-    return <StyledAddApplication>
-        <FormSectionsBar selectedSection={selectedSection} setSelectedSection={setSelectedSection} />
-        <StyledAddApplicationForm onSubmit={onAddApplication}>
+    return <>
+        <UserSideBar />
+        <StyledAddApplication>
 
-            {selectedSection === FormSectionTxt.firstSection && <SectionContainer>
-                <FirstSection
-                    register={register}
-                    exp={application.experience} />
-            </SectionContainer>}
+            <FormSectionsBar selectedSection={selectedSection} setSelectedSection={setSelectedSection} />
+            <StyledAddApplicationForm onSubmit={onAddApplication}>
 
-            {selectedSection === FormSectionTxt.secondSection && <SectionContainer>
-                <SecondSection
-                    register={register}
-                    ApplicationTechnologies={techList}
-                    setTechList={setTechList} />
-            </SectionContainer>}
+                {selectedSection === FormSectionTxt.firstSection && <SectionContainer>
+                    <FirstSection
+                        register={register}
+                        exp={application.experience} />
+                </SectionContainer>}
 
-            {selectedSection === FormSectionTxt.thirdSection && <SectionContainer>
-                <ThirdSection setDates={setDates} dates={dates} />
-            </SectionContainer>}
+                {selectedSection === FormSectionTxt.secondSection && <SectionContainer>
+                    <SecondSection
+                        register={register}
+                        ApplicationTechnologies={techList}
+                        setTechList={setTechList} />
+                </SectionContainer>}
 
-            {selectedSection === FormSectionTxt.fourthSection && <SectionContainer>
-                <FourthSection register={register} />
-            </SectionContainer>}
-            <FormButtons clearForm={clearForm} selectedSection={selectedSection} setSelectedSection={setSelectedSection} />
-        </StyledAddApplicationForm>
+                {selectedSection === FormSectionTxt.thirdSection && <SectionContainer>
+                    <ThirdSection setDates={setDates} dates={dates} />
+                </SectionContainer>}
 
-    </StyledAddApplication >
+                {selectedSection === FormSectionTxt.fourthSection && <SectionContainer>
+                    <FourthSection register={register} />
+                </SectionContainer>}
+                <FormButtons clearForm={clearForm} selectedSection={selectedSection} setSelectedSection={setSelectedSection} />
+            </StyledAddApplicationForm>
+
+        </StyledAddApplication >
+    </>
 }

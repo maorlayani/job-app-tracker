@@ -29,14 +29,15 @@ const CardListContainer = styled.div`
 export const TrackerBoard = () => {
     const dispatch = useAppDispatch()
     const filterBy = useAppSelector((state: RootState) => state.tracker.filterBy)
+    const user = useAppSelector((state: RootState) => state.user.user)
 
     useEffect(() => {
         loadApplications()
-    }, [filterBy.location, filterBy.position, filterBy.status, filterBy.searchInput])
+    }, [filterBy.location, filterBy.position, filterBy.status, filterBy.searchInput, user])
 
     const loadApplications = async () => {
         try {
-            await dispatch(getApplication())
+            await dispatch(getApplication(user?.JWT))
         } catch (err) {
             console.error('Cannot load cards', err)
         }

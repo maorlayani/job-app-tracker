@@ -3,10 +3,11 @@ import { MdRestore } from 'react-icons/md'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { CardButton } from '../styles/buttons.styled'
 import { removeApplication, updateApplication } from '../../store/reducers/tracker-slice'
-import { useAppDispatch } from '../../hooks/redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { Application } from '../../models/interfaces'
 import { useState } from 'react'
 import { ActionModal } from '../action-modal/action-modal'
+import { RootState } from '../../store/store'
 
 interface ArchiveButtonProps {
     afterContent?: string
@@ -67,6 +68,7 @@ interface TableActionCellProps {
 export const TableActionCell: React.FC<TableActionCellProps> = ({ application }) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const dispatch = useAppDispatch()
+    const user = useAppSelector((state: RootState) => state.user.user)
 
     const onRemoveApplication = () => {
         dispatch(removeApplication(application._id))
@@ -79,7 +81,7 @@ export const TableActionCell: React.FC<TableActionCellProps> = ({ application })
         const applicationToUpdate: Application = { ...application }
         applicationToUpdate.isArchived = false
         applicationToUpdate.archivedDate = ''
-        dispatch(updateApplication(applicationToUpdate))
+        dispatch(updateApplication({ application: applicationToUpdate, JWT: user?.JWT }))
     }
 
     return (

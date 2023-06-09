@@ -8,7 +8,10 @@ interface TrackerState {
     isDetailsOpen: boolean,
     filterBy: FilterBy,
     filterModal: FilterModal,
-    isLoading: boolean,
+    loading: {
+        isLoading: boolean,
+        type: string
+    },
     technologies: Technology[]
     techSearch: string,
     location: string[],
@@ -26,7 +29,7 @@ const initialState: TrackerState = {
         searchInput: ''
     },
     filterModal: { isModalOpen: false, type: '' },
-    isLoading: false,
+    loading: { isLoading: false, type: '' },
     technologies: [],
     techSearch: '',
     location: [],
@@ -35,9 +38,9 @@ const initialState: TrackerState = {
 
 export const getApplication = createAsyncThunk(
     'tracker/getApplication',
-    async (arg, { getState }) => {
+    async (JWT: string | undefined, { getState }) => {
         const { tracker } = getState() as { tracker: TrackerState }
-        let applications: Application[] = await trackerService.getApplications(tracker.filterBy)
+        let applications: Application[] = await trackerService.getApplications(tracker.filterBy, JWT)
         applications = applications.sort((a, b) => b.submittedAt - a.submittedAt)
         return applications
     }
@@ -45,16 +48,16 @@ export const getApplication = createAsyncThunk(
 
 export const addApplication = createAsyncThunk(
     'tracker/addApplication',
-    async (application: DraftApplication) => {
-        const addedApplication = await trackerService.saveApplication(application)
+    async (playload: { application: DraftApplication, JWT: string | undefined }) => {
+        const addedApplication = await trackerService.saveApplication(playload.application, playload.JWT)
         return addedApplication
     }
 )
 
 export const updateApplication = createAsyncThunk(
     'tracker/updateApplication',
-    async (application: Application) => {
-        const updatedApplication = await trackerService.saveApplication(application)
+    async (playload: { application: Application, JWT: string | undefined }) => {
+        const updatedApplication = await trackerService.saveApplication(playload.application, playload.JWT)
         return updatedApplication
     }
 )
@@ -73,6 +76,9 @@ export const trackerSlice = createSlice({
     reducers: {
         setCurrentApplicationDetails: (state, action) => {
             state.applicationDetails = action.payload
+        },
+        resetApplications: (state) => {
+            state.applications = []
         },
         toggleApplicationDetails: (state) => {
             state.isDetailsOpen = !state.isDetailsOpen
@@ -100,15 +106,18 @@ export const trackerSlice = createSlice({
         builder
             .addCase(getApplication.fulfilled, (state, action: PayloadAction<Application[]>) => {
                 state.applications = [...action.payload]
+                state.loading = { isLoading: false, type: 'get' }
             })
-            .addCase(getApplication.rejected, (state, action) => {
+            .addCase(getApplication.pending, (state, action) => {
+                state.loading = { isLoading: true, type: 'get' }
+                // state.applications = []
             })
             .addCase(addApplication.pending, (state) => {
-                state.isLoading = true
+                state.loading = { isLoading: true, type: 'add' }
             })
             .addCase(addApplication.fulfilled, (state, action: PayloadAction<Application>) => {
                 state.applications.unshift(action.payload)
-                state.isLoading = false
+                state.loading = { isLoading: false, type: 'add' }
             })
             .addCase(updateApplication.fulfilled, (state, action: PayloadAction<Application>) => {
                 state.applications = state.applications.map(app =>
@@ -129,6 +138,7 @@ export const {
     toggleApplicationDetails,
     setCurrentApplicationDetails,
     setLoaction,
-    setPosition } = trackerSlice.actions
+    setPosition,
+    resetApplications } = trackerSlice.actions
 
 export default trackerSlice.reducer;

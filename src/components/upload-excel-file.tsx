@@ -41,7 +41,7 @@ export const UploadExcelFile = () => {
             const excelData = utils.sheet_to_json<DraftApplication>(worksheet)
             // console.log(excelData)
             excelData.forEach(app => {
-                dispatch(addApplication(app))
+                // dispatch(addApplication(app))
             })
         }
         reader.readAsArrayBuffer(file)

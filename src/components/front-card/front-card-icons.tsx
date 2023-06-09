@@ -1,10 +1,11 @@
 import { BsFillBookmarkDashFill } from "react-icons/bs"
 import styled from "styled-components"
-import { useAppDispatch } from "../../hooks/redux-hooks"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks"
 import { Application } from "../../models/interfaces"
 import { updateApplication } from "../../store/reducers/tracker-slice"
 import { StyledIconProps } from "../card/interfaces-card"
 import { FrontCardProps } from "./interfaces-front-card"
+import { RootState } from "../../store/store"
 
 export const StyeldFrontCardIcons = styled.div`
     display: flex;
@@ -28,12 +29,13 @@ export const StyledIcon = styled.div<StyledIconProps>`
 
 export const FrontCardIcons: React.FC<FrontCardProps> = ({ application }) => {
     const dispatch = useAppDispatch()
+    const user = useAppSelector((state: RootState) => state.user.user)
 
     const togglePinApplication = (ev: React.MouseEvent<HTMLDivElement>) => {
         ev.stopPropagation()
         const applicationToUpdate: Application = { ...application }
         applicationToUpdate.isPinned = !application.isPinned
-        dispatch(updateApplication(applicationToUpdate))
+        dispatch(updateApplication({ application: applicationToUpdate, JWT: user?.JWT }))
     }
     return (
         <StyeldFrontCardIcons>

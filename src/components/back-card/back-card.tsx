@@ -1,9 +1,10 @@
 import styled from "styled-components"
-import { useAppDispatch } from "../../hooks/redux-hooks"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks"
 import { Application } from "../../models/interfaces"
 import { setCurrentApplicationDetails, updateApplication } from "../../store/reducers/tracker-slice"
 import { CardButton } from "../styles/buttons.styled"
 import { CardFace } from "../styles/card.styled"
+import { RootState } from "../../store/store"
 
 const StyledBackCard = styled(CardFace)`
 // background-color: #e8e4e41f;
@@ -28,13 +29,15 @@ interface BackCardProps {
 }
 export const BackCard: React.FC<BackCardProps> = ({ application }) => {
     const dispatch = useAppDispatch()
+    const user = useAppSelector((state: RootState) => state.user.user)
 
     const archiveApplication = (ev: React.MouseEvent<HTMLButtonElement>) => {
         ev.stopPropagation()
         const applicationToUpdate: Application = { ...application }
         applicationToUpdate.isArchived = true
         applicationToUpdate.archivedDate = Date.now()
-        dispatch(updateApplication(applicationToUpdate))
+        dispatch(updateApplication({ application: applicationToUpdate, JWT: user?.JWT }))
+
     }
     const openActivityLog = (ev: React.MouseEvent<HTMLButtonElement>) => {
         ev.stopPropagation()

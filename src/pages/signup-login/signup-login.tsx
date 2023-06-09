@@ -7,12 +7,12 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { signup, login } from '../../store/reducers/user-slice'
 import { RootState } from '../../store/store'
+import { resetApplications } from '../../store/reducers/tracker-slice'
 
 const StyledSignupLogin = styled.div`
     background-color: #f9fafc;
     min-height: 100vh;
     width: 100%;
-    // overflow: hidden;
     padding-block-start: 40px;
 `
 const MainContentContainer = styled.div`
@@ -21,11 +21,9 @@ const MainContentContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 1em;
-    // margin: 120px 50px 120px 50px;
     @media (max-width: 500px) {
         margin-inline: 20px;
     }
-    
 `
 const Title = styled.h1`
     font-size: 3em;
@@ -82,11 +80,12 @@ export const SignupLogin = () => {
 
     const { register, handleSubmit } = useForm<Inputs>()
     useEffect(() => {
-        // console.log(user);
-        if (user) navigate('/tracker')
+        if (user) {
+            dispatch(resetApplications())
+            navigate('/tracker')
+        }
     }, [user])
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        // console.log(data);
         if (params.status === 'signup') dispatch(signup(data))
         else if (params.status === 'login') dispatch(login(data))
     }

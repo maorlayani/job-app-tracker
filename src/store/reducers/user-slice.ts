@@ -39,7 +39,7 @@ export const logout = createAsyncThunk(
 export const updateUser = createAsyncThunk(
     'user/update',
     async (userUpdetedDetails: { field: string, updatedValue: string, currnetPassword: string }) => {
-        const user = await userService.UpdaeUser(userUpdetedDetails.field, userUpdetedDetails.updatedValue, userUpdetedDetails.currnetPassword)
+        const user = await userService.UpdateUser(userUpdetedDetails.field, userUpdetedDetails.updatedValue, userUpdetedDetails.currnetPassword)
         return user
     }
 )
@@ -67,8 +67,7 @@ export const userSlice = createSlice({
             })
             .addCase(updateUser.fulfilled, (state, action) => {
                 if (action.payload && state.user) state.user = {
-                    sessionId: state.user.sessionId,
-                    creatdedAt: state.user.creatdedAt,
+                    ...state.user,
                     ...action.payload
                 }
                 else state.user = null
