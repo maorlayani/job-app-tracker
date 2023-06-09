@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Register, Technology } from "../../models/interfaces"
-import { TechTagList } from "../TechTag/tech-tag-list"
+import { TechTagList } from "../tech-tag/tech-tag-list"
 
 const StyledSecondSection = styled.div`
     display: flex;

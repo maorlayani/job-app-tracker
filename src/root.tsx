@@ -13,7 +13,7 @@ import { Settings } from './pages/settings/settings'
 
 const AppStyle = styled.div`
   padding: 0;
-    margin: 0;
+  margin: 0;
 `
 
 export const Root = () => {

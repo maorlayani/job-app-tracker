@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { ApplicationKeys } from '../../models/enums'
 import { Application } from '../../models/interfaces'
 import { ProgressBar } from '../progress-bar/progress-bar'
-import { TechTagPreview } from '../TechTag/tech-tag-preview'
+import { TechTagPreview } from '../tech-tag/tech-tag-preview'
 import { DetailsTag, TagTitle } from './details-tag'
 
 const StyledBottomContent = styled.div`

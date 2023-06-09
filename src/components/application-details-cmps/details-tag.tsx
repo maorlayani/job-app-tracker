@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useAppDispatch } from '../../hooks/redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { Application } from '../../models/interfaces'
 import { updateApplication } from '../../store/reducers/tracker-slice'
 import { utilService } from '../../services/util.service'
 import { ApplicationKeys } from '../../models/enums'
+import { RootState } from '../../store/store'
 
 export const StyledDetailsTag = styled.div`
     display: flex;
@@ -57,6 +58,7 @@ export const DetailsTag: React.FC<DetailsTagProps> = ({ application, title, cont
     const [inputTextValue, setInputTextValue] = useState(application[name])
     const [inputNumberValue, setInputNumberValue] = useState(0)
     const dispatch = useAppDispatch()
+    const user = useAppSelector((state: RootState) => state.user.user)
 
     useEffect(() => {
         if (inputTextValue === undefined) setInputTextValue(application[name])
@@ -85,7 +87,8 @@ export const DetailsTag: React.FC<DetailsTagProps> = ({ application, title, cont
             }
         }
         const applicationToUpdate = { ...application, [name]: value }
-        dispatch(updateApplication(applicationToUpdate))
+        dispatch(updateApplication({ application: applicationToUpdate, JWT: user?.JWT }))
+
     }
     const setValueType = (isEditMode: boolean) => {
         if (name === 'experience') {
