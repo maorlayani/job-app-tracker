@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { ArchiveTable } from "../../components/archive-table/archive-table"
+import { UserSideBar } from "../../components/user-side-bar/user-side-bar"
 
 const StyledArchive = styled.div`
     width: 100%;
@@ -20,6 +21,7 @@ const TableContainer = styled.div`
 export const Archive = () => {
     return (
         <StyledArchive>
+            <UserSideBar />
             <TableContainer>
                 <ArchiveTable />
             </TableContainer>

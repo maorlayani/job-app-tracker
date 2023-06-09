@@ -38,8 +38,10 @@ export const HomePageCallToAction = () => {
     return (
         <>
             {user ? <LogoutButton onClick={onLogout}>Logout</LogoutButton>
-                : <CallToActionButton as={Link} to={'register/signup'}>Sign up</CallToActionButton>}
-            <DemoButton>View demo</DemoButton>
+                : <>
+                    <CallToActionButton as={Link} to={'register/signup'}>Sign up</CallToActionButton>
+                    <DemoButton>View demo</DemoButton>
+                </>}
         </>
     )
 }

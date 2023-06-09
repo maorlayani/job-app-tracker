@@ -3,13 +3,12 @@ import { UserIcon } from '../user-icon/user-icon'
 
 const StyledNarrowSideBar = styled.div`
     width: 20px;
-    height: 80%;
+    height: 350px;
     background-color: #eddcfb;
     border-top-right-radius: 9px;
     border-bottom-right-radius: 9px;
     display: flex;
     align-items: center;
-    // box-shadow: 1px 0px 3px 2px #cfcfcf;
     box-shadow: 3px 2px 4px 1px #cfcfcf;
 `
 const UserIconContainer = styled.div<NarrowSideBarProps>`

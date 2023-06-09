@@ -14,6 +14,8 @@ const StyledUserIcon = styled.div`
 const ImgIcon = styled.img`
     border-radius: 50%;
     background-color: #fff;
+    height: 40px;
+    width: 40px;
 `
 
 export const UserIcon = () => {
