@@ -6,10 +6,11 @@ const StyledTechTagPreview = styled.div<StyledTechTagPreviewProps>`
     display: flex;
     align-items: center;
     border-radius: 9px;
-    background-color: ${props => props.isSelected ? '#a683c3ba' : '#d9d9d9c7'};
+    background-color: ${props => props.isSelected ? 'var(--primary-full-button-hover)' : 'var(--white-background)'};
     width: fit-content;
     padding: 2px;
-    color: ${props => props.isSelected ? '#fff' : '#877993d2'};
+    color: ${props => props.isSelected ? 'var(--white-background)' : 'var(--primary-button)'};
+    border: 1px solid var(--primary-button);
     &:hover{
             cursor: pointer;
         }

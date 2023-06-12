@@ -4,7 +4,7 @@ import { addApplication, toggleApplicationDetails, updateApplication } from "../
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks"
 import { useEffect, useState } from "react"
 import { trackerService } from "../../services/tracker.service"
-import { AddApplicationTitleWarpper, StyledAddApplication, StyledAddApplicationForm } from './styled-add-application'
+import { StyledAddApplication, StyledAddApplicationForm } from './styled-add-application'
 import { FormSectionsBar, FormSectionTxt } from './form-sections-bar'
 import styled, { keyframes } from 'styled-components'
 import { FirstSection } from './first-section'
@@ -42,6 +42,8 @@ export const AddApplication = () => {
     const user = useAppSelector((state: RootState) => state.user.user)
 
     const [selectedSection, setSelectedSection] = useState<FormSectionTxt>(FormSectionTxt.firstSection);
+    const [page, setPage] = useState<number>(0)
+
     const [techList, setTechList] = useState<TechList>([])
     const [dates, setDates] = useState<ApplicationDates>({ submittedAt: '', postedDate: '' })
     const [register, setApplication, application] = useFormRegister({
@@ -126,12 +128,18 @@ export const AddApplication = () => {
         })
         setTechList([])
     }
-
+    const setSection = (setNewPage: number, isAbsolutePage?: boolean) => {
+        let newPage = isAbsolutePage ? setNewPage : page + setNewPage
+        const FormSection = Object.values(FormSectionTxt)
+        if (newPage > FormSection.length - 1) return
+        setPage(newPage)
+        setSelectedSection(FormSection[newPage])
+    }
     return <>
         <UserSideBar />
         <StyledAddApplication>
 
-            <FormSectionsBar selectedSection={selectedSection} setSelectedSection={setSelectedSection} />
+            <FormSectionsBar selectedSection={selectedSection} setSection={setSection} />
             <StyledAddApplicationForm onSubmit={onAddApplication}>
 
                 {selectedSection === FormSectionTxt.firstSection && <SectionContainer>
@@ -142,7 +150,6 @@ export const AddApplication = () => {
 
                 {selectedSection === FormSectionTxt.secondSection && <SectionContainer>
                     <SecondSection
-                        register={register}
                         ApplicationTechnologies={techList}
                         setTechList={setTechList} />
                 </SectionContainer>}
@@ -154,7 +161,7 @@ export const AddApplication = () => {
                 {selectedSection === FormSectionTxt.fourthSection && <SectionContainer>
                     <FourthSection register={register} />
                 </SectionContainer>}
-                <FormButtons clearForm={clearForm} selectedSection={selectedSection} setSelectedSection={setSelectedSection} />
+                <FormButtons clearForm={clearForm} selectedSection={selectedSection} setSection={setSection} page={page} />
             </StyledAddApplicationForm>
 
         </StyledAddApplication >

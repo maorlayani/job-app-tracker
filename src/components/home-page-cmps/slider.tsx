@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css"
 const StyledHomePageSlider = styled.div`
     box-shadow: 1px 1px 3px 1px #cfcfcf;
     border-radius: 6px;
-    width: 80%;
+    width: 100%;
     @media (min-width: 900px) {
         width: 800px;
     }
@@ -40,8 +40,8 @@ export const HomePageSlider = () => {
         fade: true,
         infinite: true,
         autoplay: true,
-        speed: 2000,
-        autoplaySpeed: 4000,
+        speed: 1000,
+        autoplaySpeed: 3000,
         cssEase: "linear",
         slidesToShow: 1,
         slidesToScroll: 1

@@ -4,7 +4,7 @@ import { UserIcon } from '../user-icon/user-icon'
 const StyledNarrowSideBar = styled.div`
     width: 20px;
     height: 350px;
-    background-color: #eddcfb;
+    background-color: var(--secondary--button);
     border-top-right-radius: 9px;
     border-bottom-right-radius: 9px;
     display: flex;
@@ -14,7 +14,7 @@ const StyledNarrowSideBar = styled.div`
 const UserIconContainer = styled.div<NarrowSideBarProps>`
     width: 45px;
     height: 45px;
-    background-color: #fff;
+    background-color: var(--white-background);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,7 +24,7 @@ const UserIconContainer = styled.div<NarrowSideBarProps>`
     box-shadow: ${props => props.isSideBarOpen ? '0px 0px 3px 2px #cfcfcf' : '3px 1px 5px 0px #cfcfcf'};
     &:hover {
         cursor: pointer;
-        background-color: #dbb3fc;
+        background-color: var(--footer-background);
     }
     img {
         width: 35px;

@@ -13,8 +13,8 @@ const ContentContainer = styled.div`
     flex-direction: column;
 `
 const ContentTag = styled.span`
-    color: #cfcfcf;
-    font-weight: 700; 
+    color: var(--primary-text);
+    font-weight: 600; 
 `
 interface LoggedUserHeaderProps {
     user: MinUser | null

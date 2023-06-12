@@ -46,7 +46,7 @@ export const TechTagList: React.FC<TechTagListProps> = ({ ApplicationTechnologie
                 setTechnologiesList(techData)
             }
         } catch (err) {
-            console.log('Cannot load technologies', err);
+            console.error('Cannot load technologies', err);
         }
     }
     const setApplicationTechnologies = (selectedTech: Technology) => {

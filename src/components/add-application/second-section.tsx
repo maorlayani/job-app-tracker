@@ -14,12 +14,11 @@ const TechTagContainer = styled.div`
 `
 
 interface SecondSectionProps {
-    register: Register,
     ApplicationTechnologies: Technology[],
     setTechList: (techList: Technology[]) => void
 }
 
-export const SecondSection: React.FC<SecondSectionProps> = ({ register, ApplicationTechnologies, setTechList }) => {
+export const SecondSection: React.FC<SecondSectionProps> = ({ ApplicationTechnologies, setTechList }) => {
     return (
         <StyledSecondSection>
             <TechTagContainer>

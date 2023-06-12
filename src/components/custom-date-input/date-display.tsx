@@ -1,11 +1,9 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import styled from "styled-components"
 import { ApplicationDates } from "../add-application/add-application"
-import { StyledLabelTitle } from "../styles/input.styled"
 
 const StyledDateDisplay = styled.div`
     display: flex;
-    // flex-direction:
     align-items: center;
     width: 160px;
     justify-content: center;
@@ -18,16 +16,13 @@ const DateContainer = styled.div<DateContainerProps>`
     height: 34px;
     display: flex;
     align-items: center;
-    // padding-inline-start: 10px;
-    background-color: #fff;
+    background-color: var(--white-background);
     border-radius: 6px;
     margin-inline-start: 10px;
     justify-content: center;
-    box-shadow: 1px 1px 3px 1px #cfcfcf;
-    border: ${props => props.isFocused ? '2px solid #ae84d1' : ''};
+    box-shadow: 0 0 3px 1px ${props => !props.isFocused ? 'var(--secondary-text)' : 'var(--primary-button)'};
 `
 const DateLabel = styled.span`
-// width: 100%;
 `
 
 interface DateDisplayProps {
@@ -46,6 +41,7 @@ export const DateDisplay: React.FC<DateDisplayProps> = ({ selectedDate, selected
         setCurrDate()
     }, [selectedDate])
     const setCurrDate = () => {
+        if (!selectedDate) return
         if (selectedInputValue === valueType) {
             setDates((prevDates: ApplicationDates) => ({ ...prevDates, [valueType]: selectedDate }))
             setDate(selectedDate.toLocaleDateString('en-GB'))
@@ -54,7 +50,6 @@ export const DateDisplay: React.FC<DateDisplayProps> = ({ selectedDate, selected
 
     return (
         <StyledDateDisplay>
-            {/* <StyledLabelTitle as="span">Date</StyledLabelTitle> */}
             <DateContainer isFocused={selectedInputValue === valueType}>
                 <DateLabel>{date}</DateLabel>
             </DateContainer>

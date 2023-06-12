@@ -37,25 +37,28 @@ const ArchiveButton = styled(CardButton) <ArchiveButtonProps>`
     margin: 0;
     min-width: fit-content;
     width: fit-content;
-    color: #b1b1b1;
-    border-color: #b1b1b1;
+    color: var(--primary-button);
+    border-color: var(--primary-button);
     &:after{
         content: "";
     }
     @media (min-width: 900px) {
         &:after{
             content: "${props => props.afterContent ? props.afterContent : ''}";
+            margin-inline-end: ${props => props.afterContent === 'Restore' ? '5px' : ''};
         }
     }
     &:hover {
-        background-color: #ececec75;
-        border: 1px solid #b1b1b1;
+        background-color: var(--white-background);
+        border: 1px solid var(--primary-unfilled-button-hover-color);
+        color: var(--primary-unfilled-button-hover-color);
     }
-    &:active{
-        border: 1px solid #7e33bd;
+     &:active{
+        border: 1px solid var(--primary-unfilled-button-active-color);
+        color: var(--primary-unfilled-button-active-color);
     }
     svg {
-        margin-inline-start: 4px;
+        margin-inline-start: 5px;
     }
 `
 const ArchiveDeleteModal = styled(ActionModal)`

@@ -5,13 +5,12 @@ import { TableHeaderCell } from "./table-header-cell"
 const StyledTableHeader = styled.div`
     display: flex;
     width: 100%;
-    background-color: #fff;
+    // background-color: var(--white-background);
+    background-color: var(--primary-full-button-hover);
+
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    border-bottom: 1px solid #cfcfcf;
-   & > *:not(:last-child){
-    // border-right: 1px solid #cfcfcf;
-   }
+    border-bottom: 1px solid var(--secondary-text);
 `
 interface TableHeaderProps {
     cellSortType: HeaderTitles,

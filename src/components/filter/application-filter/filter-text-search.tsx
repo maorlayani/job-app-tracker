@@ -15,9 +15,8 @@ const StyledSearchInput = styled(Input)`
     width: 100%;
     height: 32px;
     border-radius: 6px;
-    box-shadow: inset 0 0 0 1px #0000004c;
+    box-shadow: 0 0 2px 1px var(--secondary-text);
     font-family: inherit;
-    color: inherit;
     font-size: .9rem;
     @media (max-width: 500px) {
         width: 265px;
@@ -34,21 +33,21 @@ export const StyledSearchButton = styled(StyledButton)`
     border-radius: 1.6em;
     padding: 7px 13px;
     font-size: 1em;
-    color: #ae84d1;
-    background-color: #fff;
-    box-shadow: inset 0 0 0 1px #ae84d1;
+    color: var(--primary-button);
+    background-color: var(--white-background);
+    box-shadow: inset 0 0 0 1px var(--primary-button);
     transition-property: background-color,box-shadow, color;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
     transition-duration: 167ms;
     &:hover {
-      background-color: #f5d5ff78;
-      cursor: pointer;
-        box-shadow: inset 0 0 0 2px #ae84d1;
+        background-color: var(--primary-unfilled-button-hover-background);
+        box-shadow: inset 0 0 0 2px var(--primary-button);
+        cursor: pointer;
     }
     &:active {
-        box-shadow: inset 0 0 0 2px #906dac;
-        color: #906dac;
-        background-color: #f5d5ff78;
+        background-color: var(--primary-unfilled-button-hover-background);
+        box-shadow: inset 0 0 0 2px var(--primary-button);
+        color: var(--primary-button);
     }
    @media (max-width: 500px) {
         height: 30px;

@@ -29,6 +29,7 @@ const RangeInput = styled.input`
     padding: 0;
     font-size: 1em;
     width: 100%;
+
     @media (min-width: 1050px) {
         margin-block-start: 26px;
     }
@@ -36,8 +37,10 @@ const RangeInput = styled.input`
 const RangeLabel = styled.label`
     font-size: 1em;
     width: fit-content;
+    margin-block-end: 25px;
     @media (min-width: 1050px) {
         flex-direction: column;
+        margin-block-end: 15px;
     }
 `
 
@@ -47,15 +50,14 @@ interface RangeValueProps {
 }
 
 const RangeValue = styled.div<RangeValueProps>`
-    background-color: #ae84d1;
-    color: #fff;
+    background-color: var(--primary-button);
+    color: var(--white-background);
     width: 30px;
     height: 25px;
     position: absolute;
     left: calc(${props => props.exp}% - ${props => props.diff}px);
     display: flex;
     justify-content: center;
-    align-items: center;
     border-top-left-radius: 75%;
     border-top-right-radius: 75%;
     border-bottom-right-radius: 100%;

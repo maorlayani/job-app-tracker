@@ -1,10 +1,8 @@
 import styled from "styled-components"
 import { StyledButton, StyledRemoveButton } from "../styles/buttons.styled"
 import { FormSectionTxt } from "./form-sections-bar"
-import { useEffect, useState } from "react"
 
 export const StyledFormButtons = styled.div`
-    // width: 100%;
     display: flex;
     justify-content: space-between;
     padding: .2em;
@@ -31,20 +29,11 @@ const ResetFormBottun = styled(StyledRemoveButton)`
 `
 interface FormButtonsProps {
     clearForm: () => void,
-    setSelectedSection: (selectedSection: FormSectionTxt) => void,
-    selectedSection: FormSectionTxt
+    setSection: (setNewPage: number, isAbsolutePage?: boolean) => void,
+    selectedSection: FormSectionTxt,
+    page: number
 }
-export const FormButtons: React.FC<FormButtonsProps> = ({ clearForm, setSelectedSection, selectedSection }) => {
-
-    const [page, setPage] = useState<number>(0)
-    useEffect(() => {
-
-    }, [])
-    const setSection = (setNewPage: number) => {
-        const FormSection = Object.values(FormSectionTxt)
-        setPage(page + setNewPage)
-        setSelectedSection(FormSection[page + setNewPage])
-    }
+export const FormButtons: React.FC<FormButtonsProps> = ({ clearForm, setSection, page }) => {
     return (
         <StyledFormButtons>
             {page > 0 && <AddApplicationButton type='button' onClick={() => setSection(-1)}>Prev</AddApplicationButton>}

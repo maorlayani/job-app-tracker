@@ -6,13 +6,11 @@ const StyledSettingsHeaderContainer = styled.div`
     width: 80%;
     display: flex;
     flex-direction: column;
-
-    // justify-content: space-between;
-    background-color: #fff;
+    background-color: var(--white-background);
     border-radius: 12px;
-    border: 1px solid  #ae84d1;
+    border: 1px solid var(--primary-button);
     padding: 2rem;
-    color: #18121dd2;
+    color: var(--primary-text);
     gap: 1rem;
     @media (min-width: 800px) {
         flex-direction: row;
@@ -36,7 +34,7 @@ const ColumnContentContainer = styled.div`
 `
 const SmallTag = styled.span`
     font-size: 1em;
-    color: #18121d87;
+    color: var(--filter-text);
 `
 interface SettingsHeaderContainerProps {
     user: MinUser | null

@@ -8,7 +8,7 @@ const StyledContainerFirstSection = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid  #ae84d1;
+    border-bottom: 1px solid var(--primary-button);
     padding: 2rem;
     gap:.5rem;
 

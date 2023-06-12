@@ -9,7 +9,7 @@ import { FrontCardProps } from "./interfaces-front-card"
 const StyeldFrontCardContent = styled.div`
     display: flex;
     gap: 10px;
-    color: #463553d3;
+    // color: #463553d3;
     flex-direction: column;
 `
 const TagContainer = styled.div`

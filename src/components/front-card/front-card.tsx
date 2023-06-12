@@ -52,7 +52,6 @@ export const FrontCard: React.FC<FrontCardProps> = ({ application }) => {
 
     return (
         <StyledFrontCard>
-            {/* <Globalfonts /> */}
             <FrontCardIcons application={application} />
             <FrontCardMainContent>
                 <FrontCardLogo application={application} />

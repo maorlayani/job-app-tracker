@@ -10,9 +10,7 @@ export const StyledAddApplication = styled.div`
     flex-direction: column;
     align-items: center;
     min-height: calc(100vh - 70px);
-    background-image: linear-gradient(45deg, #D4DCE1, #fff);
-    background-size: cover;
-    background-position: center;
+    background-color: var(--background);
     padding-block-start: 40px;
     h3 {
         align-self: 'flex-start';
@@ -94,11 +92,10 @@ export const TechName = styled.span`
     display: flex;
     align-items: center;
     justify-content: center;
-    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     color: #877993d2;
     font-weight: 600;
     padding: 0.3em 0.7em 0.3em 0;
-    &:hover{
+    &:hover {
         cursor: default;
     }
 `

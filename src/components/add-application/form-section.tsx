@@ -5,14 +5,13 @@ interface FormSectionProps {
     isSelected: boolean,
     beforeContent: FormSectionTxt,
     idx: string,
-    sectionClickHandler: (section: FormSectionTxt) => void
+    setSection: (setNewPage: number, isAbsolutePage?: boolean) => void,
 }
 const StyledFormSection = styled.div`
     width: 25%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // margin-inline-end: 15px;
 `
 interface FormSectionLabelProps {
     isSelected: boolean,
@@ -21,7 +20,7 @@ interface FormSectionLabelProps {
 }
 
 const FormSectionLabel = styled.div<FormSectionLabelProps>`
-    color: ${props => props.isSelected ? '#ae84d1' : '#cfcfcf'};
+    color: ${props => props.isSelected ? 'var(--primary-button)' : 'var(--secondary-text)'};
     &:before {
         content: "${props => props.idx + '.' + props.beforeContent}";
     }
@@ -37,13 +36,13 @@ interface FormSectionBarProps {
 }
 const FormSectionBar = styled.div<FormSectionBarProps>`
     width: 100%;
-    background-color: ${props => props.isSelected ? '#ae84d1' : '#cfcfcf'};
+    background-color: ${props => props.isSelected ? 'var(--primary-button)' : 'var(--secondary-text)'};
     height: 10px;
     border-radius: 3px;
 `
-export const FormSection: React.FC<FormSectionProps> = ({ idx, isSelected, beforeContent, sectionClickHandler }) => {
+export const FormSection: React.FC<FormSectionProps> = ({ idx, isSelected, beforeContent, setSection }) => {
     return (
-        <StyledFormSection onClick={() => { sectionClickHandler(beforeContent) }}>
+        <StyledFormSection onClick={() => { setSection(idx.length - 1, true) }}>
             <FormSectionLabel idx={idx} beforeContent={beforeContent} isSelected={isSelected}></FormSectionLabel>
             <FormSectionBar isSelected={isSelected}></FormSectionBar>
         </StyledFormSection>

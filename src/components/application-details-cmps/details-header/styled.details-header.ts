@@ -26,7 +26,7 @@ export const StyledCompanyLogoAppDetails = styled(StyledCompanyLogo)`
     min-width: 75px;
     max-height: 75px;
     min-height: 75px;
-    border: 0.5px solid #ae84d1;
+    border: 0.5px solid var(--accent);
     margin: 1em 0;
 `
 
@@ -37,12 +37,12 @@ export const StyledPositionAppDetails = styled(StyledPosition)`
 
 export const StyledCompanyNameAppDetails = styled(StyledCompanyName)`
     font-size: 0.9em;
-    color:  #877993d2;
+    color:  var(--input-text);
     margin-block-end: .5em;
 `
 
 export const StyledTimeTag = styled.span`
-    color: #5ba4a4;
+    color: var(--accent);
     font-size: 1.1em;
 `
 
@@ -58,6 +58,6 @@ export const SocialLink = styled.a`
 `
 
 export const SocialIcon = styled.img`
-width: 100%;
-height: 100%;
+    width: 100%;
+    height: 100%;
 `

@@ -2,19 +2,18 @@ import styled from 'styled-components'
 import { Application } from '../../models/interfaces'
 import { TableActionCell } from './table-action-cell'
 import { TableCell } from './table-cell'
-import { StyledCompanyLogo } from '../styles/company-logo.styled'
 import { utilService } from '../../services/util.service'
 import { useState } from 'react'
-
 
 export const StyledTableRow = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--white-background);
     border-bottom: 1px solid #cfcfcf;
-    &:hover{
-        background-color: #ececec75;
+    &:hover {
+        cursor: default;
+        background-color: var(--secondary--button);
     }
 `
 

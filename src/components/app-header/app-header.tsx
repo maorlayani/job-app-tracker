@@ -4,12 +4,13 @@ import { Hamburger } from "./hamburger"
 import { useState } from "react"
 import { DropdownMenu } from "./dropdown-menu"
 
-export const StyledAppHeader = styled.div`
-    background-color: #fff;
+export const StyledAppHeader = styled.header`
+    background-color: var(--accent);
+    // background-color: #fff;
     width: 100%;
     height: 70px;
     position: sticky;
-    top:0;
+    top: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,7 +25,7 @@ const StyledTitle = styled.div`
     font-size: 1.2rem;
     font-weight: 500;
     letter-spacing: .7px;
-    color: #a6a5a5;
+    color: var(--secondary--button);
     display: none;
     @media (max-width: 500px) {
         display: block;
@@ -38,7 +39,7 @@ export const LinksWrapper = styled.div`
 `
 export const StyledNavLink = styled(NavLink)`
     box-sizing: border-box;
-    color: #cfcfcf;
+    color: var(--secondary--button);
     text-decoration: none;
     padding: 1em;
     display: flex;
@@ -47,12 +48,12 @@ export const StyledNavLink = styled(NavLink)`
     height: 70px;
     font-weight: 700; 
     &:hover {
-        color: #ae84d1;
-        box-shadow: inset 0 -4px 0 #ae84d1;
+        color: var(--secondary-text);
+        box-shadow: inset 0 -4px 0 var(--secondary-text);
     }
     &.active {
-        color: #ae84d1;
-        box-shadow: inset 0 -4px 0 #ae84d1;
+        color: var(--secondary-text);
+        box-shadow: inset 0 -4px 0 var(--secondary-text);
     }   
 `
 export const AppHeader = () => {

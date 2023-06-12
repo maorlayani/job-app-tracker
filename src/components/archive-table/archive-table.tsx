@@ -12,10 +12,10 @@ const StyledArchiveTable = styled.div`
     width: 640px;
     display: flex;
     flex-direction: column;
-    border: 1px solid #cfcfcf;
+    border: 1px solid var(--secondary-text);
     border-radius: 6px;
-    box-shadow: 1px 1px 3px 1px #cfcfcf;
-    background-color: #fff;
+    box-shadow: 0 0 2px 1px var(--secondary-text);
+    background-color: var(--white-background);
     & > :last-child {
         border-bottom-left-radius: 6px;
         border-bottom-right-radius: 6px;     

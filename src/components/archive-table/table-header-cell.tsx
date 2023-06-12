@@ -9,7 +9,7 @@ const StyledTableHeaderCell = styled.span`
     box-sizing: border-box;
     padding: 1em;
     font-weight: 600;
-    color: #b1b1b1;
+    color: var(--secondary--button);
     display: flex;
     align-items: center;
 `
@@ -26,7 +26,7 @@ const StyledCellTitle = styled.span`
 `
 const IconContainer = styled.div<SvgProps>`
     height: 15px;
-    color: ${props => props.isSelected && props.isSortType ? '#898989' : '#cfcfcf'};
+    color: ${props => props.isSelected && props.isSortType ? 'var(--filter-text)' : 'var(--secondary--button)'};
 `
 const StyledrArowSortedUp = styled(TiArrowSortedUp)`
     margin-block-end: -3px;

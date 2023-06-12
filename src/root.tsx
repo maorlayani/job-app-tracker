@@ -10,15 +10,16 @@ import Globalfonts from './assets/global-fonts'
 import { Archive } from './pages/archive/archive'
 import { SignupLogin } from './pages/signup-login/signup-login'
 import { Settings } from './pages/settings/settings'
+import { AppFooter } from './components/app-footer/app-footer'
 
-const AppStyle = styled.div`
+const StyledApp = styled.div`
   padding: 0;
   margin: 0;
 `
 
 export const Root = () => {
   return (
-    <AppStyle className="App">
+    <StyledApp className="App">
       <Globalfonts />
       <AppHeader />
       <Routes>
@@ -31,6 +32,8 @@ export const Root = () => {
         <Route path='register/:status' element={<SignupLogin />} />
         <Route path='account' element={<Settings />} />
       </Routes>
-    </AppStyle >
+      <AppFooter />
+
+    </StyledApp>
   )
 }

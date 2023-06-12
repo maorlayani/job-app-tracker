@@ -1,3 +1,28 @@
+:root {
+    --primary-text: #000000;
+    --secondary-text: #cfcfcf;
+    --filter-text: #00000099;
+
+    --background: #faf9fb;
+    --white-background: #fff;
+    --footer-background: #e7e2e9;
+
+    --primary-button: #b9ad98;
+    --primary-full-button-hover: #c6bba7;
+    --primary-full-button-active: #aca497;
+
+    --primary-unfilled-button-hover-background: #f9f9f9;
+    --primary-unfilled-button-hover-color: #937d6b;
+    --primary-unfilled-button-active-background: #f2f2f2;
+    --primary-unfilled-button-active-color: #726654;
+
+    --secondary--button: #f1edf3;
+    --secondary--button-hover: #e3d9e2;
+    --secondary--button-active: #d6c5d0;
+
+    --accent: #5f8c7c;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -47,8 +72,9 @@ h6 {
     background: #555555cf;
 }
 
+/* Date picker */
 .rdrDayToday .rdrDayNumber span:after {
-    background: #ae84d1 !important;
+    background: var(--primary-button) !important;
 
 }
 
@@ -56,5 +82,5 @@ h6 {
 .rdrDayToday:not(.rdrDayPassive) .rdrStartEdge~.rdrDayNumber span:after,
 .rdrDayToday:not(.rdrDayPassive) .rdrEndEdge~.rdrDayNumber span:after,
 .rdrDayToday:not(.rdrDayPassive) .rdrSelected~.rdrDayNumber span:after {
-    background: #fff !important;
+    background: var(--background) !important;
 }

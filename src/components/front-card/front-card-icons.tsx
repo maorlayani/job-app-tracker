@@ -16,14 +16,14 @@ export const StyeldFrontCardIcons = styled.div`
 `
 
 export const StyledIcon = styled.div<StyledIconProps>`
-    background-color:#fff;
+    // background-color: #fff;
     border-radius: 50%;
     height: 19px;
     width: 19px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${props => props.isMarked ? '#ae84d1' : '#b6b3b3'};
+    color: ${props => props.isMarked ? 'var(--accent)' : 'var(--primary-button)'};
     font-size: 1.4em;
 `
 

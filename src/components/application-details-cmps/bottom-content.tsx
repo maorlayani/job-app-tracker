@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { ApplicationKeys } from '../../models/enums'
 import { Application } from '../../models/interfaces'
-import { ProgressBar } from '../progress-bar/progress-bar'
 import { TechTagPreview } from '../tech-tag/tech-tag-preview'
 import { DetailsTag, TagTitle } from './details-tag'
 
@@ -46,22 +45,16 @@ export const BottomContent: React.FC<BottomContentProps> = ({ application }) => 
                             setApplicationTechnologies={() => { }} />)}
                 </TechnologiesContainer>
             </>}
-            {/* {application.companyDesc && */}
             <DetailsDescTag title='Company Description'
                 application={application}
                 content={application.companyDesc || ''}
                 name={ApplicationKeys.companyDesc}
                 isTextArea={true} />
-            {/* } */}
-            {/* {application.positionDesc && */}
             <DetailsDescTag title='Position Description'
                 application={application}
                 content={application.positionDesc || ''}
                 name={ApplicationKeys.positionDesc}
                 isTextArea={true} />
-            {/* } */}
-            {/* <TagTitle>Timeline</TagTitle>
-            <ProgressBar application={application} /> */}
         </StyledBottomContent>
     )
 }

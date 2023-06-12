@@ -5,18 +5,18 @@ import { HomePageSlider } from '../components/home-page-cmps/slider'
 const StyledHomePage = styled.div`
     min-height: calc(100vh - 70px);
     width: 100%;
-    background-color: #f9fafc;
+    background-color: var(--background);
 `
 const MainContentContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap: 1em;
     padding: 40px 0;
+    margin: 0 3rem;
+    gap: 3rem;
     @media (max-width: 500px) {
         padding: 40px 20px;
-        gap: 3em;
     }
     @media (min-width: 1270px) {
         display: flex;

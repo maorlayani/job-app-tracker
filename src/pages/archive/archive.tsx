@@ -5,7 +5,7 @@ import { UserSideBar } from "../../components/user-side-bar/user-side-bar"
 const StyledArchive = styled.div`
     width: 100%;
     min-height: calc(100vh - 70px);
-    background-image: linear-gradient(45deg,#ded2e2,#fff);
+    background-color: var(--background);
     padding-block-start: 40px;
     overflow-y: auto;
 `

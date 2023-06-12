@@ -16,12 +16,6 @@ export const CustomCalendar: React.FC<CustomCalendarProps> = ({ setSelectedDate 
     const [date, setDate] = useState<Date>(new Date())
 
     const handleSelect = (selectedDate: any) => {
-        // console.log(selectedDate);
-
-        // const test = selectedDate.toLocaleDateString('en-US')
-        // console.log(test);
-        // console.log(Date.parse(test));
-
         setSelectedDate(selectedDate)
         setDate(selectedDate);
     }
@@ -30,7 +24,7 @@ export const CustomCalendar: React.FC<CustomCalendarProps> = ({ setSelectedDate 
             <Calendar
                 date={date}
                 onChange={handleSelect}
-                color='#ae84d1' />
+                color='#b9ad98' />
         </CalendarContainer>
     )
 } 

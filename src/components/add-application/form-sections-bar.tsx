@@ -14,7 +14,7 @@ const StyledFormProgressBar = styled.div`
     }
 `
 interface FormSectionsBarProps {
-    setSelectedSection: (selectedSection: FormSectionTxt) => void,
+    setSection: (setNewPage: number, isAbsolutePage?: boolean) => void,
     selectedSection: FormSectionTxt
 }
 
@@ -25,10 +25,7 @@ export enum FormSectionTxt {
     fourthSection = 'More info',
 }
 
-export const FormSectionsBar: React.FC<FormSectionsBarProps> = ({ setSelectedSection, selectedSection }) => {
-    const sectionClickHandler = (section: FormSectionTxt) => {
-        setSelectedSection(section)
-    }
+export const FormSectionsBar: React.FC<FormSectionsBarProps> = ({ setSection, selectedSection }) => {
 
     return (
         <StyledFormProgressBar>
@@ -38,7 +35,7 @@ export const FormSectionsBar: React.FC<FormSectionsBarProps> = ({ setSelectedSec
                     idx={section.idx}
                     isSelected={selectedSection === section.type}
                     beforeContent={section.type}
-                    sectionClickHandler={sectionClickHandler} />
+                    setSection={setSection} />
             })}
         </StyledFormProgressBar>
     )

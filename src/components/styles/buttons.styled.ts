@@ -6,40 +6,41 @@ export const StyledButton = styled.button`
    border-radius: 6px;
    border: none;
    min-width: 90px;
-   background-color: #ae84d1;
-   color: #fff;
+   background-color: var(--primary-button);
+   color: var(--background);
    font-weight: 500;
    font-size: 1em;
    &:hover {
-      background-color: #ae84d1bc;
+      background-color: var(--primary-full-button-hover);
       cursor: pointer;
     }
    &:active {
-      background-color: #a673cf;
+      background-color: var(--primary-full-button-active);
    }
 `
 
 export const CardButton = styled(StyledButton)`
-   border-radius: 12px;
+   border-radius: 6px;
    padding: 8px;
    width: 150px;
    margin-block-start: 20px;
-   background-color: #fff;
-   color: #ae84d1;
-   border: 1px solid #ae84d1;
+   background-color: var(--white-background);
+   color: var(--primary-button);
+   border: 1px solid var(--primary-button);
    &:hover {
-      background-color: #ae84d140;
-      border: 1px solid #ae84d18c;
+      background-color: var(--primary-unfilled-button-hover-background);
+      border: 1px solid var(--primary-unfilled-button-hover-color);
+      color: var(--primary-unfilled-button-hover-color);
    }
-   &:active{
-      border: 1px solid #7e33bd;
-      color: #7e33bd;
-      background-color: #ae84d140;
+   &:active {
+      background-color: var(--primary-unfilled-button-active-background);
+      border: 1px solid var(--primary-unfilled-button-active-color);
+      color: var(--primary-unfilled-button-active-color);
    }
 `
 export const StyledResetButton = styled(StyledButton)`
    background-color: transparent;
-   color: inherit;
+   color: var(--input-text);
    font-weight: 600;
    padding: .4em;
    border-radius: 6px;
@@ -86,4 +87,5 @@ export const CallToActionButton = styled(StyledButton)`
 export const StyledLink = styled(Link)`
     margin-block-start: .5em;   
     text-align: center;
+    color: var(--filter-text);
 `

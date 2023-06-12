@@ -7,7 +7,7 @@ import { SettingsHeaderContainer } from '../../components/settings-container/set
 import { useEffect } from 'react'
 
 const StyledSettings = styled.div`
-background-image: linear-gradient(45deg, #D4DCE1, #fff);
+    background-color: var(--background);
     width: 100%;
     min-height: calc(100vh - 70px);
     padding-block: 40px;

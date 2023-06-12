@@ -20,17 +20,18 @@ const TechSearchInput = styled(Input)`
     outline: none;
 `
 const SearchTag = styled.span`
-    height: 34px;
+    margin-block-start: -1px;
+    height: 35px;
     width: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ae84d1;
-    color: #fff;
+    background-color: var(--primary-button);
+    color: var(--white-background);
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     margin-inline-start: -20px;
-    box-shadow: 1px 1px 3px 1px #cfcfcf;
+    box-shadow: 1px 1px 3px 1px var(--secondary-text);
 `
 
 export const TechSearch = () => {

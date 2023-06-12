@@ -23,8 +23,8 @@ const LabelFileUpload = styled.label`
     border-width: 2px;
     border-radius: 6px;
     border-style: dashed;
-    border-color: #ae84d1;
-    background-color: ${props => props.isDragActive ? '#ffffff' : '#f8fafc'};
+    border-color: var(--primary-button);
+    background-color: ${props => props.isDragActive ? 'var(--white-background)' : 'var(--background)'};
 `
 const UploadButton = styled.button`
     cursor: pointer;
@@ -68,9 +68,9 @@ export const DragDropFile = () => {
 
     // triggers when file is dropped
     const handleDrop = function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        setDragActive(false);
+        e.preventDefault()
+        e.stopPropagation()
+        setDragActive(false)
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
             // handleFiles(e.dataTransfer.files);
         }
@@ -78,7 +78,7 @@ export const DragDropFile = () => {
 
     // triggers when file is selected with click
     const handleChange = function (e) {
-        e.preventDefault();
+        e.preventDefault()
         if (e.target.files && e.target.files[0]) {
             // handleFiles(e.target.files);
         }
@@ -86,7 +86,7 @@ export const DragDropFile = () => {
 
     // triggers the input when the button is clicked
     const onButtonClick = () => {
-        inputRef.current.click();
+        inputRef.current.click()
     }
 
     return (
@@ -109,5 +109,5 @@ export const DragDropFile = () => {
                 </DragFileElement>}
             </FileInputContainer>
         </StyledDragDropFile>
-    );
-};
+    )
+}

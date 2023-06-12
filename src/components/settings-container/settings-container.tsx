@@ -10,9 +10,9 @@ const StyledSettingsContainer = styled.form`
     width: 80%;
     display: flex;
     flex-direction: column;
-    background-color: #fff;
+    background-color: var(--white-background);
     border-radius: 12px;
-    border: 1px solid  #ae84d1;
+    border: 1px solid var(--primary-button);
 `
 const SecondSection = styled.div`
     display: flex;
@@ -54,8 +54,7 @@ export const SettingsContainer: React.FC<SettingsContainerProps> = ({ title, lab
                 labelTxt={labelTxt}
                 value={value}
                 type={type}
-                register={register}
-            />
+                register={register} />
             <SecondSection>
                 <UpdateSettingButton>Update</UpdateSettingButton>
             </SecondSection>

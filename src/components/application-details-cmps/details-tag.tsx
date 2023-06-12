@@ -22,25 +22,25 @@ export const StyledDetailsTag = styled.div`
 `
 export const TagTitle = styled.span`
     font-size: 1em;
-    color: #2c3a3a;
+    color: var(--primary-text);
     font-weight: 600;
 `
 export const TagContent = styled.span`
     min-width: 100%;
     min-height: 31px;
     font-size: 1em;
-    box-shadow: 0px 0px 3px 1px #d7d3d3;
+    box-shadow: 0 0 2px 1px var(--secondary-text);
     padding: .5em;
     border-radius: 3px;
     flex-grow: 1;
     font-size: 1em;
-    color: #877993d2;
+    color: var(--input-text);
     overflow: hidden;
     text-overflow: ellipsis;
 `
 const TagInput = styled(TagContent)`
     border: none;
-    outline-color: #ae84d1;
+    outline-color: var(--primary-button);
     font-family: inherit;
 
 `

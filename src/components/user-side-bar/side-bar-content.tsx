@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { LoggedUserHeader } from '../app-header/logged-user-header'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { RootState } from '../../store/store'
-import { StyledRemoveButton } from '../styles/buttons.styled'
+import { StyledRemoveButton, StyledResetButton } from '../styles/buttons.styled'
 import { logout } from '../../store/reducers/user-slice'
 import { Link } from 'react-router-dom'
 
@@ -31,29 +31,15 @@ const MainContentContainer = styled.div`
     margin-block-start: 2rem;
     gap: 1rem;
 `
-const SideBarButton = styled(StyledRemoveButton)`
+const SideBarButton = styled(StyledResetButton)`
     font-size: .9rem;
-    font-weight: 500;
     border: none;
     text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: inherit;
-    // color: #18121dd2;
-
-    &:hover {
-        background-color: #ae84d138;
-        border: none;
-    }
-    &:active {
-        border: none;
-    }
-`
-const StyledSpan = styled.span`
-    color: #18121dd2;
-    font-size: 1rem;
-    font-weight: 600;
+    color: var(--filter-text);;
+    padding: .5rem 1rem;
 `
 
 interface SideBarContnetProps {
@@ -69,8 +55,6 @@ export const SideBarContnet: React.FC<SideBarContnetProps> = ({ isSideBarOpen })
         <StyledSideBarContnet isSideBarOpen={isSideBarOpen}>
             <SideBarHeader>
                 <LoggedUserHeader user={user} />
-                {/* // {user ? <LoggedUserHeader user={user} /> :  */}
-                {/* // <StyledSpan>No User Logged In</StyledSpan>} */}
             </SideBarHeader>
             <MainContentContainer>
                 {/* <SideBarButton>Dashbaord</SideBarButton> */}

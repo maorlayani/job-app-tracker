@@ -11,9 +11,7 @@ import { UserSideBar } from "../components/user-side-bar/user-side-bar"
 const StyledTrackerBoard = styled.div`
     display: flex;
     min-height: calc(100vh - 70px);
-    background-image: linear-gradient(45deg, #D4DCE1, #fff);
-    background-size: cover;
-    background-position: center;
+    background-color: var(--background);
 `
 const MainContentContainer = styled.div`
     display: flex;
@@ -24,6 +22,7 @@ const MainContentContainer = styled.div`
 const CardListContainer = styled.div`
     display: flex;
     gap: .5em;
+    margin: 0 3rem;
 `
 
 export const TrackerBoard = () => {

@@ -4,26 +4,18 @@ import { setFilterBy } from "../../../store/reducers/tracker-slice"
 import { FilterTextSearch } from "./filter-text-search"
 import { FilterButtonList } from "./filter-button-list"
 import { FilterToggleButton } from "./filter-toggle-button"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 
-const growDown = keyframes`
-    from {
-        transform: translateY(-150px);
-    }
-    to {
-        transform: translateY(0);
-    }
-`
 interface StyledApplicationFilterProps {
     isFilterOpen: boolean
 }
 const StyledApplicationFilter = styled.div<StyledApplicationFilterProps>`
     width: 100%;
     margin-block-end: .5em;
-    box-shadow: ${props => props.isFilterOpen ? `-1px -1px 3px 2px #cfcfcf` : ``};
+    box-shadow: ${props => props.isFilterOpen ? `-1px -1px 3px 2px var(--secondary-text)` : ``};
     display: flex;
     flex-direction: column;
-    background-color: #e8e4e41f;
+    background-color: var(--background);
     align-items: center;
 `
 const MainContent = styled.div`
@@ -32,9 +24,8 @@ const MainContent = styled.div`
     align-items: center;
     padding: 1.5em 1.5em 0 1.5em;
     gap: 1em;
-    color: #00000099;
+    color: var(--filter-text);
     width: 500px;
-    // animation: ${growDown} 300ms;
     @media (max-width: 500px) {
         gap: .5em;
         font-size: .9rem;
@@ -54,7 +45,7 @@ const VerticaLine = styled.div`
     height: 90%; 
     background-color: #0000004c; 
     display: none;
-    @media (min-width: 1270px) {
+    @media (min-width: 1050px) {
         display: block;
     }
 `

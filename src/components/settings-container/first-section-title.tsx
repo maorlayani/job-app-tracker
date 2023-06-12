@@ -4,8 +4,8 @@ const StyledFirstSectionTitle = styled.div`
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    color: #18121dd2;
-    width: 50%;
+    color: var(--primary-text);
+    // width: 50%;
 `
 const TitleTag = styled.span`
     font-size: 1.25em;

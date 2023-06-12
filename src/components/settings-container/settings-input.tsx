@@ -11,15 +11,12 @@ const StyledSettingsInput = styled.div`
     width: 100%;
 `
 const StyledLabel = styled.label`
-    color: #18121dd2;
+    color: var(--primary-text);
     font-size: 1rem;
     text-transform: capitalize;
     font-weight: 500;
-    
 `
 const SettingsStyledInput = styled(Input)`
-    border: 2px solid  #ae84d187;
-    box-shadow: none;
     border-radius: 6px;
 `
 interface SettingsInputProps {
