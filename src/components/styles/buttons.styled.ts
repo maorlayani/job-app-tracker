@@ -40,7 +40,7 @@ export const CardButton = styled(StyledButton)`
 `
 export const StyledResetButton = styled(StyledButton)`
    background-color: transparent;
-   color: var(--input-text);
+   color: var(--filter-text);
    font-weight: 600;
    padding: .4em;
    border-radius: 6px;

@@ -34,7 +34,7 @@ export const TagContent = styled.span`
     border-radius: 3px;
     flex-grow: 1;
     font-size: 1em;
-    color: var(--input-text);
+    color: var(--filter-text);
     overflow: hidden;
     text-overflow: ellipsis;
 `

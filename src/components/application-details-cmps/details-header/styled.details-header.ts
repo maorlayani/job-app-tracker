@@ -37,7 +37,7 @@ export const StyledPositionAppDetails = styled(StyledPosition)`
 
 export const StyledCompanyNameAppDetails = styled(StyledCompanyName)`
     font-size: 0.9em;
-    color:  var(--input-text);
+    color:  var(--filter-text);
     margin-block-end: .5em;
 `
 

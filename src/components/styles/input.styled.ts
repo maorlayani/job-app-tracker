@@ -10,7 +10,7 @@ export const Input = styled.input`
     font-size: 1em;
     font-family: inherit;
     box-shadow: 0 0 2px 1px var(--secondary-text);
-    color: var(--input-text)
+    color: var(--filter-text)
 `
 export const StyledLabelTitle = styled.label`
     font-weight: 600;

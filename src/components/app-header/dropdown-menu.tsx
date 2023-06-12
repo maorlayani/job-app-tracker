@@ -9,28 +9,27 @@ const StyledDropdownMenu = styled.div<StyledDropdownMenuProps>`
     transform: translate(-150%);
     display: flex;
     flex-direction: column;
-    // margin-left: -40px;
-    // padding-left: 50px;
     transition: transform 0.5s ease-in-out;
     text-align: center;
-    // z-index: 1000;
-    background-color: #fff;
+    background-color: var( --white-background);
     position: absolute;
     top: 0;
     left: 0;
+    opacity: .95;
     ${props => props.isDropdownOpen ? 'transform: translateX(0);' : ''}
 `
 const StyledNavLink = styled(NavLink)`
+    margin-top: 1.2rem;
     margin-bottom: 1.2rem;
     font-size: 1.2rem;
     font-weight: 500;
-    color: #cfcfcf;
+    color: var(--secondary-text);
     text-decoration: none;
     &:hover {
-        color: #ae84d1;
+        color: var(--accent);
     }
     &.active {
-        color: #ae84d1;
+        color: var(--accent);
     } 
 `
 interface StyledDropdownMenuProps {

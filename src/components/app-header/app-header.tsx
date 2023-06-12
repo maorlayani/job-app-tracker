@@ -6,7 +6,6 @@ import { DropdownMenu } from "./dropdown-menu"
 
 export const StyledAppHeader = styled.header`
     background-color: var(--accent);
-    // background-color: #fff;
     width: 100%;
     height: 70px;
     position: sticky;
@@ -14,7 +13,7 @@ export const StyledAppHeader = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: -1px -1px 3px 2px #cfcfcf;
+    box-shadow: -1px -1px 3px 2px var(--secondary-text);
     padding: 0 4em;
     z-index: 100;  
     @media (max-width: 500px) {
@@ -60,9 +59,9 @@ export const AppHeader = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     return (
         <StyledAppHeader>
-            <Hamburger isDropdownOpen={isDropdownOpen} setIsDropdownOpen={setIsDropdownOpen} />
-            <DropdownMenu isDropdownOpen={isDropdownOpen} setIsDropdownOpen={setIsDropdownOpen} />
             <StyledTitle>Job App Tracker</StyledTitle>
+            <DropdownMenu isDropdownOpen={isDropdownOpen} setIsDropdownOpen={setIsDropdownOpen} />
+            <Hamburger isDropdownOpen={isDropdownOpen} setIsDropdownOpen={setIsDropdownOpen} />
             <LinksWrapper>
                 <StyledNavLink to={'/'}>Home</StyledNavLink>
                 <StyledNavLink to={'/tracker'}>Tracker</StyledNavLink>
