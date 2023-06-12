@@ -9,6 +9,8 @@ import LinkedinIcon from '../../../assets/svg/social/linkedin.svg'
 import TwitterIcon from '../../../assets/svg/social/twitter.svg'
 import InstagramIcon from '../../../assets/svg/social/instagram.svg'
 import CrunchbaseIcon from '../../../assets/svg/social/crunchbase.svg'
+import GithubIcon from '../../../assets/svg/social/github.svg'
+import YoutubeIcon from '../../../assets/svg/social/youtube.svg'
 
 export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ application, isFullDetails }) => {
     const navigate = useNavigate()
@@ -29,6 +31,10 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ application, isFul
                 return TwitterIcon
             case 'crunchbase':
                 return CrunchbaseIcon
+            case 'github':
+                return GithubIcon
+            case 'youtube':
+                return YoutubeIcon
         }
     }
 
@@ -43,12 +49,6 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ application, isFul
             <StyledTimeTag>
                 Applied {utilService.getTimeFromNow(application.submittedAt)}
             </StyledTimeTag>
-            {/* <h1 style={{ color: '#5B6F87', fontSize: '40px', padding: '10px', background: '#fff' }}>Test</h1>
-            <h1 style={{ color: '#7B8F9D', fontSize: '40px', padding: '10px', background: '#fff' }}>Test</h1>
-            <h1 style={{ color: '#9CA3A9', fontSize: '40px', padding: '10px', background: '#fff' }}>Test</h1>
-            <h1 style={{ color: '#B8C2CC', fontSize: '40px', padding: '10px', background: '#fff' }}>Test</h1>
-            <h1 style={{ color: '#D4DCE1', fontSize: '40px', padding: '10px', background: '#fff' }}>Test</h1> */}
-
         </StyledCompanyNameAppDetails>
         <SocailContainer>
             {application.links?.map(link =>
@@ -59,7 +59,3 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ application, isFul
         <StyledHorizontalLine></StyledHorizontalLine>
     </StyledDetailsHeader>
 }
-
-// fdfbff
-
-// e6d4f2
