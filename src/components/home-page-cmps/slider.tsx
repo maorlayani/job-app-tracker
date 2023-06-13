@@ -4,9 +4,10 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 const StyledHomePageSlider = styled.div`
-    box-shadow: 1px 1px 3px 1px #cfcfcf;
+    box-shadow: 1px 1px 3px 1px var( --secondary-text);
     border-radius: 6px;
     width: 100%;
+    margin-block-end: 50px;
     @media (min-width: 900px) {
         width: 800px;
     }
@@ -29,9 +30,9 @@ export const HomePageSlider = () => {
 
     const getHomePageImages = () => {
         return [
-            'https://res.cloudinary.com/dqhrqqqul/image/upload/v1684241773/job-application-tracker/tracker-board_yp1diq.png',
-            'https://res.cloudinary.com/dqhrqqqul/image/upload/v1684241770/job-application-tracker/application-details_kcznfh.png',
-            'https://res.cloudinary.com/dqhrqqqul/image/upload/v1684241777/job-application-tracker/add-application-form_qfv6dl.png'
+            'https://res.cloudinary.com/dqhrqqqul/image/upload/v1686659671/job-application-tracker/tracker-page_o2tfnr.png',
+            'https://res.cloudinary.com/dqhrqqqul/image/upload/c_scale,h_685/v1686659921/job-application-tracker/add-app-page_ew6nmd.png',
+            'https://res.cloudinary.com/dqhrqqqul/image/upload/v1686665703/job-application-tracker/archive-page_gabofr.png'
         ]
     }
     const settings = {

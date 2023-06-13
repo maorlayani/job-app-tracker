@@ -15,24 +15,37 @@ const ContentTitle = styled.h1`
     }
 `
 const Content = styled.p`
+    width: 80%;
+    line-height: 30px;
+    letter-spacing: .5px;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.3em;
     @media (max-width: 500px) {
         padding: 0 1em;
         font-size: 1em;
     }
 `
-
+const MiddleContent = styled(Content)`
+    margin: 0;
+`
+const LastContent = styled(Content)`
+    @media (max-width: 500px) {
+        display: none;
+    }
+`
 export const HomePageContent = () => {
     return (
         <StyledHomePageContent>
             <ContentTitle>Organize your job search</ContentTitle>
             <Content>
-                Track your job applications and keep your job search organized all in one place.
+                Revolutionize your job search with our platform that lets you effortlessly track your job applications and maintain an organized approach.
             </Content>
-            <Content>
-                No more messy job search spreadsheets. Keep track of every detail about your job opportunities.
-            </Content>
+            <MiddleContent>
+                Say goodbye to messy job search spreadsheets!
+            </MiddleContent>
+            <LastContent>
+                With our solution, you can now easily keep track of every important detail about your job opportunities, all in one centralized location.
+            </LastContent>
             <HomePageCallToAction />
         </StyledHomePageContent>
     )

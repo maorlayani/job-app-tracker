@@ -115,7 +115,7 @@ export const SignupLogin = () => {
                             <InputMsgTag>*Password is required</InputMsgTag>}
                         {errors.password?.type === 'minLength' &&
                             <InputMsgTag>*Password must include at least 8 characters</InputMsgTag>}
-                        <GoogleLoginButton onClick={() => userService.googleLogin()}>Login via Google</GoogleLoginButton>
+                        {/* <GoogleLoginButton onClick={() => userService.googleLogin()}>Login via Google</GoogleLoginButton> */}
                         <StyledButton>Continue</StyledButton>
                     </RegisterForm>
                     {params.status === 'signup' && <StyledLink to={'/register/login'}>Already have an account? Sign in</StyledLink>}
