@@ -1,5 +1,5 @@
 {
-  "short_name": "React App",
+  "short_name": "Job Tracker",
   "name": "Job Tracker",
   "icons": [
     {
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#faf9fb",
+  "background_color": "#faf9fb"
 }
