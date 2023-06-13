@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { useRef, useState } from "react";
 import { StyledLabelTitle } from "../styles/input.styled";
+import { appwriteUploadService } from "../../services/appwrite.upload";
 
 const StyledDragDropFile = styled.div`
 `
@@ -73,6 +74,7 @@ export const DragDropFile = () => {
         setDragActive(false)
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
             // handleFiles(e.dataTransfer.files);
+            appwriteUploadService.uploadFile(e.dataTransfer.files[0])
         }
     }
 
@@ -81,6 +83,7 @@ export const DragDropFile = () => {
         e.preventDefault()
         if (e.target.files && e.target.files[0]) {
             // handleFiles(e.target.files);
+            appwriteUploadService.uploadFile(e.target.files[0])
         }
     }
 

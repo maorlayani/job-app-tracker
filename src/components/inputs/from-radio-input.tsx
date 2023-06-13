@@ -32,7 +32,7 @@ export const FormRadioInput: React.FC<FormRadioInputProps> = ({ name, labelTxt, 
                 id={id}
                 multiple={false}
                 onChange={onHandleChange} />
-            <FormLabel htmlFor={id} labelTxt={labelTxt} />
+            <FormLabel htmlFor={id} labelTxt={labelTxt} isRequired={false} />
         </StyledFormRadioInput>
     )
 }

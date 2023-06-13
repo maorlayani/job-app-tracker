@@ -27,41 +27,38 @@ const MapContainer = styled.div`
     height: 100%;
 `
 interface RightSideContentProps {
-    application: Application
+    application: Application,
+    onUpdateApplication: (applicationToUpdate: Application) => void
 }
-export const RightSideContent: React.FC<RightSideContentProps> = ({ application }) => {
-
-    const dateToString = (date: number | undefined): string => {
-        if (typeof date === 'number') {
-            let formattedDate = new Date(date)
-            return formattedDate.toLocaleDateString('en-GB')
-        }
-        return 'Not Found'
-    }
+export const RightSideContent: React.FC<RightSideContentProps> = ({ application, onUpdateApplication }) => {
     return (
         <StyledRightSideContent>
             <MainContainer>
                 <DetailsTag title='Company'
                     application={application}
                     content={application.company}
-                    name={ApplicationKeys.company} />
+                    name={ApplicationKeys.company}
+                    onUpdateApplication={onUpdateApplication} />
                 <DetailsTag title='Position'
                     application={application}
                     content={application.position}
-                    name={ApplicationKeys.position} />
+                    name={ApplicationKeys.position}
+                    onUpdateApplication={onUpdateApplication} />
             </MainContainer>
             <MainContainer>
                 <DetailsTag title='Posted Date'
                     application={application}
-                    content={dateToString(application.postedDate)}
-                    name={ApplicationKeys.postedDate} />
+                    content={utilService.dateToString(application.postedDate)}
+                    name={ApplicationKeys.postedDate}
+                    onUpdateApplication={onUpdateApplication} />
                 <DetailsTag title='Applied Date'
                     application={application}
-                    content={dateToString(application.submittedAt)}
-                    name={ApplicationKeys.submittedAt} />
+                    content={utilService.dateToString(application.submittedAt)}
+                    name={ApplicationKeys.submittedAt}
+                    onUpdateApplication={onUpdateApplication} />
             </MainContainer>
             <MapContainer>
-                <DetailsMap application={application} />
+                <DetailsMap application={application} onUpdateApplication={onUpdateApplication} />
             </MapContainer>
         </StyledRightSideContent>
     )

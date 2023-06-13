@@ -24,7 +24,7 @@ export interface FormSelectProps {
 export const FormSelect: React.FC<FormSelectProps> = ({ register }) => {
     return (
         <StyledFormSelect>
-            <FormLabel htmlFor="status" labelTxt="Status" />
+            <FormLabel htmlFor="status" labelTxt="Status" isRequired={true} />
             <StyledSelect as="select" {...register('status', 'select')} required>
                 <option value="" hidden>Select Status</option>
                 <option value={Status.submitted}>Submitted</option>

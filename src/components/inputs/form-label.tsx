@@ -1,10 +1,18 @@
 import styled from "styled-components"
-import { StyledLabelTitle } from "../styles/input.styled"
+import { RequiredTag, StyledLabelTitle } from "../styles/input.styled"
 
 interface FormLabelProps {
     htmlFor: string,
-    labelTxt: string
+    labelTxt: string,
+    isRequired: boolean
 }
-export const FormLabel: React.FC<FormLabelProps> = ({ htmlFor, labelTxt }) => {
-    return <StyledLabelTitle htmlFor={htmlFor}>{labelTxt}</StyledLabelTitle>
+export const FormLabel: React.FC<FormLabelProps> = ({ htmlFor, labelTxt, isRequired }) => {
+    return (
+        <>
+            <StyledLabelTitle htmlFor={htmlFor}>
+                {labelTxt}
+                {isRequired && <RequiredTag>*</RequiredTag>}
+            </StyledLabelTitle>
+        </>
+    )
 }

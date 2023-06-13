@@ -43,13 +43,13 @@ const ModalContent = styled.span`
     text-align: center;
 `
 const ActionButton = styled(StyledButton)`
-    background-color: #CA3521;
+    background-color: var(--danger-button);
     border-radius: 3px;
     &:hover {
-        background-color: #AE2A19;
+        background-color: var(--danger-button-hover);
     }
     &:active {
-        background-color: #6e2f1a;
+        background-color: var(--danger-button-active);
     }
 `
 const CloseIconContainer = styled(ImgCloseIconContainer)`

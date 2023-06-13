@@ -43,7 +43,7 @@ interface FormTextInputProps extends InputsProps {
 export const FormTextInput: React.FC<FormTextInputProps> = ({ className, type, labelTxt, name, placeholder, register, isRequired, ...props }) => {
     return (
         <StyledTextInput isLocation={name === 'location'} className={className} {...props}>
-            <FormLabel htmlFor={name} labelTxt={labelTxt} />
+            <FormLabel htmlFor={name} labelTxt={labelTxt} isRequired={isRequired} />
             {type === ElementType.textInput &&
                 <Input {...register(name, type)} placeholder={placeholder} required={isRequired} />}
             {type === ElementType.textarea &&

@@ -17,32 +17,40 @@ const StyledLeftSideContent = styled.div`
     }
 `
 interface LeftSideContentProps {
-    application: Application
+    application: Application,
+    onUpdateApplication: (applicationToUpdate: Application) => void
 }
-export const LeftSideContent: React.FC<LeftSideContentProps> = ({ application }) => {
+export const LeftSideContent: React.FC<LeftSideContentProps> = ({ application, onUpdateApplication }) => {
     return (
         <StyledLeftSideContent>
             <DetailsTag title='Application status'
                 application={application}
                 content={application.status}
-                name={ApplicationKeys.status} />
+                name={ApplicationKeys.status}
+                onUpdateApplication={onUpdateApplication} />
             {application.submittedVia &&
                 <DetailsTag title='Applied Via'
                     application={application}
                     content={application.submittedVia}
-                    name={ApplicationKeys.submittedVia} />}
+                    name={ApplicationKeys.submittedVia}
+                    onUpdateApplication={onUpdateApplication} />}
             {application.experience !== undefined &&
                 <DetailsTag title='Experience required'
                     application={application}
                     content={utilService.checkIsPlural(application.experience, 'year')}
-                    name={ApplicationKeys.experience} />}
+                    name={ApplicationKeys.experience}
+                    onUpdateApplication={onUpdateApplication} />}
             {application.positionUrl !== undefined &&
                 <DetailsTag title='Position URL'
                     application={application}
                     content={application.positionUrl}
-                    name={ApplicationKeys.positionUrl} />}
+                    name={ApplicationKeys.positionUrl}
+                    onUpdateApplication={onUpdateApplication} />}
             {application.contact !== undefined &&
-                <ContactTag contactDetails={application.contact} />}
+                <ContactTag
+                    contactDetails={application.contact}
+                    application={application}
+                    onUpdateApplication={onUpdateApplication} />}
         </StyledLeftSideContent>
     )
 }

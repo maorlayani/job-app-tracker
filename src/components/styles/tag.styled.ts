@@ -9,3 +9,9 @@ export const StyledTag = styled.span`
     border-radius: 3px;
     flex-grow: 1;
 `
+
+export const InputMsgTag = styled.span`
+    color: var(--danger-button);
+    font-size: .8rem;
+    font-weight: 500;
+` 

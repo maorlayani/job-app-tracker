@@ -19,3 +19,12 @@ export const StyledLabelTitle = styled.label`
     font-size: 1em;
     color: var(--primary-text);
 `
+
+export const RequiredTag = styled.span`
+    color: var(--secondary-text);
+    margin: 10px 0 10px 3px;
+    font-size: 1rem;
+    position: relative;
+    top: 3px;
+    color: var(--danger-button);
+`
