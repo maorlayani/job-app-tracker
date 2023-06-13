@@ -11,6 +11,7 @@ import InstagramIcon from '../../../assets/svg/social/instagram.svg'
 import CrunchbaseIcon from '../../../assets/svg/social/crunchbase.svg'
 import GithubIcon from '../../../assets/svg/social/github.svg'
 import YoutubeIcon from '../../../assets/svg/social/youtube.svg'
+import PinterestIcon from '../../../assets/svg/social/pinterest.svg'
 
 export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ application, isFullDetails }) => {
     const navigate = useNavigate()
@@ -35,6 +36,8 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ application, isFul
                 return GithubIcon
             case 'youtube':
                 return YoutubeIcon
+            case 'pinterest':
+                return PinterestIcon
         }
     }
 

@@ -27,3 +27,11 @@ export enum ApplicationKeys {
     postedDate = 'postedDate',
     positionUrl = 'positionUrl'
 }
+
+export enum ContactKeys {
+    name = 'name',
+    email = 'email',
+    phone = 'phone',
+    linkedin = 'linkedin'
+
+}

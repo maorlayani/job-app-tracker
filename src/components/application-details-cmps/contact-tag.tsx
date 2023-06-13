@@ -1,10 +1,12 @@
 import styled from 'styled-components'
-import { Contact } from '../../models/interfaces'
+import { Application, Contact } from '../../models/interfaces'
 import { SocailContainer, SocialIcon, SocialLink } from './details-header/styled.details-header'
-import { StyledDetailsTag, TagContent, TagTitle } from './details-tag'
+import { DetailsTag, StyledDetailsTag, TagContent, TagTitle } from './details-tag'
 import FacebookIcon from '../../assets/svg/social/facebook.svg'
 import LinkedinIcon from '../../assets/svg/social/linkedin.svg'
 import TwitterIcon from '../../assets/svg/social/twitter.svg'
+import { ContactKeys } from '../../models/enums'
+import { DetailsContactTag } from './details-contact-tag'
 
 const StyledContactTag = styled(StyledDetailsTag)`
 
@@ -32,9 +34,11 @@ const TitleContainer = styled.div`
     }
 `
 interface ContactTagProps {
-    contactDetails: Contact
+    contactDetails: Contact,
+    application: Application,
+    onUpdateApplication: (applicationToUpdate: Application) => void
 }
-export const ContactTag: React.FC<ContactTagProps> = ({ contactDetails }) => {
+export const ContactTag: React.FC<ContactTagProps> = ({ application, contactDetails, onUpdateApplication }) => {
 
     return (
         <StyledContactTag>
@@ -44,18 +48,26 @@ export const ContactTag: React.FC<ContactTagProps> = ({ contactDetails }) => {
                     <SocialIcon src={LinkedinIcon}></SocialIcon>
                 </SocialLink>}
             </TitleContainer>
-            {contactDetails.name && <ContatTagContainer>
-                <ContactTagTitle>Name</ContactTagTitle>
-                <ContactTagContent>{contactDetails.name}</ContactTagContent>
-            </ContatTagContainer>}
-            {contactDetails.email && <ContatTagContainer>
-                <ContactTagTitle>Email</ContactTagTitle>
-                <ContactTagContent>{contactDetails.email}</ContactTagContent>
-            </ContatTagContainer>}
-            {contactDetails.phone && <ContatTagContainer>
-                <ContactTagTitle>Phone</ContactTagTitle>
-                <ContactTagContent>{contactDetails.phone}</ContactTagContent>
-            </ContatTagContainer>}
+            <DetailsContactTag title='Name'
+                application={application}
+                contact={contactDetails}
+                name={ContactKeys.name}
+                onUpdateApplication={onUpdateApplication} />
+            <DetailsContactTag title='Email'
+                application={application}
+                contact={contactDetails}
+                name={ContactKeys.email}
+                onUpdateApplication={onUpdateApplication} />
+            <DetailsContactTag title='Phone'
+                application={application}
+                contact={contactDetails}
+                name={ContactKeys.phone}
+                onUpdateApplication={onUpdateApplication} />
+            <DetailsContactTag title='Linkedin'
+                application={application}
+                contact={contactDetails}
+                name={ContactKeys.linkedin}
+                onUpdateApplication={onUpdateApplication} />
         </StyledContactTag>
     )
 }

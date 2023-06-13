@@ -7,6 +7,9 @@ import { LeftSideContent } from "../../components/application-details-cmps/left-
 import { BottomContent } from "../../components/application-details-cmps/bottom-content"
 import { RightSideContent } from "../../components/application-details-cmps/right-side-content"
 import styled, { keyframes } from "styled-components"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks"
+import { RootState } from "../../store/store"
+import { updateApplication } from "../../store/reducers/tracker-slice"
 
 const StyledApplicationFullDetails = styled.div`
     position: fixed;
@@ -57,6 +60,8 @@ export const ApplicationFullDetails = () => {
 
     const [applicationDetails, setApplicationDetails] = useState({} as Application)
     const params = useParams()
+    const dispatch = useAppDispatch()
+    const user = useAppSelector((state: RootState) => state.user.user)
 
     useEffect(() => {
         loadApplication()
@@ -68,15 +73,19 @@ export const ApplicationFullDetails = () => {
             setApplicationDetails(application)
         }
     }
+    const onUpdateApplication = async (applicationToUpdate: Application) => {
+        const updatedApplication = await dispatch(updateApplication({ application: applicationToUpdate, JWT: user?.JWT }))
+        setApplicationDetails(updatedApplication.payload)
+    }
 
     return <StyledApplicationFullDetails>
         <FullDetailsContent>
             <DetailsHeader application={applicationDetails} isFullDetails={true} />
             <MainContainer>
-                <LeftSideContent application={applicationDetails} />
-                <RightSideContent application={applicationDetails} />
+                <LeftSideContent application={applicationDetails} onUpdateApplication={onUpdateApplication} />
+                <RightSideContent application={applicationDetails} onUpdateApplication={onUpdateApplication} />
             </MainContainer>
-            <BottomContent application={applicationDetails} />
+            <BottomContent application={applicationDetails} onUpdateApplication={onUpdateApplication} />
         </FullDetailsContent>
     </StyledApplicationFullDetails>
 }

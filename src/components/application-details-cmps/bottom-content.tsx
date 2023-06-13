@@ -29,9 +29,10 @@ const DetailsDescTag = styled(DetailsTag)`
     }
 `
 interface BottomContentProps {
-    application: Application
+    application: Application,
+    onUpdateApplication: (applicationToUpdate: Application) => void
 }
-export const BottomContent: React.FC<BottomContentProps> = ({ application }) => {
+export const BottomContent: React.FC<BottomContentProps> = ({ application, onUpdateApplication }) => {
     return (
         <StyledBottomContent>
             {!!application.technologies?.length && <>
@@ -49,12 +50,14 @@ export const BottomContent: React.FC<BottomContentProps> = ({ application }) => 
                 application={application}
                 content={application.companyDesc || ''}
                 name={ApplicationKeys.companyDesc}
-                isTextArea={true} />
+                isTextArea={true}
+                onUpdateApplication={onUpdateApplication} />
             <DetailsDescTag title='Position Description'
                 application={application}
                 content={application.positionDesc || ''}
                 name={ApplicationKeys.positionDesc}
-                isTextArea={true} />
+                isTextArea={true}
+                onUpdateApplication={onUpdateApplication} />
         </StyledBottomContent>
     )
 }

@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { Application } from '../../models/interfaces'
-import { updateApplication } from '../../store/reducers/tracker-slice'
 import { utilService } from '../../services/util.service'
 import { ApplicationKeys } from '../../models/enums'
-import { RootState } from '../../store/store'
 
 export const StyledDetailsTag = styled.div`
     display: flex;
@@ -38,7 +35,7 @@ export const TagContent = styled.span`
     overflow: hidden;
     text-overflow: ellipsis;
 `
-const TagInput = styled(TagContent)`
+export const TagInput = styled(TagContent)`
     border: none;
     outline-color: var(--primary-button);
     font-family: inherit;
@@ -52,13 +49,12 @@ interface DetailsTagProps {
     application: Application,
     isTextArea?: Boolean
     className?: string
+    onUpdateApplication: (applicationToUpdate: Application) => void
 }
-export const DetailsTag: React.FC<DetailsTagProps> = ({ application, title, content, isTextArea, name, className, ...props }) => {
+export const DetailsTag: React.FC<DetailsTagProps> = ({ application, onUpdateApplication, title, content, isTextArea, name, className, ...props }) => {
     const [isEditMode, setIsEditMode] = useState(false)
     const [inputTextValue, setInputTextValue] = useState(application[name])
     const [inputNumberValue, setInputNumberValue] = useState(0)
-    const dispatch = useAppDispatch()
-    const user = useAppSelector((state: RootState) => state.user.user)
 
     useEffect(() => {
         if (inputTextValue === undefined) setInputTextValue(application[name])
@@ -87,8 +83,7 @@ export const DetailsTag: React.FC<DetailsTagProps> = ({ application, title, cont
             }
         }
         const applicationToUpdate = { ...application, [name]: value }
-        dispatch(updateApplication({ application: applicationToUpdate, JWT: user?.JWT }))
-
+        onUpdateApplication(applicationToUpdate)
     }
     const setValueType = (isEditMode: boolean) => {
         if (name === 'experience') {
