@@ -5,20 +5,22 @@ import { setCurrentApplicationDetails, updateApplication } from "../../store/red
 import { CardButton } from "../styles/buttons.styled"
 import { CardFace } from "../styles/card.styled"
 import { RootState } from "../../store/store"
+import { BackCardContent } from "./back-card-content"
 
 const StyledBackCard = styled(CardFace)`
     transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
     gap: 20px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 2em;
 `
 const BackCardButton = styled(CardButton)`
     margin: 0;
 `
 
-interface BackCardProps {
+export interface BackCardProps {
     application: Application
 }
 export const BackCard: React.FC<BackCardProps> = ({ application }) => {
@@ -33,15 +35,13 @@ export const BackCard: React.FC<BackCardProps> = ({ application }) => {
         dispatch(updateApplication({ application: applicationToUpdate, JWT: user?.JWT }))
 
     }
-    const openActivityLog = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        ev.stopPropagation()
-        dispatch(setCurrentApplicationDetails(application))
-    }
+    // const openActivityLog = (ev: React.MouseEvent<HTMLButtonElement>) => {
+    //     ev.stopPropagation()
+    //     dispatch(setCurrentApplicationDetails(application))
+    // }
 
     return <StyledBackCard>
-        <h3>More Actions</h3>
-        <BackCardButton onClick={(ev) => ev.stopPropagation()}>Update Status</BackCardButton>
-        <BackCardButton onClick={openActivityLog}>Activity Log</BackCardButton>
+        <BackCardContent application={application} />
         <BackCardButton onClick={archiveApplication}>Archive</BackCardButton>
     </StyledBackCard>
 }

@@ -3,7 +3,7 @@ import { StyledCompanyLogo } from "../styles/company-logo.styled"
 import { FrontCardProps } from "./interfaces-front-card"
 
 const CompanyLogoContainer = styled.div`
-    border-block-end: 1px solid lightgray;
+    border-block-end: 1px solid  var(--secondary-text);
     width: 100%;
     justify-content: center; 
     display: flex;
