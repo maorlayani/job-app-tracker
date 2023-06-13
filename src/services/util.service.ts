@@ -35,11 +35,18 @@ const removeDuplicates = (array: Application[], key: 'location' | 'position') =>
     return typeOpt
 }
 
-
+const dateToString = (date: number | undefined): string => {
+    if (typeof date === 'number') {
+        let formattedDate = new Date(date)
+        return formattedDate.toLocaleDateString('en-GB')
+    }
+    return 'DD/MM/YYYY'
+}
 export const utilService = {
     makeId,
     getTimeFromNow,
     checkIsPlural,
     removeDuplicates,
-    fromatDateToNumber
+    fromatDateToNumber,
+    dateToString
 }

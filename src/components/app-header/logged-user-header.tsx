@@ -20,8 +20,6 @@ interface LoggedUserHeaderProps {
     user: MinUser | null
 }
 export const LoggedUserHeader: React.FC<LoggedUserHeaderProps> = ({ user }) => {
-    console.log(user);
-
     return (
         <StyledLoggedUserHeader>
             <UserIcon />

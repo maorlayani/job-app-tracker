@@ -58,6 +58,7 @@ export const updateApplication = createAsyncThunk(
     'tracker/updateApplication',
     async (playload: { application: Application, JWT: string | undefined }) => {
         const updatedApplication = await trackerService.saveApplication(playload.application, playload.JWT)
+        // console.log('updatedApplication', updatedApplication);
         return updatedApplication
     }
 )

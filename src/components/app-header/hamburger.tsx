@@ -22,7 +22,7 @@ const HamburgerLine = styled.span<HamburgerLineProps>`
     height: 3px;
     width: 100%;
     border-radius: 10px;
-    background: var(--secondary--button);
+    background: var(--secondary-button);
 `
 const HamburgerLine1 = styled(HamburgerLine)`
     transform-origin: 0% 0%;

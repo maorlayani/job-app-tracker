@@ -16,10 +16,12 @@
     --primary-unfilled-button-active-background: #f2f2f2;
     --primary-unfilled-button-active-color: #726654;
 
-    --secondary--button: #f1edf3;
-    --secondary--button-hover: #e3d9e2;
-    --secondary--button-active: #d6c5d0;
-
+    --secondary-button: #f1edf3;
+    --secondary-button-hover: #e3d9e2;
+    --secondary-button-active: #d6c5d0;
+    --danger-button: #CA3521;
+    --danger-button-hover: #AE2A19;
+    --danger-button-active: #6e2f1a;
     --accent: #5f8c7c;
 }
 

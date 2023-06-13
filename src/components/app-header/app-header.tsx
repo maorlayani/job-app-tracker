@@ -24,7 +24,7 @@ const StyledTitle = styled.div`
     font-size: 1.2rem;
     font-weight: 500;
     letter-spacing: .7px;
-    color: var(--secondary--button);
+    color: var(--secondary-button);
     display: none;
     @media (max-width: 500px) {
         display: block;
@@ -38,7 +38,7 @@ export const LinksWrapper = styled.div`
 `
 export const StyledNavLink = styled(NavLink)`
     box-sizing: border-box;
-    color: var(--secondary--button);
+    color: var(--secondary-button);
     text-decoration: none;
     padding: 1em;
     display: flex;

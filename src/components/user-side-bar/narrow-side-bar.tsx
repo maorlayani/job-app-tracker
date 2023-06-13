@@ -4,7 +4,7 @@ import { UserIcon } from '../user-icon/user-icon'
 const StyledNarrowSideBar = styled.div`
     width: 20px;
     height: 350px;
-    background-color: var(--secondary--button);
+    background-color: var(--secondary-button);
     border-top-right-radius: 9px;
     border-bottom-right-radius: 9px;
     display: flex;
