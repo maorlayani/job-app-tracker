@@ -1,16 +1,17 @@
 import { Client, ID, Storage } from "appwrite"
+import { APPWRITE_BUCKET_ID, APPWRITE_PROJECT_ID } from "../secret"
 
-const APPWRITE_PROJECT_ID: any = process.env.NODE_ENV === 'production'
+const CURR_APPWRITE_PROJECT_ID: any = process.env.APPWRITE_PROJECT_ID
     ? process.env.APPWRITE_PROJECT_ID
-    : ''
-const APPWRITE_BUCKET_ID: any = process.env.NODE_ENV === 'production'
+    : APPWRITE_PROJECT_ID
+const CURR_APPWRITE_BUCKET_ID: any = process.env.APPWRITE_BUCKET_ID
     ? process.env.APPWRITE_BUCKET_ID
-    : ''
+    : APPWRITE_BUCKET_ID
 
 
 const client = new Client()
     .setEndpoint('https://cloud.appwrite.io/v1')
-    .setProject(APPWRITE_PROJECT_ID)
+    .setProject(CURR_APPWRITE_PROJECT_ID)
 
 const storage = new Storage(client)
 
@@ -19,12 +20,12 @@ export const appwriteUploadService = {
     deleteFile,
     downloadFile
 }
-console.log('APPWRITE_PROJECT_ID', APPWRITE_PROJECT_ID);
-console.log('APPWRITE_BUCKET_ID', APPWRITE_BUCKET_ID);
+console.log('APPWRITE_PROJECT_ID', CURR_APPWRITE_PROJECT_ID);
+console.log('APPWRITE_BUCKET_ID', CURR_APPWRITE_BUCKET_ID);
 
 async function uploadFile(file: any) {
     try {
-        const res = await storage.createFile(APPWRITE_BUCKET_ID, ID.unique(), file)
+        const res = await storage.createFile(CURR_APPWRITE_BUCKET_ID, ID.unique(), file)
         console.log('res', res);
         return { id: res.$id, name: res.name }
     } catch (err) {

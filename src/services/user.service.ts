@@ -1,10 +1,11 @@
 // import Axios from 'axios'
 import { User, UserCredentials } from "../models/interfaces";
 import { Client, Account, ID, Avatars } from 'appwrite';
+import { APPWRITE_PROJECT_ID } from "../secret";
 
-const APPWRITE_PROJECT_ID: any = process.env.NODE_ENV === 'production'
+const CURR_APPWRITE_PROJECT_ID: any = process.env.APPWRITE_PROJECT_ID
     ? process.env.APPWRITE_PROJECT_ID
-    : ''
+    : APPWRITE_PROJECT_ID
 
 
 const client = new Client();
@@ -12,7 +13,7 @@ const avatars = new Avatars(client);
 
 client
     .setEndpoint('https://cloud.appwrite.io/v1')
-    .setProject(APPWRITE_PROJECT_ID)
+    .setProject(CURR_APPWRITE_PROJECT_ID)
 const account = new Account(client);
 
 export const userService = {

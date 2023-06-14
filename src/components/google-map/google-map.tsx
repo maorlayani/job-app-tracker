@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import GoogleMapReact from 'google-map-react'
 import styled from "styled-components"
 import { trackerService } from "../../services/tracker.service"
+import { GOOGLE_MAPS_API_KEY } from "../../secret"
 
 const MapContainer = styled.div`
     height: 230px;
@@ -17,8 +18,10 @@ interface Coordinates {
 interface GoogleMapProps {
     location: string
 }
-const GOOGLE_MAPS_API_KEY: any = process.env.NODE_ENV === 'production' ? process.env.GOOGLE_MAPS_API_KEY : ''
-console.log('GOOGLE_MAPS_API_KEY', GOOGLE_MAPS_API_KEY);
+const CURR_GOOGLE_MAPS_API_KEY: any = process.env.GOOGLE_MAPS_API_KEY
+    ? process.env.GOOGLE_MAPS_API_KEY
+    : GOOGLE_MAPS_API_KEY
+console.log('GOOGLE_MAPS_API_KEY', CURR_GOOGLE_MAPS_API_KEY);
 
 export const GoogleMap: React.FC<GoogleMapProps> = ({ location }) => {
     const [coordinates, setCoordinates] = useState<Coordinates>({ lat: 32.100333, lng: 34.857499 })
@@ -40,7 +43,7 @@ export const GoogleMap: React.FC<GoogleMapProps> = ({ location }) => {
     return (
         <MapContainer>
             {process.env.NODE_ENV === 'production' && <GoogleMapReact
-                bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
+                bootstrapURLKeys={{ key: CURR_GOOGLE_MAPS_API_KEY }}
                 defaultCenter={{ lat: 32.100333, lng: 34.857499 }}
                 center={coordinates}
                 defaultZoom={zoom}>
