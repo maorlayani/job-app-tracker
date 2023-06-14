@@ -57,7 +57,7 @@ export const CardList = () => {
         const activeApplication = applications.filter(app => !app.isArchived)
         return activeApplication.length === 0 || applications.length === 0
     }
-    if (checkIsActiveApplication() && !loading.isLoading) return <CardPlaceholder />
+    if (checkIsActiveApplication() && !loading.isLoading && loading.type !== 'add') return <CardPlaceholder />
     return (
         <StyledCardList>
             {isPinned && <React.Fragment>

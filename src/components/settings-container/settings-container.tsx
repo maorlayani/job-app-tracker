@@ -37,7 +37,6 @@ export const SettingsContainer: React.FC<SettingsContainerProps> = ({ title, lab
     const { register, handleSubmit } = useForm<SettingsInputs>()
     const dispatch = useAppDispatch()
     const onSubmit: SubmitHandler<SettingsInputs> = async (data) => {
-        console.log('data', data);
         const currentPassword = data.currnet ? data.currnet : ''
         dispatch(updateUser({
             field: labelTxt,

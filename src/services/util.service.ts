@@ -15,8 +15,6 @@ function makeId(length: number = 4): string {
 
 const getTimeFromNow = (date: number | string) => {
     if (typeof date !== 'number') return 'Not Found'
-    // const FormattedDate = dayjs(date).format('DD/MM/YYYY')
-    // console.log('FormattedDate:', FormattedDate);
     return dayjs(date).fromNow()
 }
 const fromatDateToNumber = (formatDate: string): number => {

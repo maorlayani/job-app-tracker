@@ -21,7 +21,6 @@ interface GoogleMapProps {
 const CURR_GOOGLE_MAPS_API_KEY: any = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
     ? process.env.REACT_APP_GOOGLE_MAPS_API_KEY
     : ''
-console.log('GOOGLE_MAPS_API_KEY', CURR_GOOGLE_MAPS_API_KEY);
 
 export const GoogleMap: React.FC<GoogleMapProps> = ({ location }) => {
     const [coordinates, setCoordinates] = useState<Coordinates>({ lat: 32.100333, lng: 34.857499 })
@@ -36,7 +35,7 @@ export const GoogleMap: React.FC<GoogleMapProps> = ({ location }) => {
             const coor = await trackerService.getCoordinates(location)
             setCoordinates(coor)
         } catch (err) {
-            console.log('err from front');
+            console.error('Cannot get Coordinates', err);
         }
     }
     const zoom: number = 15

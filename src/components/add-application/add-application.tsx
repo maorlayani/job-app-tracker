@@ -93,13 +93,10 @@ export const AddApplication = () => {
         delete application.contactEmail
         delete application.contactPhone
         delete application.contactLinkedin
-        console.log(application);
 
         if (application._id) {
             dispatch(updateApplication({ application, JWT: user?.JWT }))
         } else {
-            console.log({ application, JWT: user?.JWT });
-
             dispatch(addApplication({ application, JWT: user?.JWT }))
         }
         dispatch(toggleApplicationDetails())

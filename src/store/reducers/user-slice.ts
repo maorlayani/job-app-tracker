@@ -14,7 +14,6 @@ export const signup = createAsyncThunk(
     'user/signup',
     async (userCred: User) => {
         const user: MinUser | null = await userService.signup(userCred)
-        // console.log('from slicer', user);
         return user
     }
 )
@@ -23,7 +22,6 @@ export const login = createAsyncThunk(
     'user/login',
     async (userCred: UserCredentials) => {
         const user = await userService.login(userCred)
-        // console.log('from slicer', user);
         return user
     }
 )
