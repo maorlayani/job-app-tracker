@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Input } from '../styles/input.styled'
-import { InputsNames, SettingsInputs } from '../../pages/settings/settings'
+import { InputsNames, SettingsInputs } from '../../pages/settings'
 import { UseFormRegister } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 

@@ -21,12 +21,16 @@ const Content = styled.p`
     text-align: center;
     font-size: 1.3em;
     @media (max-width: 500px) {
-        padding: 0 1em;
-        font-size: 1em;
+        width: 100%;
+        font-size: 1.05rem;
+        letter-spacing: unset;
     }
 `
 const MiddleContent = styled(Content)`
     margin: 0;
+    @media (max-width: 500px) {
+        margin-block-end: 1rem;
+    }
 `
 const LastContent = styled(Content)`
     @media (max-width: 500px) {

@@ -5,11 +5,11 @@ import { Route, Routes } from 'react-router-dom'
 import { TrackerBoard } from './pages/tracker-board'
 import { AddApplication } from './components/add-application/add-application'
 import { AppHeader } from './components/app-header/app-header'
-import { ApplicationFullDetails } from './pages/application-details/application-details'
+import { ApplicationFullDetails } from './pages/application-details'
 import Globalfonts from './assets/global-fonts'
-import { Archive } from './pages/archive/archive'
-import { SignupLogin } from './pages/signup-login/signup-login'
-import { Settings } from './pages/settings/settings'
+import { Archive } from './pages/archive'
+import { SignupLogin } from './pages/signup-login'
+import { Settings } from './pages/settings'
 import { AppFooter } from './components/app-footer/app-footer'
 
 const StyledApp = styled.div`
@@ -33,7 +33,6 @@ export const Root = () => {
         <Route path='account' element={<Settings />} />
       </Routes>
       <AppFooter />
-
     </StyledApp>
   )
 }

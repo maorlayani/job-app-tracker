@@ -20,8 +20,6 @@ const TitleTag = styled.span`
     border-block-end: 1px solid var(--secondary-text);
 `
 export const BackCardContent: React.FC<BackCardProps> = ({ application }) => {
-
-    console.log(application);
     return (
         <StyeldBackCardContent>
             <TitleTag>Additional information</TitleTag>

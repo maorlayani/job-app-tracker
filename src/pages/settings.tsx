@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { SettingsContainer } from '../../components/settings-container/settings-container'
-import { useAppSelector } from '../../hooks/redux-hooks'
-import { RootState } from '../../store/store'
+import { SettingsContainer } from '../components/settings-container/settings-container'
+import { useAppSelector } from '../hooks/redux-hooks'
+import { RootState } from '../store/store'
 import { useNavigate } from 'react-router-dom'
-import { SettingsHeaderContainer } from '../../components/settings-container/settings-header-container'
+import { SettingsHeaderContainer } from '../components/settings-container/settings-header-container'
 import { useEffect } from 'react'
 
 const StyledSettings = styled.div`

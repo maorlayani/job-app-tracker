@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { StyledButton } from '../styles/buttons.styled'
-import { InputsNames, SettingsInputs } from '../../pages/settings/settings'
+import { InputsNames, SettingsInputs } from '../../pages/settings'
 import { ContainerFirstSection } from './container-first-section'
 import { useAppDispatch } from '../../hooks/redux-hooks'
 import { updateUser } from '../../store/reducers/user-slice'

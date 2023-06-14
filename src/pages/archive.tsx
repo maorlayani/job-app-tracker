@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import { ArchiveTable } from "../../components/archive-table/archive-table"
-import { UserSideBar } from "../../components/user-side-bar/user-side-bar"
+import { ArchiveTable } from "../components/archive-table/archive-table"
+import { UserSideBar } from "../components/user-side-bar/user-side-bar"
 
 const StyledArchive = styled.div`
     width: 100%;

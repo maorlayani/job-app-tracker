@@ -32,7 +32,9 @@ export const HomePageSlider = () => {
         return [
             'https://res.cloudinary.com/dqhrqqqul/image/upload/v1686659671/job-application-tracker/tracker-page_o2tfnr.png',
             'https://res.cloudinary.com/dqhrqqqul/image/upload/c_scale,h_685/v1686659921/job-application-tracker/add-app-page_ew6nmd.png',
-            'https://res.cloudinary.com/dqhrqqqul/image/upload/v1686665703/job-application-tracker/archive-page_gabofr.png'
+            'https://res.cloudinary.com/dqhrqqqul/image/upload/v1686768790/job-application-tracker/details-page_ee86qu.png',
+            'https://res.cloudinary.com/dqhrqqqul/image/upload/v1686665703/job-application-tracker/archive-page_gabofr.png',
+            'https://res.cloudinary.com/dqhrqqqul/image/upload/v1686768683/job-application-tracker/settings-page_dwkq05.png',
         ]
     }
     const settings = {

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { FirstSectionTitle } from './first-section-title'
-import { InputsNames, SettingsInputs } from '../../pages/settings/settings'
+import { InputsNames, SettingsInputs } from '../../pages/settings'
 import { UseFormRegister } from 'react-hook-form'
 import { SettingsInput } from './settings-input'
 
