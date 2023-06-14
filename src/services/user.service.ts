@@ -2,12 +2,17 @@
 import { User, UserCredentials } from "../models/interfaces";
 import { Client, Account, ID, Avatars } from 'appwrite';
 
+const APPWRITE_PROJECT_ID: any = process.env.NODE_ENV === 'production'
+    ? process.env.APPWRITE_PROJECT_ID
+    : ''
+
+
 const client = new Client();
 const avatars = new Avatars(client);
 
 client
     .setEndpoint('https://cloud.appwrite.io/v1')
-    .setProject(process.env.APPWRITE_PROJECT_ID ? process.env.APPWRITE_PROJECT_ID : '')
+    .setProject(APPWRITE_PROJECT_ID)
 const account = new Account(client);
 
 export const userService = {

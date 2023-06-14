@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.9351fd4d.css",
-    "main.js": "/static/js/main.7f001dcd.js",
+    "main.js": "/static/js/main.f77d130d.js",
     "static/media/LeagueSpartan-Bold.ttf": "/static/media/LeagueSpartan-Bold.287f5d6604adc2276da9.ttf",
     "static/media/LeagueSpartan-Medium.ttf": "/static/media/LeagueSpartan-Medium.e855e0cd01fed78be96f.ttf",
     "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
@@ -22,10 +22,10 @@
     "static/media/red-close-icon.svg": "/static/media/red-close-icon.b681a6b31c73df0bbf7695fefdf5bd78.svg",
     "static/media/facebook.svg": "/static/media/facebook.9b2a83c9d1559084b38b710daef7d3f7.svg",
     "main.9351fd4d.css.map": "/static/css/main.9351fd4d.css.map",
-    "main.7f001dcd.js.map": "/static/js/main.7f001dcd.js.map"
+    "main.f77d130d.js.map": "/static/js/main.f77d130d.js.map"
   },
   "entrypoints": [
     "static/css/main.9351fd4d.css",
-    "static/js/main.7f001dcd.js"
+    "static/js/main.f77d130d.js"
   ]
 }
