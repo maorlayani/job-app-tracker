@@ -86,8 +86,8 @@ async function getTechnologies(techSerachFromUser: string): Promise<Technology[]
 
 async function getCoordinates(location: string) {
     try {
-        const data: any = await axios.get(`${BASE_URL}tracker/location/${location}`)
-        const coor = data.data.results[0].geometry.location
+        const results: any = await axios.get(`${BASE_URL}tracker/location/${location}`)
+        const coor = results.data[0].geometry.location
         return coor
     } catch (err) {
         console.error('Cannot get coordinates', err);
