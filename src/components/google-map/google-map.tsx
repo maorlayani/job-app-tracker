@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import GoogleMapReact from 'google-map-react'
 import styled from "styled-components"
-import { GOOGLE_MAPS_API_KEY } from "../../secret"
 import { trackerService } from "../../services/tracker.service"
 
 const MapContainer = styled.div`
@@ -39,7 +38,7 @@ export const GoogleMap: React.FC<GoogleMapProps> = ({ location }) => {
     return (
         <MapContainer>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
+                bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY ? process.env.GOOGLE_MAPS_API_KEY : '' }}
                 defaultCenter={{ lat: 32.100333, lng: 34.857499 }}
                 center={coordinates}
                 defaultZoom={zoom}>

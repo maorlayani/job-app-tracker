@@ -1,9 +1,8 @@
 import { Client, ID, Storage } from "appwrite"
-import { APPWRITE_BUCKET_ID, APPWRITE_PROJECT_ID } from "../secret"
 
 const client = new Client()
     .setEndpoint('https://cloud.appwrite.io/v1')
-    .setProject(APPWRITE_PROJECT_ID)
+    .setProject(process.env.APPWRITE_PROJECT_ID ? process.env.APPWRITE_PROJECT_ID : '')
 
 const storage = new Storage(client)
 
@@ -12,7 +11,7 @@ export const appwriteUploadService = {
     deleteFile,
     downloadFile
 }
-
+const APPWRITE_BUCKET_ID = process.env.APPWRITE_BUCKET_ID ? process.env.APPWRITE_BUCKET_ID : ''
 async function uploadFile(file: any) {
     try {
         const res = await storage.createFile(APPWRITE_BUCKET_ID, ID.unique(), file)
