@@ -1,12 +1,13 @@
 import { Client, ID, Storage } from "appwrite"
-import { APPWRITE_BUCKET_ID, APPWRITE_PROJECT_ID } from "../secret"
+// import { APPWRITE_BUCKET_ID, APPWRITE_PROJECT_ID } from "../secret"
 
-const CURR_APPWRITE_PROJECT_ID: any = process.env.APPWRITE_PROJECT_ID
-    ? process.env.APPWRITE_PROJECT_ID
-    : APPWRITE_PROJECT_ID
-const CURR_APPWRITE_BUCKET_ID: any = process.env.APPWRITE_BUCKET_ID
-    ? process.env.APPWRITE_BUCKET_ID
-    : APPWRITE_BUCKET_ID
+const CURR_APPWRITE_PROJECT_ID: any = process.env.REACT_APP_APPWRITE_PROJECT_ID
+    ? process.env.REACT_APP_APPWRITE_PROJECT_ID
+    : ''
+
+const CURR_APPWRITE_BUCKET_ID: any = process.env.REACT_APP_APPWRITE_BUCKET_ID
+    ? process.env.REACT_APP_APPWRITE_BUCKET_ID
+    : ''
 
 
 const client = new Client()
@@ -34,7 +35,7 @@ async function uploadFile(file: any) {
 }
 async function deleteFile(fileId: string) {
     try {
-        const res = await storage.deleteFile(APPWRITE_BUCKET_ID, fileId)
+        const res = await storage.deleteFile(CURR_APPWRITE_BUCKET_ID, fileId)
         console.log(res);
         return res
     } catch (err) {
@@ -43,9 +44,9 @@ async function deleteFile(fileId: string) {
 }
 function downloadFile(fileId: string) {
     try {
-        const res = storage.getFileDownload(APPWRITE_BUCKET_ID, fileId)
+        const res = storage.getFileDownload(CURR_APPWRITE_BUCKET_ID, fileId)
         return res.href
     } catch (err) {
         console.error('Cannot download file', err)
     }
-}
+} 
