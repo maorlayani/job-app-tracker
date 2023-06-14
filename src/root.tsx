@@ -1,5 +1,5 @@
 import { HomePage } from './pages/home-page'
-import './app.css'
+import './App.css'
 import styled from 'styled-components'
 import { Route, Routes } from 'react-router-dom'
 import { TrackerBoard } from './pages/tracker-board'
