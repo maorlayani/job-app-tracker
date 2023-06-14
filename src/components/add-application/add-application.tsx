@@ -63,8 +63,8 @@ export const AddApplication = () => {
         submittedAt: '',
         status: '',
         postedDate: '',
-        resumeVersion: '',
-        positionUrl: ''
+        positionUrl: '',
+        resume: ''
     })
 
     useEffect(() => {
@@ -98,6 +98,8 @@ export const AddApplication = () => {
         if (application._id) {
             dispatch(updateApplication({ application, JWT: user?.JWT }))
         } else {
+            console.log({ application, JWT: user?.JWT });
+
             dispatch(addApplication({ application, JWT: user?.JWT }))
         }
         dispatch(toggleApplicationDetails())
@@ -123,8 +125,8 @@ export const AddApplication = () => {
             submittedAt: '',
             status: '',
             postedDate: '',
-            resumeVersion: '',
-            positionUrl: ''
+            positionUrl: '',
+            resume: ''
         })
         setTechList([])
     }
@@ -159,7 +161,7 @@ export const AddApplication = () => {
                 </SectionContainer>}
 
                 {selectedSection === FormSectionTxt.fourthSection && <SectionContainer>
-                    <FourthSection register={register} />
+                    <FourthSection register={register} setApplication={setApplication} application={application} />
                 </SectionContainer>}
                 <FormButtons clearForm={clearForm} selectedSection={selectedSection} setSection={setSection} page={page} />
             </StyledAddApplicationForm>

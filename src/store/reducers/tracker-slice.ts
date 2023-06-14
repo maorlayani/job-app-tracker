@@ -101,6 +101,9 @@ export const trackerSlice = createSlice({
         },
         setPosition: (state, action: PayloadAction<string[]>) => {
             state.position = action.payload
+        },
+        setLoading: (state, action: PayloadAction<{ type: string, isLoading: boolean }>) => {
+            state.loading = { type: action.payload.type, isLoading: action.payload.isLoading }
         }
     },
     extraReducers: (builder) => {
@@ -140,6 +143,7 @@ export const {
     setCurrentApplicationDetails,
     setLoaction,
     setPosition,
-    resetApplications } = trackerSlice.actions
+    resetApplications,
+    setLoading } = trackerSlice.actions
 
 export default trackerSlice.reducer;

@@ -4,6 +4,7 @@ import { Application } from '../../models/interfaces'
 import { utilService } from '../../services/util.service'
 import { ContactTag } from './contact-tag'
 import { DetailsTag } from './details-tag'
+import { ResumeTag } from './resume-tag'
 
 const StyledLeftSideContent = styled.div`
     display: flex;
@@ -51,6 +52,7 @@ export const LeftSideContent: React.FC<LeftSideContentProps> = ({ application, o
                     contactDetails={application.contact}
                     application={application}
                     onUpdateApplication={onUpdateApplication} />}
+            {application.resume && <ResumeTag file={application.resume} />}
         </StyledLeftSideContent>
     )
 }

@@ -12,11 +12,14 @@ const InputsWarpper = styled.div`
     margin-block-end: 15px;
     flex-wrap: wrap;
 `
+export type SetApplication = React.Dispatch<React.SetStateAction<any>>;
 
 export interface FourthSectionProps {
-    register: Register
+    register: Register,
+    setApplication: SetApplication,
+    application: any
 }
-export const FourthSection: React.FC<FourthSectionProps> = ({ register }) => {
+export const FourthSection: React.FC<FourthSectionProps> = ({ register, setApplication, application }) => {
     return (
         <>
             <InputsWarpper>
@@ -36,7 +39,7 @@ export const FourthSection: React.FC<FourthSectionProps> = ({ register }) => {
                     isRequired={false} />
             </InputsWarpper>
             <ContactInfo register={register} />
-            <DragDropFile />
+            <DragDropFile application={application} setApplication={setApplication} />
         </>
     )
 }

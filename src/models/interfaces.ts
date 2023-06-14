@@ -21,7 +21,8 @@ export interface Application {
     links?: [{ name: string, url: string }],
     isPinned: boolean,
     isArchived: boolean,
-    archivedDate: number | ''
+    archivedDate: number | '',
+    resume?: { id: string, name: string }
 }
 
 export interface DraftApplication {
@@ -40,6 +41,7 @@ export interface DraftApplication {
     status: Status,
     postedDate?: string | number,
     positionUrl?: string,
+    resume?: { id: string, name: string }
 }
 
 export interface Logo {
